@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align:center;margin-top:15px;">Notes</h1>
+<table class="table" id="notes">
+  <thead>
+    <tr>
+      <th scope="col">Note</th>
+      <th scope="col">Date added</th>
+      <th scope="col">Delete note</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for note in user.notes %}
+    <tr>
+      <th scope="row">{{ note.data }}</th>
+      <td>{{ note.date }}</td>
+      <td><button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<form method="POST">
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary"><span class="bi-card-text"></span>Add Note</button>
+    </div>
+</form>
+{% endblock %}
+
+print user_table
+
+{% block user_table %}
+
+<h1 style="text-align:center;margin-top:15px;">Users</h1>
+<ul class="list-group list-group-flush" id="users">
+    {% for user in users %}
+    <li class="list-group-item">
+        {{ user.id }}
+        {{ "." }}
+        {{ user.first_name }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
