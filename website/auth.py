@@ -40,6 +40,7 @@ def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
         first_name = request.form.get('firstName')
+        last_name = request.form.get('lastName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
@@ -50,6 +51,8 @@ def sign_up():
             flash('Email must be greater than 5 characters.', category='error')
         elif len(first_name) < 2:
             flash('First name must be greater than 1 character', category='error')
+        elif len(last_name) < 2:
+            flash('Last name must be greater than 1 character', category='error')
         elif password1 != password2:
             flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
