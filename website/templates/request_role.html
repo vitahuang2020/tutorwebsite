@@ -3,11 +3,18 @@
 
 {% block content %}
 
-<p class="text-center">
-    Do you want to become a tutor or tutee?
-</p>
-<button type="button" class="btn btn-primary btn-lg">Tutor</button>
-<button type="button" class="btn btn-primary btn-lg">Tutee</button>
+<br />
+
+{% if user.role == "tutor" %}
+<form method="POST">
+
+</form>
+{% elif user.role == "tutee" %}
+<form method="POST">
+
+</form>
+
+{% endif %}
 
 {% endblock %}
 
