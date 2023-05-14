@@ -1,0 +1,464 @@
+Index: website/templates/sign_up.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% extends \"base.html\" %}\n\n{% block title %}Home{% endblock %}\n\n{% block content %}\n<form method=\"POST\">\n    <h3 style=\"text-align:center;margin-top:15px;\">Sign Up</h3>\n    <div class=\"form-group\">\n        <label for=\"email\">Email Address</label>\n        <input type=\"email\" class=\"form-control\" id=\"email\" name=\"email\" placeholder=\"Enter email\" />\n    </div>\n    <div class=\"form-group\">\n        <label for=\"firstName\">First Name</label>\n        <input type=\"text\" class=\"form-control\" id=\"firstName\" name=\"firstName\" placeholder=\"Enter first name\" />\n    </div>\n    <div class=\"form-group\">\n        <label for=\"lastName\">Last Name</label>\n        <input type=\"text\" class=\"form-control\" id=\"lastName\" name=\"lastName\" placeholder=\"Enter last name\" />\n    </div>\n    <div class=\"form-group\">\n        <label for=\"password1\">Password</label>\n        <input type=\"password\" class=\"form-control\" id=\"password1\" name=\"password1\" placeholder=\"Enter password\" />\n    </div>\n    <div class=\"form-group\">\n        <label for=\"password2\">Confirm Password</label>\n        <input type=\"password\" class=\"form-control\" id=\"password2\" name=\"password2\" placeholder=\"Confirm password\" />\n    </div>\n<br />\n\n<h3 style=\"text-align:center;\">Are you a student or admin?</h3>\n<div class=\"form-check\">\n  <input class=\"form-check-input\" type=\"radio\" name=\"role\" id=\"student\" value=\"student\" checked>\n  <label class=\"form-check-label\" for=\"student\">\n    Student\n  </label>\n</div>\n\n<div class=\"form-check\">\n  <input class=\"form-check-input\" type=\"radio\" name=\"role\" id=\"admin\" value=\"admin\">\n  <label class=\"form-check-label\" for=\"admin\">\n    Admin\n  </label>\n</div>\n\n<br />\n    <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n</form>\n\n{% endblock %}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/website/templates/sign_up.html b/website/templates/sign_up.html
+--- a/website/templates/sign_up.html	(revision dd1bddbf6579df3431b2f4ee471efcd36be2b8c6)
++++ b/website/templates/sign_up.html	(date 1682281331633)
+@@ -27,11 +27,18 @@
+     </div>
+ <br />
+ 
+-<h3 style="text-align:center;">Are you a student or admin?</h3>
++<h3 style="text-align:center;">Are you a tutor, tutee or admin?</h3>
+ <div class="form-check">
+-  <input class="form-check-input" type="radio" name="role" id="student" value="student" checked>
+-  <label class="form-check-label" for="student">
+-    Student
++  <input class="form-check-input" type="radio" name="role" id="tutor" value="tutor" checked>
++  <label class="form-check-label" for="tutor">
++    Tutor
++  </label>
++</div>
++
++<div class="form-check">
++  <input class="form-check-input" type="radio" name="role" id="tutee" value="tutee" checked>
++  <label class="form-check-label" for="tutee">
++    Tutee
+   </label>
+ </div>
+ 
+Index: website/templates/request_role.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% extends \"base.html\" %}\n{% block title %}Request{% endblock %}\n\n{% block content %}\n<style>\n    .subject {\n        margin-top:10px;\n    }\n    .other {\n        margin-top:10px;\n    }\n</style>\n<div class=\"subject\">\n    <h5>Please select the subject you would like to be tutored in (you may select multiple)</h5>\n    <div class=\"form-check\">\n    <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"flexCheckDefault1\">\n    <label class=\"form-check-label\" for=\"flexCheckDefault1\">\n        Math\n    </label>\n    </div>\n    <div class=\"form-check\">\n    <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"flexCheckDefault2\">\n    <label class=\"form-check-label\" for=\"flexCheckDefault2\">\n        Geography\n    </label>\n    </div>\n    <div class=\"form-check\">\n    <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"flexCheckDefault3\">\n    <label class=\"form-check-label\" for=\"flexCheckDefault3\">\n        English\n    </label>\n    </div>\n    <div class=\"form-check\">\n    <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"flexCheckDefault4\">\n    <label class=\"form-check-label\" for=\"flexCheckDefault4\">\n        History\n    </label>\n    </div>\n    <div class=\"form-check\">\n    <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"flexCheckDefault5\">\n    <label class=\"form-check-label\" for=\"flexCheckDefault5\">\n        French\n    </label>\n    </div>\n    <div class=\"form-check\">\n    <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"flexCheckDefault6\">\n    <label class=\"form-check-label\" for=\"flexCheckDefault6\">\n        Science\n    </label>\n    </div>\n\n    <div class=\"other\">\n        <form>\n        <div class=\"form-group\">\n            <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Other\">\n        </div>\n        </form>\n    </div>\n</div>\n\n</div>\n    <div class=\"col-auto my-1\">\n      <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n    </div>\n\n\n{% endblock %}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/website/templates/request_role.html b/website/templates/request_role.html
+--- a/website/templates/request_role.html	(revision dd1bddbf6579df3431b2f4ee471efcd36be2b8c6)
++++ b/website/templates/request_role.html	(date 1684090990949)
+@@ -1,7 +1,11 @@
+ {% extends "base.html" %}
+ {% block title %}Request{% endblock %}
+-
+ {% block content %}
++
++<br />
++
++{% if user.role == "tutor" %}
++
+ <style>
+     .subject {
+         margin-top:10px;
+@@ -10,58 +14,359 @@
+         margin-top:10px;
+     }
+ </style>
+-<div class="subject">
+-    <h5>Please select the subject you would like to be tutored in (you may select multiple)</h5>
+-    <div class="form-check">
+-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+-    <label class="form-check-label" for="flexCheckDefault1">
+-        Math
+-    </label>
+-    </div>
+-    <div class="form-check">
+-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+-    <label class="form-check-label" for="flexCheckDefault2">
+-        Geography
+-    </label>
+-    </div>
+-    <div class="form-check">
+-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
+-    <label class="form-check-label" for="flexCheckDefault3">
+-        English
+-    </label>
+-    </div>
+-    <div class="form-check">
+-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4">
+-    <label class="form-check-label" for="flexCheckDefault4">
+-        History
+-    </label>
+-    </div>
+-    <div class="form-check">
+-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5">
+-    <label class="form-check-label" for="flexCheckDefault5">
+-        French
+-    </label>
+-    </div>
+-    <div class="form-check">
+-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault6">
+-    <label class="form-check-label" for="flexCheckDefault6">
+-        Science
+-    </label>
+-    </div>
++
++<form method="POST">
++    <div class="subject">
++        <h5>Select subjects would you like to tutor?</h5>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="math" id="math">
++        <label class="form-check-label" for="math">
++            Math
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="geography" id="geography">
++        <label class="form-check-label" for="geography">
++            Geography
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="english" id="english">
++        <label class="form-check-label" for="english">
++            English
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="history" id="history">
++        <label class="form-check-label" for="history">
++            History
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="french" id="french">
++        <label class="form-check-label" for="french">
++            French
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="science" id="science">
++        <label class="form-check-label" for="science">
++            Science
++        </label>
++        </div>
+ 
+-    <div class="other">
+-        <form>
+-        <div class="form-group">
+-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Other">
+-        </div>
+-        </form>
++        <div class="other">
++            <form>
++            <div class="form-group">
++                <input type="email" class="form-control" id="other" aria-describedby="emailHelp" placeholder="Other">
++            </div>
++            </form>
++        </div>
++    </div>
++
++    <br />
++
++    <h5>What time are you available?</h5>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="monBeforeSchool" id="monBeforeSchool">
++        <label class="form-check-label" for="monBeforeSchool">
++            Monday Before School
++        </label>
++
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="monLunch" id="monLunch">
++        <label class="form-check-label" for="monLunch">
++            Monday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="monAfterSchool">
++        <label class="form-check-label" for="monAfterSchool">
++            Monday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="tueBeforeSchool">
++        <label class="form-check-label" for="tueBeforeSchool">
++            Tuesday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="tueLunch">
++        <label class="form-check-label" for="tueLunch">
++            Tuesday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="tueAfterSchool">
++        <label class="form-check-label" for="tueAfterSchool">
++            Tuesday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="wedBeforeSchool">
++        <label class="form-check-label" for="wedBeforeSchool">
++            Wednesday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="wedLunch">
++        <label class="form-check-label" for="wedLunch">
++            Wednesday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="wedAfterSchool">
++        <label class="form-check-label" for="wedAfterSchool">
++            Wednesday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="thurBeforeSchool">
++        <label class="form-check-label" for="thurBeforeSchool">
++            Thursday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="thurLunch">
++        <label class="form-check-label" for="thurLunch">
++            Thursday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="thurAfterSchool">
++        <label class="form-check-label" for="thurAfterSchool">
++            Thursday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="friBeforeSchool">
++        <label class="form-check-label" for="friBeforeSchool">
++            Friday Before School
++        </label>
+     </div>
+-</div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="friLunch">
++        <label class="form-check-label" for="friLunch">
++            Friday During Lunch
++        </label>
++    </div>
+ 
+-</div>
+-    <div class="col-auto my-1">
+-      <button type="submit" class="btn btn-primary">Submit</button>
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="friAfterSchool">
++        <label class="form-check-label" for="friAfterSchool">
++            Friday After School
++        </label>
++    </div>
++    <br />
++    <button type="submit" class="btn btn-primary">Submit</button>
++
++</form>
++
++{% elif user.role == "tutee" %}
++<<style>
++    .subject {
++        margin-top:10px;
++    }
++    .other {
++        margin-top:10px;
++    }
++</style>
++
++<form method="POST">
++    <div class="subject">
++        <h5>What subjects do you need tutoring?</h5>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="math" id="math">
++        <label class="form-check-label" for="math">
++            Math
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="geography" id="geography">
++        <label class="form-check-label" for="geography">
++            Geography
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="english" id="english">
++        <label class="form-check-label" for="english">
++            English
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="history" id="history">
++        <label class="form-check-label" for="history">
++            History
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="french" id="french">
++        <label class="form-check-label" for="french">
++            French
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="science" id="science">
++        <label class="form-check-label" for="science">
++            Science
++        </label>
++        </div>
++
++        <div class="other">
++            <form>
++            <div class="form-group">
++                <input type="email" class="form-control" id="other" aria-describedby="emailHelp" placeholder="Other">
++            </div>
++            </form>
++        </div>
++    </div>
++
++    <br />
++
++    <h5>What time are you available?</h5>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="monBeforeSchool" id="monBeforeSchool">
++        <label class="form-check-label" for="monBeforeSchool">
++            Monday Before School
++        </label>
++
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="monLunch" id="monLunch">
++        <label class="form-check-label" for="monLunch">
++            Monday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="monAfterSchool">
++        <label class="form-check-label" for="monAfterSchool">
++            Monday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="tueBeforeSchool">
++        <label class="form-check-label" for="tueBeforeSchool">
++            Tuesday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="tueLunch">
++        <label class="form-check-label" for="tueLunch">
++            Tuesday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="tueAfterSchool">
++        <label class="form-check-label" for="tueAfterSchool">
++            Tuesday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="wedBeforeSchool">
++        <label class="form-check-label" for="wedBeforeSchool">
++            Wednesday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="wedLunch">
++        <label class="form-check-label" for="wedLunch">
++            Wednesday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="wedAfterSchool">
++        <label class="form-check-label" for="wedAfterSchool">
++            Wednesday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="thurBeforeSchool">
++        <label class="form-check-label" for="thurBeforeSchool">
++            Thursday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="thurLunch">
++        <label class="form-check-label" for="thurLunch">
++            Thursday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="thurAfterSchool">
++        <label class="form-check-label" for="thurAfterSchool">
++            Thursday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="friBeforeSchool">
++        <label class="form-check-label" for="friBeforeSchool">
++            Friday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="friLunch">
++        <label class="form-check-label" for="friLunch">
++            Friday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="friAfterSchool">
++        <label class="form-check-label" for="friAfterSchool">
++            Friday After School
++        </label>
+     </div>
++    <br />
++    <button type="submit" class="btn btn-primary">Submit</button>
+ 
++</form>
++
++{% endif %}
+ 
+ {% endblock %}
