@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a36e6af9-64cf-4bf4-94ac-f9a96e809cc3" name="Changes" comment="Changed line 40 exampleRadios2 -&gt; exampleRadios3 Fixed id reference error" />
+    <list default="true" id="a36e6af9-64cf-4bf4-94ac-f9a96e809cc3" name="Changes" comment="Added &quot;hello there&quot;" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
