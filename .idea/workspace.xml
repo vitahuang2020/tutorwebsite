@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a36e6af9-64cf-4bf4-94ac-f9a96e809cc3" name="Changes" comment="Added &quot;hello there&quot;" />
+    <list default="true" id="a36e6af9-64cf-4bf4-94ac-f9a96e809cc3" name="Changes" comment="Changed line 40 exampleRadios2 -&gt; exampleRadios3 Fixed id reference error">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/templates/request_role.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/request_role.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684092355631</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Changed line 40 exampleRadios2 -&gt; exampleRadios3 Fixed id reference error">
+      <created>1684092842265</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1684092842266</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

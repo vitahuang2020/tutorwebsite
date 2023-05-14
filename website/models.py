@@ -17,4 +17,3 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(50))
     role = db.Column(db.String(50))
     notes = db.relationship('Note')
-

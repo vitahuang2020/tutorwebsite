@@ -5,8 +5,6 @@
 <!-- Hello there -->
 <br />
 
-{% if user.role == "tutor" %}
-
 <style>
     .subject {
         margin-top:10px;
@@ -18,7 +16,14 @@
 
 <form method="POST">
     <div class="subject">
+        {% if user.role == "tutor" %}
         <h5>Select subjects would you like to tutor?</h5>
+
+        {% elif user.role == "tutee" %}
+        <h5>Select subjects would you like to tutored?</h5>
+
+        {% endif %}
+
         <div class="form-check">
         <input class="form-check-input" type="checkbox" value="math" id="math">
         <label class="form-check-label" for="math">
@@ -187,7 +192,6 @@
 
 </form>
 
-{% elif user.role == "tutee" %}
 <<style>
     .subject {
         margin-top:10px;
@@ -196,178 +200,5 @@
         margin-top:10px;
     }
 </style>
-
-<form method="POST">
-    <div class="subject">
-        <h5>What subjects do you need tutoring?</h5>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="math" id="math">
-        <label class="form-check-label" for="math">
-            Math
-        </label>
-        </div>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="geography" id="geography">
-        <label class="form-check-label" for="geography">
-            Geography
-        </label>
-        </div>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="english" id="english">
-        <label class="form-check-label" for="english">
-            English
-        </label>
-        </div>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="history" id="history">
-        <label class="form-check-label" for="history">
-            History
-        </label>
-        </div>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="french" id="french">
-        <label class="form-check-label" for="french">
-            French
-        </label>
-        </div>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="science" id="science">
-        <label class="form-check-label" for="science">
-            Science
-        </label>
-        </div>
-
-        <div class="other">
-            <form>
-            <div class="form-group">
-                <input type="email" class="form-control" id="other" aria-describedby="emailHelp" placeholder="Other">
-            </div>
-            </form>
-        </div>
-    </div>
-
-    <br />
-
-    <h5>What time are you available?</h5>
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="monBeforeSchool" id="monBeforeSchool">
-        <label class="form-check-label" for="monBeforeSchool">
-            Monday Before School
-        </label>
-
-    </div>
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="monLunch" id="monLunch">
-        <label class="form-check-label" for="monLunch">
-            Monday During Lunch
-        </label>
-    </div>
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="monAfterSchool">
-        <label class="form-check-label" for="monAfterSchool">
-            Monday After School
-        </label>
-    </div>
-
-    <br />
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="tueBeforeSchool">
-        <label class="form-check-label" for="tueBeforeSchool">
-            Tuesday Before School
-        </label>
-    </div>
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="tueLunch">
-        <label class="form-check-label" for="tueLunch">
-            Tuesday During Lunch
-        </label>
-    </div>
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="tueAfterSchool">
-        <label class="form-check-label" for="tueAfterSchool">
-            Tuesday After School
-        </label>
-    </div>
-
-    <br />
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="wedBeforeSchool">
-        <label class="form-check-label" for="wedBeforeSchool">
-            Wednesday Before School
-        </label>
-    </div>
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="wedLunch">
-        <label class="form-check-label" for="wedLunch">
-            Wednesday During Lunch
-        </label>
-    </div>
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="wedAfterSchool">
-        <label class="form-check-label" for="wedAfterSchool">
-            Wednesday After School
-        </label>
-    </div>
-
-    <br />
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="thurBeforeSchool">
-        <label class="form-check-label" for="thurBeforeSchool">
-            Thursday Before School
-        </label>
-    </div>
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="thurLunch">
-        <label class="form-check-label" for="thurLunch">
-            Thursday During Lunch
-        </label>
-    </div>
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="thurAfterSchool">
-        <label class="form-check-label" for="thurAfterSchool">
-            Thursday After School
-        </label>
-    </div>
-
-    <br />
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="friBeforeSchool">
-        <label class="form-check-label" for="friBeforeSchool">
-            Friday Before School
-        </label>
-    </div>
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="friLunch">
-        <label class="form-check-label" for="friLunch">
-            Friday During Lunch
-        </label>
-    </div>
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="friAfterSchool">
-        <label class="form-check-label" for="friAfterSchool">
-            Friday After School
-        </label>
-    </div>
-    <br />
-    <button type="submit" class="btn btn-primary">Submit</button>
-
-</form>
-
-{% endif %}
 
 {% endblock %}
