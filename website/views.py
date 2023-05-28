@@ -39,9 +39,3 @@ def delete_note():
             db.session.commit()
 
     return jsonify({})
-
-@views.route('/request-role')
-def request_role():
-    return render_template("request_role.html", user=current_user)
-
-

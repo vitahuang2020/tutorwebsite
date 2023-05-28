@@ -68,5 +68,21 @@ def sign_up():
             return redirect(url_for('views.home'))
 
     return render_template("sign_up.html", user=current_user)
+@auth.route('/request-role', methods = ['GET'])
+def request_role():
+    return render_template("request_role.html", user=current_user)
+    mandarin = request.form.get('mandarin')
+    business = request.form.get('business')
+    compeng = request.form.get('compeng')
+    compsci = request.form.get('compsci')
+    sportscience = request.form.get('sportscience')
+    physics = request.form.get('physics')
+    chemistry = request.form.get('chemistry')
+    biology = request.form.get('biology')
+    french = request.form.get('french')
+    history = request.form.get('history')
+    english = request.form.get('english')
+    geography = request.form.get('geography')
+    math = request.form.get('math')
 
 
