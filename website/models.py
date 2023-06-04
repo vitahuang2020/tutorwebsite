@@ -18,5 +18,5 @@ class User(db.Model, UserMixin):
     role = db.Column(db.String(50))
     subjects = db.Column(db.String(150))
     timeAvailable = db.Column(db.String(1000))
-
+    # edit
     notes = db.relationship('Note')
