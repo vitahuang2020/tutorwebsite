@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from.import db
 from flask_login import login_user, login_required, logout_user, current_user
 
+
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET','POST'])
@@ -120,12 +121,16 @@ def request_role():
             if afternoon == day + 'Afternoon ':
                 timeAvailable += day + 'Afternoon '
 
-        print(timeAvailable)
+        print("time: " + timeAvailable)
 
-        User.verified = True
-        User.subjects = subjects
-        User.timeAvailable = timeAvailable
+        user = User.query.get(current_user.id)
+
+        user.verified = True
+        user.subjects = subjects
+
+        user.timeAvailable = timeAvailable
         db.session.commit()
+        flash('Request form filled', category='success')
 
         return redirect(url_for('views.home'))
 

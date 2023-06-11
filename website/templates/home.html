@@ -1,47 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 
-{% block content %}
-
 <style>
     a:hover {
   color: #002D82;
   text-decoration:none;
   }
 </style>
-
-<h1 style="text-align:center;margin-top:15px;color:#026592;">Notes</h1>
-<table class="table" id="notes" style="background-color:#cee8f0;color:#026592;">
-  <thead>
-    <tr>
-      <th scope="col">Note</th>
-      <th scope="col">Date added</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for note in user.notes %}
-    <tr>
-      <th scope="row">{{ note.data }}</th>
-      <td>{{ note.date }}</td>
-      <td><button type="button" class="close" onClick="deleteNote({{ note.id }})">
-      <span aria-hidden="true">&times;</span>
-    </button></td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
-
-<form method="POST">
-    <textarea name="note" id="note" class="form-control"></textarea>
-    <br />
-    <div align="center">
-        <button type="submit" class="btn" style="background-color:#0287c3;color:white;"><span class="bi-card-text"></span>Add Note</button>
-    </div>
-</form>
-{% endblock %}
-
-print user_table
 
 {% block user_table %}
 
@@ -53,7 +18,9 @@ print user_table
         {{ "." }}
         {{ user.first_name }}
         {{ user.last_name }}
-
+        {{ user.email }}
+        {{ user.subjects }}
+        {{ user.timeAvailable }}
         {{ user.role }}
     </li>
 
