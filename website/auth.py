@@ -120,16 +120,13 @@ def request_role():
             if afternoon == day + 'Afternoon ':
                 timeAvailable += day + 'Afternoon '
 
-        print("time: " + timeAvailable)
+        print(timeAvailable)
 
-        user = User.query.get(current_user.id)
-
-        user.verified = True
-        user.subjects = subjects
-
-        user.timeAvailable = timeAvailable
+        User.verified = True
+        User.subjects = subjects
+        User.timeAvailable = timeAvailable
         db.session.commit()
-        flash('Request form filled', category='success')
+
         return redirect(url_for('views.home'))
 
     return render_template("request_role.html", user=current_user)

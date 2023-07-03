@@ -1,70 +1,78 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 
+{% block content %}
+
 <style>
-a:hover {
-  color: blue;
+    a:hover {
+  color: #002D82;
   text-decoration:none;
-}
+  }
 </style>
 
-{% block content %}
-<body>
-<div style="display:flex;justify-content:space-around;margin-left:-130px;width:1360px;height:647px;background-image:url(https://lh3.googleusercontent.com/pw/AJFCJaXe9n1e40w-POyNu-9F3OQXlkSd2ogume2HAFMbjHtE913WLio8abEwOeEPOOgLQmQCNyUMLRvTmPBin4dTqCiyYokhoP6852XtTpLVlxsHHEy81f0Vpd6gzZCamM8BT7I66yQQv_d2Vi713ReiaoydBQwmrbjDEWWTujC4GCQfDNv7Yhu-beTNogNw32C3pzdQQ-CCQeRkDQXIiSWVVm2vCia9Dg-GEBZ7ihF7pVJd2m409K5fWGC_LMdXxU73RTMNQTipXRxSlLXSYegCOy6ZdUVE0Xv5aetRX1AqqNwMi3jFDimgB4OT6EJMPXla1FxD7rgF_8udHjsdTEa7ElOMwox0563dGPLsomgRAHOYSqE-b7jwW-bkb4mFiu3WkCZlusyFUn5Q72Hgq-twVmp6ZbM5rxLRiZSXEWAzcV7IjN7-pJvQxOJ6EyNLtRJrIfhK_UbGV7tQhNKYRGlqrkDxo4So7Zig7N_6Xy2as1_eBASg7Hxyz1_wlEeCB71vKylpbstuuXdvgJRo3y7mpU2hg4dDhAPngigbHIexoG-pyedQGytpjwN3lcuKWP-JY81g2K6bDlDyiYZragYONwnGUs8xwcUOyhGmO4OcrnyZg46PDZfqrSS4VTLXMjitW16vq3hTcnGY8Kgse0eGL_mFcEFDuwRO4MryGoZaDDd_FHIDnAUdEzA1mFj91qDgbd5psVTJ9r4DsXSYcMScf-INYFQ8yduBenwD-nVDpqIOssGxLuIxt1I8FAQKnISmr_XMVO-6yhqaFq10-dSn30n4JaxHjhghW512zEcnuXq9dl_ASeg5ZFDXSnxjv2vs12cS30-SZH2cupcVZibj2EqqIP55xXTmtVpKWmi2lWD900xAi9m_S8Lbn_EdhC3soTTNTFFjPwBoqo7WPmwQ2jscF6LvrfXmmsnucn-UruxP0-1LbQjvCyR9EUs6TwyB8TBP2yFUhjJ-q068pn-ftsBjWthrV_AF6972-VsIp-r7qPbXUPNHDrTiONKcf5jdJchP=w1360-h647-s-no?authuser=0);">
-    <div style="height:100px;width:1000px;background-color:#ADD8E6;margin-top:300px;text-align:center;">
-        <h1 style="color:#0047AB;text-align:center;">WELCOME TO THE TUTORING CLUB HOMEPAGE!</h1>
-        <p style="color:#0047AB;">Where all your worries disappear.</p>
-    </div>
-</div>
+<h1 style="text-align:center;margin-top:15px;color:#026592;">Notes</h1>
+<table class="table" id="notes" style="background-color:#cee8f0;color:#026592;">
+  <thead>
+    <tr>
+      <th scope="col">Note</th>
+      <th scope="col">Date added</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for note in user.notes %}
+    <tr>
+      <th scope="row">{{ note.data }}</th>
+      <td>{{ note.date }}</td>
+      <td><button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
 
-<div style="display:flex;justify-content:space-around;margin-top:50px;background-color:#ADD8E6;width:1250px;margin-left:-70px;height:300px;">
-    <img style="border-radius:50%;height:200px;margin-top:50px;margin-right:-80px;" src="https://www.esl-languages.com/sites/default/files/school/hero/esl-Teachers-Home-England-Junior.jpg">
-    <div class="tutor_now" style="height:250px;">
-        <h1 style="margin-top:23px;">TUTOR NOW!</h1>
-        <a class="btn btn-primary" href="/request-role" role="button">Register</a>
-        <h1 style="margin-top:50px;">LEARN SOMETHING NEW!</h1>
-        <a class="btn btn-primary" href="/request-role" role="button">Request</a>
+<form method="POST">
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn" style="background-color:#0287c3;color:white;"><span class="bi-card-text"></span>Add Note</button>
     </div>
-</div>
-
-<div style="display:flex;justify-content:space-around;margin-top:50px;background-color:#ADD8E6;width:1250px;margin-left:-70px;height:300px;">
-    <div class="tutor_now" style="height:250px;text-align:center;">
-        <h1 style="margin-top:23px;">Who we are</h1>
-        <p style="margin-top:50px;width:600px;">The Branksome Hall tutoring club is devoted to providing help for all those in need academically! We have a variety of subjects that our experienced tutors can teach. Most popular subjects that people need help with include math, science, and french. Last year, our tutors tutored almost 200 hours! Contact vhuang@branksome.on.ca if any assistance is needed or if you just want to talk about your future tutoring plans!</p>
-    </div>
-</div>
-
-<div style="display:flex;justify-content:space-around;margin-top:50px;background-color:#ADD8E6;width:1250px;margin-left:-70px;height:300px;">
-    <div style="height:250px;text-align:center;">
-        <h1 style="margin-top:23px;">How do you start tutoring?</h1>
-        <p style="margin-top:50px;width:600px;"> On our website, there is a "Register" button on the bar at the top for all tutors. If you need any further assistance, please contact Vita Huang, a grade 10 student at Branksome Hall, at vhuang@branksome.on.ca!</p>
-    </div>
-</div>
-
-<div style="display:flex;justify-content:space-around;margin-top:50px;background-color:#ADD8E6;width:1250px;margin-left:-70px;height:300px;">
-    <div style="height:250px;text-align:center;">
-        <h1 style="margin-top:23px;">How do I request a tutor?</h1>
-        <p style="margin-top:50px;width:600px;">On our website, there is a button at the top labelled "Request". Please fill out the form attached stating the times you are available and the subjects you need help in so that the admins can pair you up with your tutor. Expect see an email in your inbox with the tutor information some days later!</p>
-    </div>
-</div>
-
-</body>
+</form>
 {% endblock %}
 
-{% block footer %}
+print user_table
+
+{% block user_table %}
+
+<h1 style="text-align:center;margin-top:15px;color:#026592;">Users</h1>
+<ul class="list-group list-group-flush" id="users">
+    {% for user in users %}
+    <li class="list-group-item" style="background-color:#cee8f0;color:#026592;">
+        {{ user.id }}
+        {{ "." }}
+        {{ user.first_name }}
+        {{ user.last_name }}
+
+        {{ user.role }}
+    </li>
+
+    {% endfor %}
+</ul>
+
 <footer style="text-align:center;margin-top:15px;">
     <div style="justify-content:space-between;">
         <div style="display:inline-block;">
             <p style="color:#026592;">Questions? Contact:</p>
             <p style="margin-top:-10px;color:#B8CFEC;"> <a href="instagram.com">vhuang@branksome.on.ca </a></p>
         </div>
-        <a href="https://www.instagram.com"><img style="height:49px;margin-left:100px;" src="https://www.svgrepo.com/show/424905/instagram-logo-facebook.svg" class ="social" alt="instagram"/></a>
+        <a href="instagram.com"><img style="height:60px;" src="data:image/png;base64,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" class ="social" alt="instagram"/></a>
 
-        <a href="https://www.facebook.com/"> <img style="height:60px;" src = "https://logowik.com/content/uploads/images/456_facebook.jpg" class ="social" alt="facebook"/></a>
+        <a href="https://www.facebook.com/"> <img style="height:60px;" src = "data:image/png;base64,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" class ="social" alt="facebook"/></a>
 
-        <a href="https://twitter.com/home?lang=en"> <img style="height:43px;" src = "https://cdn-icons-png.flaticon.com/512/60/60580.png" class ="social" alt="twitter"/></a>
+        <a href="https://twitter.com/home?lang=en"> <img style="height:60px;" src = "data:image/png;base64,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" class ="social" alt="twitter"/></a>
 
-        <a href="https://www.youtube.com/"> <img style="height:90px;" src = "https://i.pinimg.com/564x/e8/c9/82/e8c9828387de2a83e5469a95bc6d8574.jpg" class ="social" alt="youtube"/></a>
+        <a href="https://www.youtube.com/"> <img style="height:60px;" src = "data:image/png;base64,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" class ="social" alt="youtube"/></a>
     </div>
 </footer>
 {% endblock %}
