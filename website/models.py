@@ -9,7 +9,7 @@ class Note(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
-class User(db.Model, UserMixin):
+class tutor(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(50))
@@ -17,7 +17,23 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(50))
     role = db.Column(db.String(50))
     subjects = db.Column(db.String(150))
-    timeAvailable = db.Column(db.String(1000))
-    # edit
+
+
+class tutee(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(50), unique=True)
+    password = db.Column(db.String(50))
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(50))
+    role = db.Column(db.String(50))
+    subjects = db.Column(db.String(150))
+
+
+
     notes = db.relationship('Note')
+
+
+
+
+
 
