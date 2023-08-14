@@ -10,22 +10,10 @@ views = Blueprint('views', __name__)
 @login_required
 def home():
     users = User.query.all()
+    print(users)
     if request.method == 'GET':
         print("Get request on home page.")
         print(len(users))
-        return render_template("home.html", user=current_user, users=users)
-
-    elif request.method == 'POST':
-        note = request.form.get('note')
-
-        if len(note) < 1:
-            flash('Note is too short!', category='error')
-        else:
-            new_note = Note(data=note, user_id=current_user.id)
-            db.session.add(new_note)
-            db.session.commit()
-            flash('Note added!', category='success')
-
         return render_template("home.html", user=current_user, users=users)
 
 @views.route('/delete-note', methods=['POST'])
