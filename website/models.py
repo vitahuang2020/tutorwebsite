@@ -20,3 +20,4 @@ class User(db.Model, UserMixin):
     timeAvailable = db.Column(db.String(1000))
     # edit
     notes = db.relationship('Note')
+
