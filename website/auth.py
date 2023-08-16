@@ -117,7 +117,6 @@ def request_role():
 
         db.session.commit()
         flash('Request form filled', category='success')
-
         return redirect(url_for('views.home'))
 
     return render_template("request_role.html", user=current_user)

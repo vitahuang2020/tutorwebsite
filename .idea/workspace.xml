@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Fixed user table">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/request_role.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/request_role.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Made 2 tables for tutors and tutees that displays id, email, first/last name, grade and subjects. Currently giving this to Vita to add checkboxes. Deleted old unordered list." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +19,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -218,7 +212,21 @@
       <option name="project" value="LOCAL" />
       <updated>1692199005807</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Made 2 tables for tutors and tutees that displays id, email, first/last name, grade and subjects. Currently giving this to Vita to add checkboxes. Deleted old unordered list.">
+      <created>1692200969410</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1692200969410</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Made 2 tables for tutors and tutees that displays id, email, first/last name, grade and subjects. Currently giving this to Vita to add checkboxes. Deleted old unordered list.">
+      <created>1692201037922</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1692201037922</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -252,7 +260,8 @@
     <MESSAGE value="I updated the homepage, but am still having issues with the initial image on the homepage. It's a minor issue, so I'll update as soon as I have that done." />
     <MESSAGE value="I updated the homepage" />
     <MESSAGE value="I made the logout link go to the very end of the nav bar." />
-    <option name="LAST_COMMIT_MESSAGE" value="I made the logout link go to the very end of the nav bar." />
+    <MESSAGE value="Made 2 tables for tutors and tutees that displays id, email, first/last name, grade and subjects. Currently giving this to Vita to add checkboxes. Deleted old unordered list." />
+    <option name="LAST_COMMIT_MESSAGE" value="Made 2 tables for tutors and tutees that displays id, email, first/last name, grade and subjects. Currently giving this to Vita to add checkboxes. Deleted old unordered list." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

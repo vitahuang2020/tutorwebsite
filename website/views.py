@@ -18,8 +18,6 @@ def home():
         print(len(tutors))
         return render_template("home.html", user=current_user, tutors=tutors, tutees=tutees)
 
-# hello
-
 @views.route('/delete-note', methods=['POST'])
 def delete_note():
     note = json.loads(request.data)

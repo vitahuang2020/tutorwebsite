@@ -21,7 +21,6 @@ class User(db.Model, UserMixin):
 
     notes = db.relationship('Note')
 
-
 # hello
 
 
