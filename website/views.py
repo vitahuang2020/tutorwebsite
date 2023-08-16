@@ -9,18 +9,14 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST']) # homepage
 @login_required
 def home():
-    if request.method == 'GET':
-        return render_template("home.html", user=current_user)
-
-@views.route('/user', methods=['GET', 'POST']) # user page
-@login_required
-def user():
     users = User.query.all()
     print(users)
     if request.method == 'GET':
-        print("Get request on user page.")
+        print("Get request on home page.")
         print(len(users))
-        return render_template("user.html", user=current_user, users=users)
+        return render_template("home.html", user=current_user, users=users)
+
+
 
 @views.route('/delete-note', methods=['POST'])
 def delete_note():
@@ -33,3 +29,4 @@ def delete_note():
             db.session.commit()
 
     return jsonify({})
+
