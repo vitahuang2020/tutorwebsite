@@ -8,25 +8,73 @@
   }
 </style>
 
-{% block user_table %}
+{% block tutor_table %}
 
-<!-- -->
+<h1 style="text-align:center;margin-top:15px;color:#026592;">Tutors</h1>
 
-<h1 style="text-align:center;margin-top:15px;color:#026592;">Users</h1>
-<ul class="list-group list-group-flush" id="user">
-    {% for user in users %}
-    <li class="list-group-item" style="background-color:#cee8f0;color:#026592;">
-        {{ user.id }}
-        {{ "." }}
-        {{ user.first_name }}
-        {{ user.last_name }}
-        {{ user.email }}
-        {{ user.subjects }}
-        {{ user.role }}
-    </li>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope='col'>#</th>
+            <th scope="col">Email</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Grade</th>
+            <th scope="col">Subject</th>
+        </tr>
+    </thead>
 
-    {% endfor %}
-</ul>
+
+    <tbody>
+        {% for tutor in tutors %}
+        <tr>
+            <th scope="col">{{ tutor.id}}</th>
+            <th scope="col">{{ tutor.email }}</th>
+            <th scope="col">{{ tutor.first_name }}</th>
+            <th scope="col">{{ tutor.last_name }}</th>
+            <th scope="col">{{ tutor.grade }}</th>
+            <th scope="col">{{ tutor.subjects }}</th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
+{% block tutee_table %}
+
+</br>
+
+<h1 style="text-align:center;margin-top:15px;color:#026592;">Tutees</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope='col'>#</th>
+            <th scope="col">Email</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Grade</th>
+            <th scope="col">Subject</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        {% for tutee in tutees %}
+        <tr>
+            <th scope="col">{{ tutee.id}}</th>
+            <th scope="col">{{ tutee.email }}</th>
+            <th scope="col">{{ tutee.first_name }}</th>
+            <th scope="col">{{ tutee.last_name }}</th>
+            <th scope="col">{{ tutee.grade }}</th>
+            <th scope="col">{{ tutee.subjects }}</th>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}
 
 <footer style="text-align:center;margin-top:15px;">

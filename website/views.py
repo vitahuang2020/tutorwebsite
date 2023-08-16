@@ -9,12 +9,14 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST']) # homepage
 @login_required
 def home():
-    users = User.query.all()
-    print(users)
+    tutors = User.query.filter_by(role='tutor').all()
+    tutees = User.query.filter_by(role='tutee').all()
+
+    print(tutors)
     if request.method == 'GET':
         print("Get request on home page.")
-        print(len(users))
-        return render_template("home.html", user=current_user, users=users)
+        print(len(tutors))
+        return render_template("home.html", user=current_user, tutors=tutors, tutees=tutees)
 
 # hello
 

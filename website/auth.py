@@ -108,13 +108,12 @@ def request_role():
         # if compsci == "compsci":
         #     subjects += "compsci "
         grade = request.form.get('grade')
-        subject = request.form.get('subject')
-
+        subjects = request.form.get('subjects')
         user = User.query.get(current_user.id)
 
         user.verified = True
         user.grade = grade
-        user.subject = subject
+        user.subjects = subjects
 
         db.session.commit()
         flash('Request form filled', category='success')
