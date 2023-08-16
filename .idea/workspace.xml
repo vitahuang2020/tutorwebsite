@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="I updated the homepage" />
+    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="I made the logout link go to the very end of the nav bar.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,6 +55,30 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="tutorwebsite" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/PycharmProjects/tutorwebsite/venv/bin/python" />
+      <option name="SDK_NAME" value="Python 3.9 (tutorwebsite)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -146,7 +172,49 @@
       <option name="project" value="LOCAL" />
       <updated>1692196072350</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="I updated the homepage">
+      <created>1692197045446</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1692197045446</updated>
+    </task>
+    <task id="LOCAL-00014" summary="I updated the homepage">
+      <created>1692197111483</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1692197111483</updated>
+    </task>
+    <task id="LOCAL-00015" summary="I made the logout link go to the very end of the nav bar.">
+      <created>1692198259369</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1692198259369</updated>
+    </task>
+    <task id="LOCAL-00016" summary="I made the logout link go to the very end of the nav bar.">
+      <created>1692198893794</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1692198893794</updated>
+    </task>
+    <task id="LOCAL-00017" summary="I made the logout link go to the very end of the nav bar.">
+      <created>1692198964185</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1692198964185</updated>
+    </task>
+    <task id="LOCAL-00018" summary="I made the logout link go to the very end of the nav bar.">
+      <created>1692199005807</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1692199005807</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -179,7 +247,8 @@
     <MESSAGE value="Making sure my Github is working pt2." />
     <MESSAGE value="I updated the homepage, but am still having issues with the initial image on the homepage. It's a minor issue, so I'll update as soon as I have that done." />
     <MESSAGE value="I updated the homepage" />
-    <option name="LAST_COMMIT_MESSAGE" value="I updated the homepage" />
+    <MESSAGE value="I made the logout link go to the very end of the nav bar." />
+    <option name="LAST_COMMIT_MESSAGE" value="I made the logout link go to the very end of the nav bar." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

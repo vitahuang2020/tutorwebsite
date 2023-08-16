@@ -16,7 +16,7 @@ def home():
         print(len(users))
         return render_template("home.html", user=current_user, users=users)
 
-
+# hello
 
 @views.route('/delete-note', methods=['POST'])
 def delete_note():

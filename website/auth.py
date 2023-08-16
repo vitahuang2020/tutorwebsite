@@ -12,7 +12,7 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-
+        # hello
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
