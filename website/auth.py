@@ -115,6 +115,7 @@ def request_role():
         user.grade = grade
         user.subjects = subjects
 
+
         db.session.commit()
         flash('Request form filled', category='success')
         return redirect(url_for('views.home'))
