@@ -1,0 +1,72 @@
+Index: website/models.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from . import db\nfrom flask_login import UserMixin\nfrom sqlalchemy.sql import func\n\nclass Note(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    data = db.Column(db.String(10000))\n    date = db.Column(db.DateTime(timezone=True), default=func.now())\n    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))\n\n\nclass User(db.Model, UserMixin):\n    id = db.Column(db.Integer, primary_key=True)\n    email = db.Column(db.String(50), unique=True)\n    password = db.Column(db.String(50))\n    first_name = db.Column(db.String(50))\n    last_name = db.Column(db.String(50))\n    role = db.Column(db.String(50))\n    subjects = db.Column(db.String(150))\n    timeAvailable = db.Column(db.String(1000))\n    # edit\n    notes = db.relationship('Note')\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/website/models.py b/website/models.py
+--- a/website/models.py	
++++ b/website/models.py	
+@@ -9,7 +9,7 @@
+     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+ 
+ 
+-class User(db.Model, UserMixin):
++class tutor(db.Model, UserMixin):
+     id = db.Column(db.Integer, primary_key=True)
+     email = db.Column(db.String(50), unique=True)
+     password = db.Column(db.String(50))
+@@ -17,7 +17,17 @@
+     last_name = db.Column(db.String(50))
+     role = db.Column(db.String(50))
+     subjects = db.Column(db.String(150))
+-    timeAvailable = db.Column(db.String(1000))
+-    # edit
+-    notes = db.relationship('Note')
++
++
++class tutee(db.Model, UserMixin):
++    id = db.Column(db.Integer, primary_key=True)
++    email = db.Column(db.String(50), unique=True)
++    password = db.Column(db.String(50))
++    first_name = db.Column(db.String(50))
++    last_name = db.Column(db.String(50))
++    role = db.Column(db.String(50))
++    subjects = db.Column(db.String(150))
++
++
+ 
++    notes = db.relationship('Note')
+\ No newline at end of file
+Index: website/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from flask import Blueprint, render_template, flash, request, jsonify\nfrom flask_login import login_required, current_user\nfrom .models import Note, User\nfrom . import db\nimport json\n\nviews = Blueprint('views', __name__)\n\n@views.route('/', methods=['GET', 'POST']) # homepage\n@login_required\ndef home():\n    if request.method == 'GET':\n        return render_template(\"home.html\", user=current_user)\n\n@views.route('/user', methods=['GET', 'POST']) # user page\n@login_required\ndef user():\n    users = User.query.all()\n    print(users)\n    if request.method == 'GET':\n        print(\"Get request on user page.\")\n        print(len(users))\n        return render_template(\"user.html\", user=current_user, users=users)\n\n@views.route('/delete-note', methods=['POST'])\ndef delete_note():\n    note = json.loads(request.data)\n    noteId = note['noteId']\n    note = Note.query.get(noteId)\n    if note:\n        if note.user_id == current_user.id:\n            db.session.delete(note)\n            db.session.commit()\n\n    return jsonify({})
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/website/views.py b/website/views.py
+--- a/website/views.py	
++++ b/website/views.py	
+@@ -9,18 +9,12 @@
+ @views.route('/', methods=['GET', 'POST']) # homepage
+ @login_required
+ def home():
+-    if request.method == 'GET':
+-        return render_template("home.html", user=current_user)
+-
+-@views.route('/user', methods=['GET', 'POST']) # user page
+-@login_required
+-def user():
+     users = User.query.all()
+     print(users)
+     if request.method == 'GET':
+-        print("Get request on user page.")
++        print("Get request on home page.")
+         print(len(users))
+-        return render_template("user.html", user=current_user, users=users)
++        return render_template("home.html", user=current_user, users=users)
+ 
+ @views.route('/delete-note', methods=['POST'])
+ def delete_note():

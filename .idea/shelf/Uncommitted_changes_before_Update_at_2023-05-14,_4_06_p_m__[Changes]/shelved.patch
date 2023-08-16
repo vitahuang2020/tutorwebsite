@@ -1,0 +1,448 @@
+Index: website/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from flask import Blueprint, render_template, flash, request, jsonify\nfrom flask_login import login_required, current_user\nfrom .models import Note, User\nfrom . import db\nimport json\n\nviews = Blueprint('views', __name__)\n\n@views.route('/', methods=['GET', 'POST']) # homepage\n@login_required\ndef home():\n    users = User.query.all()\n    if request.method == 'GET':\n        print(\"Get request on home page.\")\n        print(len(users))\n        return render_template(\"home.html\", user=current_user, users=users)\n\n    elif request.method == 'POST':\n        note = request.form.get('note')\n\n        if len(note) < 1:\n            flash('Note is too short!', category='error')\n        else:\n            new_note = Note(data=note, user_id=current_user.id)\n            db.session.add(new_note)\n            db.session.commit()\n            flash('Note added!', category='success')\n\n        return render_template(\"home.html\", user=current_user, users=users)\n\n@views.route('/delete-note', methods=['POST'])\ndef delete_note():\n    note = json.loads(request.data)\n    noteId = note['noteId']\n    note = Note.query.get(noteId)\n    if note:\n        if note.user_id == current_user.id:\n            db.session.delete(note)\n            db.session.commit()\n\n    return jsonify({})\n\n@views.route('/request-role')\ndef request_role():\n    return render_template(\"request_role.html\", user=current_user)\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/website/views.py b/website/views.py
+--- a/website/views.py	(revision 4979e7070ae043ef0a664ce621ddd90ba589660f)
++++ b/website/views.py	(date 1684094624009)
+@@ -42,6 +42,4 @@
+ 
+ @views.route('/request-role')
+ def request_role():
+-    return render_template("request_role.html", user=current_user)
+-
+-
++    return render_template("request_role.html", user=current_user)
+\ No newline at end of file
+Index: website/templates/request_role.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% extends \"base.html\" %}\n{% block title %}Request{% endblock %}\n\n{% block content %}\n<style>\n    .subject {\n        margin-top:10px;\n    }\n    .other {\n        margin-top:10px;\n    }\n</style>\n<div class=\"subject\">\n    <h5>Please select the subject you would like to be tutored in (you may select multiple)</h5>\n    <div class=\"form-check\">\n    <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"flexCheckDefault1\">\n    <label class=\"form-check-label\" for=\"flexCheckDefault1\">\n        Math\n    </label>\n    </div>\n    <div class=\"form-check\">\n    <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"flexCheckDefault2\">\n    <label class=\"form-check-label\" for=\"flexCheckDefault2\">\n        Geography\n    </label>\n    </div>\n    <div class=\"form-check\">\n    <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"flexCheckDefault3\">\n    <label class=\"form-check-label\" for=\"flexCheckDefault3\">\n        English\n    </label>\n    </div>\n    <div class=\"form-check\">\n    <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"flexCheckDefault4\">\n    <label class=\"form-check-label\" for=\"flexCheckDefault4\">\n        History\n    </label>\n    </div>\n    <div class=\"form-check\">\n    <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"flexCheckDefault5\">\n    <label class=\"form-check-label\" for=\"flexCheckDefault5\">\n        French\n    </label>\n    </div>\n    <div class=\"form-check\">\n    <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"flexCheckDefault6\">\n    <label class=\"form-check-label\" for=\"flexCheckDefault6\">\n        Science\n    </label>\n    </div>\n\n    <div class=\"other\">\n        <form>\n        <div class=\"form-group\">\n            <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Other\">\n        </div>\n        </form>\n    </div>\n</div>\n{% endblock %}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/website/templates/request_role.html b/website/templates/request_role.html
+--- a/website/templates/request_role.html	(revision 4979e7070ae043ef0a664ce621ddd90ba589660f)
++++ b/website/templates/request_role.html	(date 1684093336792)
+@@ -1,7 +1,11 @@
+ {% extends "base.html" %}
+ {% block title %}Request{% endblock %}
+-
+ {% block content %}
++
++<br />
++
++{% if user.role == "tutor" %}
++
+ <style>
+     .subject {
+         margin-top:10px;
+@@ -10,51 +14,359 @@
+         margin-top:10px;
+     }
+ </style>
+-<div class="subject">
+-    <h5>Please select the subject you would like to be tutored in (you may select multiple)</h5>
+-    <div class="form-check">
+-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+-    <label class="form-check-label" for="flexCheckDefault1">
+-        Math
+-    </label>
+-    </div>
+-    <div class="form-check">
+-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+-    <label class="form-check-label" for="flexCheckDefault2">
+-        Geography
+-    </label>
+-    </div>
+-    <div class="form-check">
+-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
+-    <label class="form-check-label" for="flexCheckDefault3">
+-        English
+-    </label>
+-    </div>
+-    <div class="form-check">
+-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4">
+-    <label class="form-check-label" for="flexCheckDefault4">
+-        History
+-    </label>
+-    </div>
+-    <div class="form-check">
+-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5">
+-    <label class="form-check-label" for="flexCheckDefault5">
+-        French
+-    </label>
+-    </div>
+-    <div class="form-check">
+-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault6">
+-    <label class="form-check-label" for="flexCheckDefault6">
+-        Science
+-    </label>
+-    </div>
++
++<form method="POST">
++    <div class="subject">
++        <h5>Select subjects would you like to tutor in?</h5>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="math1" id="math1">
++        <label class="form-check-label" for="math1">
++            Math
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="geography1" id="geography1">
++        <label class="form-check-label" for="geography1">
++            Geography
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="english1" id="english1">
++        <label class="form-check-label" for="english1">
++            English
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="history1" id="history1">
++        <label class="form-check-label" for="history1">
++            History
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="french1" id="french1">
++        <label class="form-check-label" for="french1">
++            French
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="science1" id="science1">
++        <label class="form-check-label" for="science1">
++            Science
++        </label>
++        </div>
++
++        <div class="other1">
++            <form>
++            <div class="form-group">
++                <input type="email" class="form-control" id="other1" aria-describedby="emailHelp" placeholder="Other">
++            </div>
++            </form>
++        </div>
++    </div>
++
++    <br />
++
++    <h5>What time are you available?</h5>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="monBeforeSchool1" id="monBeforeSchool1">
++        <label class="form-check-label" for="monBeforeSchool1">
++            Monday Before School
++        </label>
++
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="monLunch1" id="monLunch1">
++        <label class="form-check-label" for="monLunch1">
++            Monday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="monAfterSchool1">
++        <label class="form-check-label" for="monAfterSchool1">
++            Monday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="tueBeforeSchool1">
++        <label class="form-check-label" for="tueBeforeSchool1">
++            Tuesday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="tueLunch1">
++        <label class="form-check-label" for="tueLunch1">
++            Tuesday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="tueAfterSchool1">
++        <label class="form-check-label" for="tueAfterSchool1">
++            Tuesday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="wedBeforeSchool1">
++        <label class="form-check-label" for="wedBeforeSchool1">
++            Wednesday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="wedLunch1">
++        <label class="form-check-label" for="wedLunch1">
++            Wednesday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="wedAfterSchool1">
++        <label class="form-check-label" for="wedAfterSchool1">
++            Wednesday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="thurBeforeSchool1">
++        <label class="form-check-label" for="thurBeforeSchool1">
++            Thursday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="thurLunch1">
++        <label class="form-check-label" for="thurLunch1">
++            Thursday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="thurAfterSchool1">
++        <label class="form-check-label" for="thurAfterSchool1">
++            Thursday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="friBeforeSchool1">
++        <label class="form-check-label" for="friBeforeSchool1">
++            Friday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="friLunch1">
++        <label class="form-check-label" for="friLunch1">
++            Friday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="friAfterSchool1">
++        <label class="form-check-label" for="friAfterSchool1">
++            Friday After School
++        </label>
++    </div>
++    <br />
++    <button type="submit" class="btn btn-primary">Submit</button>
++
++</form>
++
++{% elif user.role == "tutee" %}
++<<style>
++    .subject {
++        margin-top:10px;
++    }
++    .other {
++        margin-top:10px;
++    }
++</style>
++
++<form method="POST">
++    <div class="subject">
++        <h5>What subjects do you need tutoring?</h5>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="math" id="math">
++        <label class="form-check-label" for="math">
++            Math
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="geography" id="geography">
++        <label class="form-check-label" for="geography">
++            Geography
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="english" id="english">
++        <label class="form-check-label" for="english">
++            English
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="history" id="history">
++        <label class="form-check-label" for="history">
++            History
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="french" id="french">
++        <label class="form-check-label" for="french">
++            French
++        </label>
++        </div>
++        <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="science" id="science">
++        <label class="form-check-label" for="science">
++            Science
++        </label>
++        </div>
+ 
+-    <div class="other">
+-        <form>
+-        <div class="form-group">
+-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Other">
+-        </div>
+-        </form>
++        <div class="other">
++            <form>
++            <div class="form-group">
++                <input type="email" class="form-control" id="other" aria-describedby="emailHelp" placeholder="Other">
++            </div>
++            </form>
++        </div>
++    </div>
++
++    <br />
++
++    <h5>What time are you available?</h5>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="monBeforeSchool" id="monBeforeSchool">
++        <label class="form-check-label" for="monBeforeSchool">
++            Monday Before School
++        </label>
++
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="monLunch" id="monLunch">
++        <label class="form-check-label" for="monLunch">
++            Monday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="monAfterSchool">
++        <label class="form-check-label" for="monAfterSchool">
++            Monday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="tueBeforeSchool">
++        <label class="form-check-label" for="tueBeforeSchool">
++            Tuesday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="tueLunch">
++        <label class="form-check-label" for="tueLunch">
++            Tuesday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="tueAfterSchool">
++        <label class="form-check-label" for="tueAfterSchool">
++            Tuesday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="wedBeforeSchool">
++        <label class="form-check-label" for="wedBeforeSchool">
++            Wednesday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="wedLunch">
++        <label class="form-check-label" for="wedLunch">
++            Wednesday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="wedAfterSchool">
++        <label class="form-check-label" for="wedAfterSchool">
++            Wednesday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="thurBeforeSchool">
++        <label class="form-check-label" for="thurBeforeSchool">
++            Thursday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="thurLunch">
++        <label class="form-check-label" for="thurLunch">
++            Thursday During Lunch
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="thurAfterSchool">
++        <label class="form-check-label" for="thurAfterSchool">
++            Thursday After School
++        </label>
++    </div>
++
++    <br />
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="friBeforeSchool">
++        <label class="form-check-label" for="friBeforeSchool">
++            Friday Before School
++        </label>
++    </div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="friLunch">
++        <label class="form-check-label" for="friLunch">
++            Friday During Lunch
++        </label>
+     </div>
+-</div>
++
++    <div class="form-check">
++        <input class="form-check-input" type="checkbox" value="" id="friAfterSchool">
++        <label class="form-check-label" for="friAfterSchool">
++            Friday After School
++        </label>
++    </div>
++    <br />
++    <button type="submit" class="btn btn-primary">Submit</button>
++
++</form>
++
++{% endif %}
++
+ {% endblock %}
+\ No newline at end of file
