@@ -16,10 +16,7 @@ def home():
         print(len(users))
         return render_template("home.html", user=current_user, users=users)
 
-# @views.route('/user')
-# @login_required
-# def user():
-#     return redirect(url_for('views.user'))
+
 
 @views.route('/delete-note', methods=['POST'])
 def delete_note():
@@ -32,4 +29,3 @@ def delete_note():
             db.session.commit()
 
     return jsonify({})
-

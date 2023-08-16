@@ -16,6 +16,13 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
     role = db.Column(db.String(50))
+    grade = db.Column(db.Integer)
     subjects = db.Column(db.String(150))
 
     notes = db.relationship('Note')
+
+
+
+
+
+
