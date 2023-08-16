@@ -56,14 +56,17 @@ def sign_up():
             flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
             flash('Password must be at least 7 characters', category='error')
+        elif len(role) < 1:
+            flash('Role must not be empty', category='error')
         else:
             # add user to database
 
-            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, subjects="")
+            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade="", subjects="")
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
-            flash ('Account created!', category='success')
+            flash('Account created!', category='success')
+            print("account created")
             return redirect(url_for('views.home'))
 
     return render_template("sign_up.html", user=current_user)
@@ -71,64 +74,47 @@ def sign_up():
 @auth.route('/request-role', methods = ['GET', 'POST'])
 def request_role():
     if request.method == 'POST':
-        math = request.form.get('math')
-        english = request.form.get('english')
-        geography = request.form.get('geography')
-        history = request.form.get('history')
-        physics = request.form.get('physics')
-        chemistry = request.form.get('chemistry')
-        biology = request.form.get('biology')
-        french = request.form.get('french')
-        mandarin = request.form.get('mandarin')
-        compsci = request.form.get('compsci')
-
-        subjects = ""
-        if math == "math":
-            subjects += "math "
-        if english == "english":
-            subjects += "english "
-        if geography == "geography":
-            subjects += "geography "
-        if history == "history":
-            subjects += "history "
-        if physics == "physics":
-            subjects += "physics "
-        if chemistry == "chemistry":
-            subjects += "chemistry "
-        if biology == "biology":
-            subjects += "biology "
-        if french == "french":
-            subjects += "french "
-        if mandarin == "mandarin":
-            subjects += "mandarin "
-        if compsci == "compsci":
-            subjects += "compsci "
-
-        print(subjects)
-
-        timeAvailable = ""
-
-        weekday = ["mon", "tue", "wed", "thur", "fri"]
-        for day in weekday:
-            morning = request.form.get(day + 'Morning')
-            lunch = request.form.get(day + 'Lunch')
-            afternoon = request.form.get(day + 'Afternoon')
-
-            if morning == day + 'Morning':
-                timeAvailable += day + 'Morning '
-            if lunch == day + 'Lunch':
-                timeAvailable += day + 'Lunch '
-            if afternoon == day + 'Afternoon ':
-                timeAvailable += day + 'Afternoon '
-
-        print("time: " + timeAvailable)
+        # math = request.form.get('math')
+        # english = request.form.get('english')
+        # geography = request.form.get('geography')
+        # history = request.form.get('history')
+        # physics = request.form.get('physics')
+        # chemistry = request.form.get('chemistry')
+        # biology = request.form.get('biology')
+        # french = request.form.get('french')
+        # mandarin = request.form.get('mandarin')
+        # compsci = request.form.get('compsci')
+        #
+        # subjects = ""
+        # if math == "math":
+        #     subjects += "math "
+        # if english == "english":
+        #     subjects += "english "
+        # if geography == "geography":
+        #     subjects += "geography "
+        # if history == "history":
+        #     subjects += "history "
+        # if physics == "physics":
+        #     subjects += "physics "
+        # if chemistry == "chemistry":
+        #     subjects += "chemistry "
+        # if biology == "biology":
+        #     subjects += "biology "
+        # if french == "french":
+        #     subjects += "french "
+        # if mandarin == "mandarin":
+        #     subjects += "mandarin "
+        # if compsci == "compsci":
+        #     subjects += "compsci "
+        grade = request.form.get('grade')
+        subject = request.form.get('subject')
 
         user = User.query.get(current_user.id)
 
         user.verified = True
-        user.subjects = subjects
+        user.grade = grade
+        user.subject = subject
 
-        user.timeAvailable = timeAvailable
         db.session.commit()
         flash('Request form filled', category='success')
 
