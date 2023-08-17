@@ -36,6 +36,7 @@ def logout():
 
 
 @auth.route('/sign-up', methods=['GET','POST'])
+@login_required
 def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -115,9 +116,13 @@ def request_role():
         user.grade = grade
         user.subjects = subjects
 
-
         db.session.commit()
         flash('Request form filled', category='success')
         return redirect(url_for('views.home'))
 
     return render_template("request_role.html", user=current_user)
+
+@auth.route('/pair-up', methods=['GET','POST'])
+@login_required
+def pair_up():
+    pass

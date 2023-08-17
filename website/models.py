@@ -20,7 +20,12 @@ class User(db.Model, UserMixin):
 
     notes = db.relationship('Note')
 
-# hello
+class Pairs(db.Model, UserMixin):
+    tutor = db.Column(db.String(50))
+    tutor_email = db.Column(db.String(50))
+    tutee = db.Column(db.String(50))
+    tutee_email = db.Column(db.String(50))
+
 
 
 
