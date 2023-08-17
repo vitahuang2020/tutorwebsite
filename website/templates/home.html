@@ -60,6 +60,7 @@
             <th scope="col">Last name</th>
             <th scope="col">Grade</th>
             <th scope="col">Subject</th>
+            <th scope="col">Checkbox</th>
         </tr>
     </thead>
 
@@ -72,7 +73,9 @@
             <th scope="col">{{ tutee.last_name }}</th>
             <th scope="col">{{ tutee.grade }}</th>
             <th scope="col">{{ tutee.subjects }}</th>
-
+<th scope="col"><div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+</div></th>
         </tr>
         {% endfor %}
     </tbody>
