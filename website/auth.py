@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from.import db
+from .models import Pairs
 from flask_login import login_user, login_required, logout_user, current_user
 
 
@@ -36,7 +37,6 @@ def logout():
 
 
 @auth.route('/sign-up', methods=['GET','POST'])
-@login_required
 def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -68,6 +68,7 @@ def sign_up():
             db.session.commit()
             login_user(new_user, remember=True)
             flash('Account created!', category='success')
+
             print("account created")
             return redirect(url_for('views.home'))
 
@@ -122,7 +123,8 @@ def request_role():
 
     return render_template("request_role.html", user=current_user)
 
-@auth.route('/pair-up', methods=['GET','POST'])
+@auth.route('/pair-up', methods = ['POST'])
 @login_required
 def pair_up():
-    pass
+    flash('Ha!', category='success')
+    return render_template("views.home", user=current_user)
