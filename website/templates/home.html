@@ -37,7 +37,7 @@
             <th scope="col">{{ tutor.subjects }}</th>
             <th scope="col">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="tutorCheckbox">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="tutorradio">
                 </div>
             </th>
         </tr>
@@ -53,7 +53,7 @@
 
 <h1 style="text-align:center;margin-top:15px;color:#026592;">Tutees</h1>
 
-<table class="table">
+<table class="table" method="POST">
     <thead>
         <tr>
             <th scope='col'>#</th>
@@ -77,7 +77,7 @@
             <th scope="col">{{ tutee.subjects }}</th>
             <th scope="col">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="tuteeCheckbox">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="tuteeradio">
                 </div>
             </th>
         </tr>
