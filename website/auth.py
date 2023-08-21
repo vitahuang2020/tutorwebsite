@@ -125,3 +125,20 @@ def request_role():
 @login_required
 def pair_up():
     pass
+
+@auth.route('/verifying_check', methods=['GET', 'POST'])
+@login_required
+def verifying_check():
+    radio_checked = False
+    if request.method == 'POST':
+        radio_value = request.form.get('my_checkbox')
+        if radio_value == 'on':
+            return redirect(url_for('index'))
+        else:
+            return redirect(url_for('index'))
+    db.session.commit()
+    flash('Tutor and tutee paired up!', category='success')
+    return render_template('index.html', radio_checked=radio_checked)
+
+def move_forward():
+    print("Moving forward...")
