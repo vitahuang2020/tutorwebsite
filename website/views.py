@@ -14,6 +14,7 @@ def home():
     tutees = User.query.filter_by(role='tutee').all()
     pairs = User.query.all()
 
+
     print(tutors)
     if request.method == 'GET':
         print("Get request on home page.")
