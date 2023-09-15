@@ -12,12 +12,13 @@ views = Blueprint('views', __name__)
 def home():
     tutors = User.query.filter_by(role='tutor').all()
     tutees = User.query.filter_by(role='tutee').all()
+    pairs = User.query.all()
 
     print(tutors)
     if request.method == 'GET':
         print("Get request on home page.")
         print(len(tutors))
-        return render_template("home.html", user=current_user, tutors=tutors, tutees=tutees)
+        return render_template("home.html", user=current_user, tutors=tutors, tutees=tutees, pairs=pairs)
 
 # @views.route('/delete-note', methods=['POST'])
 # def delete_note():
