@@ -8,9 +8,10 @@
   }
 </style>
 
+<!--add new url endpoint that corresponds to the pair button and then insert the pair selected into the pairs table-->
 <body>
+<form method="POST">
 {% block tutor_table %}
-
 <h1 style="text-align:center;margin-top:15px;color:#026592;">Tutors</h1>
 
 <table class="table" id="table1">
@@ -84,6 +85,8 @@
 <!--<button name="forwardBtn" onclick="move_forward()"class="btn btn-primary" id="pairButton">Pair</button>-->
  <button onclick="pairTables()" type="button" class="btn btn-primary">Pair</button>
     <p id="message"></p>
+
+ </form>
 
 <h1 style="text-align:center;margin-top:15px;color:#026592;">Paired Table</h1>
 <table class="table" style="margin-top:10px;" id="pairedTable">

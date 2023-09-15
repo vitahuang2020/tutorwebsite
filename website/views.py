@@ -17,6 +17,7 @@ def home():
     if request.method == 'GET':
         print("Get request on home page.")
         print(len(tutors))
+        # print("*", current_user.role) # to include checking on the user role and render different templates based on the roles
         return render_template("home.html", user=current_user, tutors=tutors, tutees=tutees)
 
 # @views.route('/delete-note', methods=['POST'])
