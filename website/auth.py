@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from.import db
@@ -121,13 +121,21 @@ def request_role():
 
     return render_template("request_role.html", user=current_user)
 
-@auth.route('/pair-up', methods=['GET','POST'])
+@auth.route('/pair', methods=['GET','POST'])
 @login_required
-def pair_up():
-    pass
+def pair():
+    print("in the pair () function")
+    try:
+        data = request.json  # Assuming you send the selected tutor and tutee data as JSON
+        print(data)
 
-@auth.route('/verifying_check', methods=['GET', 'POST'])
-@login_required
+        tutor_id = data.get('selectedTutorId')
+        tutee_id = data.get('selectedTuteeId')
+        print (tutor_id)
+        print (tutee_id)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 # def verifying_check():
 #     radio_checked = False

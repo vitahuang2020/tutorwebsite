@@ -82,88 +82,87 @@
     </tbody>
 </table>
 
-<!--<button name="forwardBtn" onclick="move_forward()"class="btn btn-primary" id="pairButton">Pair</button>-->
- <button onclick="pairTables()" type="button" class="btn btn-primary">Pair</button>
+     <!-- Add a "Pair" button -->
+    <button onclick="pairTables()" type="button" class="btn btn-primary">Pair</button>
     <p id="message"></p>
 
- </form>
-
-<h1 style="text-align:center;margin-top:15px;color:#026592;">Paired Table</h1>
-<table class="table" style="margin-top:10px;" id="pairedTable">
-    <thead> length
-        <tr>
-            <th scope="col">Tutor first name</th>
-            <th scope="col">Tutor last name</th>
-            <th scope="col">Tutee first name</th>
-            <th scope="col">Tutee last name</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-</table>
+    <!-- Add an empty table to display paired information -->
+    <h1 style="text-align:center;margin-top:15px;color:#026592;">Paired Tutors and Tutees</h1>
+    <table class="table" id="pairedTable">
+        <thead>
+            <tr>
+                <th scope="col">Tutor Email</th>
+                <th scope="col">Tutee Email</th>
+                <!-- Add more columns as needed for other information -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Paired rows will be dynamically added here -->
+        </tbody>
+    </table>
+</form>
 
 <script>
-        function pairTables() {
-            var pairedTable = document.getElementById("pairedTable");
-            pairedTable.innerHTML = ""; // Clear the paired table
+    function pairTables() {
 
-            var table1Radios = document.getElementsByName("pair1");
-            var table2Radios = document.getElementsByName("pair2");
+        var tutorRows = document.querySelectorAll('#table1 tbody tr');
+        var tuteeRows = document.querySelectorAll('#table2 tbody tr');
 
-            var selected1 = false;
-            var selected2 = false;
+        var selectedTutor = null;
+        var selectedTutee = null;
 
-            // Check if a radio button in table 1 is selected
-            for (var i = 0; i < table1Radios.length; i++) {
-                if (table1Radios[i].checked) {
-                    selected1 = true;
-                    break;
-                }
+        // Find the selected tutor and tutee
+        tutorRows.forEach(function (tutorRow) {
+            var tutorRadio = tutorRow.querySelector('input[type="radio"]');
+            if (tutorRadio.checked) {
+                selectedTutor = tutorRow;
             }
+        });
 
-            // Check if a radio button in table 2 is selected
-            for (var i = 0; i < table2Radios.length; i++) {
-                if (table2Radios[i].checked) {
-                    selected2 = true;
-                    break;
-                }
+        tuteeRows.forEach(function (tuteeRow) {
+            var tuteeRadio = tuteeRow.querySelector('input[type="radio"]');
+            if (tuteeRadio.checked) {
+                selectedTutee = tuteeRow;
             }
+        });
 
-            if (!selected1 || !selected2) {
-                document.getElementById("message").innerText = "Please select one of the rows.";
-            } else {
-                // Pair the selected names
-                var name1, name2;
-                for (var i = 0; i < table1Radios.length; i++) {
-                    if (table1Radios[i].checked) {
-                        name1 = table1Radios[i].parentNode.parentNode.firstChild.innerText;
-                        break;
-                    }
-                }
-                for (var i = 0; i < table2Radios.length; i++) {
-                    if (table2Radios[i].checked) {
-                        name2 = table2Radios[i].parentNode.parentNode.firstChild.innerText;
-                        break;
-                    }
-                }
+        console.log("Selected Tutor ID: " + selectedTutorId);
+        console.log("Selected Tutee ID: " + selectedTuteeId);
 
-                pairedTable.innerHTML = `
-                    <tr>
-                        <td>${name1}</td>
-                        <td>${name2}</td>
-                    </tr>
-                `;
-                document.getElementById("message").innerText = "Pairing successful!";
-            }
+        // Pair the selected tutor and tutee
+        if (selectedTutor && selectedTutee)
+        {
+
+            // prepare the tutor and tutee pair data
+             var pairData = {
+                selectedTutorId: selectedTutor,
+                selectedTuteeId: selectedTutee
+            };
+
+            // put POST request
+
+            fetch('/pair', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(pairData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response (e.g., show a success message)
+                console.log(data.message);
+            })
+            .catch(error => {
+                // Handle errors (e.g., show an error message)
+                console.error(error);
+            });
+        } else {
+            document.getElementById("message").textContent = "Please select a tutor and a tutee to pair.";
         }
-    </script>
+    }
 
+</script>
 {% endblock %}
 
 <footer style="text-align:center;margin-top:15px;">
