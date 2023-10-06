@@ -175,6 +175,7 @@
             var tutorRadio = tutorRow.querySelector('input[type="radio"]');
             if (tutorRadio.checked) {
                 selectedTutor = tutorRow;
+
             }
         });
 
@@ -188,8 +189,8 @@
         // Check if both a tutor and tutee are selected
         if (selectedTutor && selectedTutee) {
             // Get the data needed for the pairing
-            var tutorId = selectedTutor.dataset.id; // Assuming you have added 'data-id' attribute to store tutor id
-            var tuteeId = selectedTutee.dataset.id; // Assuming you have added 'data-id' attribute to store tutee id
+            var tutorId = selectedTutor.querySelector('th:nth-child(1)').textContent;
+            var tuteeId = selectedTutee.querySelector('th:nth-child(1)').textContent;
 
             // Create an object to send to the server
             var data = {
@@ -207,6 +208,7 @@
             })
             .then(response => response.json())
             .then(result => {
+            alert(result.success)
                 if (result.success) {
                     // Display a success message
                     document.getElementById('message').textContent = 'Pairing successful!';

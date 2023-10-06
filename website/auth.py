@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
-from .models import User
+from .models import User, Pairs
 from werkzeug.security import generate_password_hash, check_password_hash
 from.import db
 from flask_login import login_user, login_required, logout_user, current_user
@@ -124,18 +124,32 @@ def request_role():
 @auth.route('/pair', methods=['GET','POST'])
 @login_required
 def pair():
-    print("in the pair () function")
+    print("in the pair() function")
     try:
         data = request.json  # Assuming you send the selected tutor and tutee data as JSON
         print(data)
 
         tutor_id = data.get('selectedTutorId')
         tutee_id = data.get('selectedTuteeId')
-        print (tutor_id)
-        print (tutee_id)
+        print(tutor_id)
+        print(tutee_id)
+
+        if tutor_id is not None and tutee_id is not None:
+            # Create a new Pair instance and add it to the database
+            pair = Pairs(tutor_id=tutor_id, tutee_id=tutee_id)
+            db.session.add(pair)
+            db.session.commit()
+            pairs = Pairs.query.all()
+            print(pairs)
+            db.session.close()
+
+            flash("Students paired", category='success')
+            return jsonify({"message": "Pair successfully added to the database"}), 200
+        else:
+            return jsonify({"error": "Invalid data"}), 400
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+            return jsonify({"error": str(e)}), 500
 
 # def verifying_check():
 #     radio_checked = False
