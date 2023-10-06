@@ -83,7 +83,7 @@
 </table>
 
      <!-- Add a "Pair" button -->
-    <button onclick="pairTables()" type="button" class="btn btn-primary">Pair</button>
+    <button onclick="pair()" type="button" class="btn btn-primary">Pair</button>
     <p id="message"></p>
 
     <!-- Add an empty table to display paired information -->
@@ -102,9 +102,68 @@
     </table>
 </form>
 <!--hello-->
-<script>
-    function pairTables() {
+<!--<script>-->
+<!--    function pair() {-->
 
+<!--        var tutorRows = document.querySelectorAll('#table1 tbody tr');-->
+<!--        var tuteeRows = document.querySelectorAll('#table2 tbody tr');-->
+
+<!--        var selectedTutor = null;-->
+<!--        var selectedTutee = null;-->
+
+<!--        // Find the selected tutor and tutee-->
+<!--        tutorRows.forEach(function (tutorRow) {-->
+<!--            var tutorRadio = tutorRow.querySelector('input[type="radio"]');-->
+<!--            if (tutorRadio.checked) {-->
+<!--                selectedTutor = tutorRow;-->
+<!--            }-->
+<!--        });-->
+
+<!--        tuteeRows.forEach(function (tuteeRow) {-->
+<!--            var tuteeRadio = tuteeRow.querySelector('input[type="radio"]');-->
+<!--            if (tuteeRadio.checked) {-->
+<!--                selectedTutee = tuteeRow;-->
+<!--            }-->
+<!--        });-->
+
+<!--        console.log("Selected Tutor ID: " + selectedTutorId);-->
+<!--        console.log("Selected Tutee ID: " + selectedTuteeId);-->
+
+<!--        // Pair the selected tutor and tutee-->
+<!--        if (selectedTutor && selectedTutee)-->
+<!--        {-->
+
+<!--            // prepare the tutor and tutee pair data-->
+<!--             var pairData = {-->
+<!--                selectedTutorId: selectedTutor,-->
+<!--                selectedTuteeId: selectedTutee-->
+<!--            };-->
+
+<!--            // put POST request-->
+
+<!--            fetch('/pair', {-->
+<!--                method: 'POST',-->
+<!--                headers: {-->
+<!--                    'Content-Type': 'application/json'-->
+<!--                },-->
+<!--                body: JSON.stringify(pairData)-->
+<!--            })-->
+<!--            .then(response => response.json())-->
+<!--            .then(data => {-->
+<!--                // Handle the response (e.g., show a success message)-->
+<!--                console.log(data.message);-->
+<!--            })-->
+<!--            .catch(error => {-->
+<!--                // Handle errors (e.g., show an error message)-->
+<!--                console.error(error);-->
+<!--            });-->
+<!--        } else {-->
+<!--            document.getElementById("message").textContent = "Please select a tutor and a tutee to pair.";-->
+<!--        }-->
+<!--    }-->
+
+<script>
+    function pair() {
         var tutorRows = document.querySelectorAll('#table1 tbody tr');
         var tuteeRows = document.querySelectorAll('#table2 tbody tr');
 
@@ -126,41 +185,48 @@
             }
         });
 
-        console.log("Selected Tutor ID: " + selectedTutorId);
-        console.log("Selected Tutee ID: " + selectedTuteeId);
+        // Check if both a tutor and tutee are selected
+        if (selectedTutor && selectedTutee) {
+            // Get the data needed for the pairing
+            var tutorId = selectedTutor.dataset.id; // Assuming you have added 'data-id' attribute to store tutor id
+            var tuteeId = selectedTutee.dataset.id; // Assuming you have added 'data-id' attribute to store tutee id
 
-        // Pair the selected tutor and tutee
-        if (selectedTutor && selectedTutee)
-        {
-
-            // prepare the tutor and tutee pair data
-             var pairData = {
-                selectedTutorId: selectedTutor,
-                selectedTuteeId: selectedTutee
+            // Create an object to send to the server
+            var data = {
+                selectedTutorId: tutorId,
+                selectedTuteeId: tuteeId
             };
 
-            // put POST request
-
+            // Send the data to the server using fetch or another AJAX method
             fetch('/pair', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(pairData)
+                body: JSON.stringify(data)
             })
             .then(response => response.json())
-            .then(data => {
-                // Handle the response (e.g., show a success message)
-                console.log(data.message);
+            .then(result => {
+                if (result.success) {
+                    // Display a success message
+                    document.getElementById('message').textContent = 'Pairing successful!';
+                } else {
+                    // Display an error message if pairing fails
+                    document.getElementById('message').textContent = 'Pairing failed!';
+                }
             })
             .catch(error => {
-                // Handle errors (e.g., show an error message)
-                console.error(error);
+                console.error('Error:', error);
             });
         } else {
-            document.getElementById("message").textContent = "Please select a tutor and a tutee to pair.";
+            // Display an error message if a tutor and tutee are not both selected
+            document.getElementById('message').textContent = 'Please select a tutor and a tutee to pair.';
         }
     }
+</script>
+
+
+
 
 </script>
 {% endblock %}
@@ -181,3 +247,4 @@
     </div>
 </footer>
 </body>
+
