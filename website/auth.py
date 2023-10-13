@@ -6,7 +6,6 @@ from flask_login import login_user, login_required, logout_user, current_user
 
 
 auth = Blueprint('auth', __name__)
-#hello
 @auth.route('/login', methods=['GET','POST'])
 def login():
     if request.method == 'POST':
@@ -25,8 +24,8 @@ def login():
         else:
             flash('Email does not exist.', category='error')
 
-    return render_template("login.html",user=current_user)
-# hello
+    return render_template("login.html", user=current_user)
+#
 
 @auth.route('/logout')
 @login_required
@@ -148,8 +147,9 @@ def pair():
         else:
             return jsonify({"error": "Invalid data"}), 400
 
+
     except Exception as e:
-            return jsonify({"error": str(e)}), 500
+        return jsonify({"success": False, "error": str(e)}), 500
 
 # def verifying_check():
 #     radio_checked = False

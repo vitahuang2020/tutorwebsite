@@ -30,7 +30,7 @@
     <tbody>
         {% for tutor in tutors %}
         <tr>
-            <th scope="col">{{ tutor.id}}</th>
+            <th scope="col">{{ tutor.id }}</th>
             <th scope="col">{{ tutor.email }}</th>
             <th scope="col">{{ tutor.first_name }}</th>
             <th scope="col">{{ tutor.last_name }}</th>
@@ -85,22 +85,33 @@
      <!-- Add a "Pair" button -->
     <button onclick="pair()" type="button" class="btn btn-primary">Pair</button>
     <p id="message"></p>
+</form>
 
     <!-- Add an empty table to display paired information -->
     <h1 style="text-align:center;margin-top:15px;color:#026592;">Paired Tutors and Tutees</h1>
     <table class="table" id="pairedTable">
         <thead>
             <tr>
-                <th scope="col">Tutor Email</th>
-                <th scope="col">Tutee Email</th>
+                <th scope="col">Tutor Id</th>
+                <th scope="col">Tutor Name</th>
+                <th scope="col">Tutee Id</th>
+                <th scope="col">Tutee Name</th>
                 <!-- Add more columns as needed for other information -->
             </tr>
         </thead>
         <tbody>
-            <!-- Paired rows will be dynamically added here -->
+            {% for pairs in pairs_list %}
+            <tr>
+                <th scope="col">{{ pairs.tutor_id }}</th>
+                <th scope="col">{{ pairs.first_name + " " + pairs.last_name }}</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <!-- Add more columns as needed for other information -->
+            </tr>
+            {% endfor %}
+
         </tbody>
     </table>
-</form>
 <!--hello-->
 <!--<script>-->
 <!--    function pair() {-->
@@ -199,7 +210,29 @@
             };
 
             // Send the data to the server using fetch or another AJAX method
-            fetch('/pair', {
+<!--            fetch('/pair', {-->
+<!--                method: 'POST',-->
+<!--                headers: {-->
+<!--                    'Content-Type': 'application/json'-->
+<!--                },-->
+<!--                body: JSON.stringify(data)-->
+<!--            })-->
+<!--            .then(response => response.json())-->
+<!--            .then(result => {-->
+<!--            alert(result.success)-->
+<!--                if (result.success) {-->
+<!--                    // Display a success message-->
+<!--                    document.getElementById('message').textContent = 'Pairing successful!';-->
+<!--                } else {-->
+<!--                    // Display an error message if pairing fails-->
+<!--                    document.getElementById('message').textContent = 'Pairing failed!';-->
+<!--                }-->
+<!--            })-->
+<!--            .catch(error => {-->
+<!--                console.error('Error:', error);-->
+<!--            });-->
+
+                            fetch('/pair', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -208,11 +241,14 @@
             })
             .then(response => response.json())
             .then(result => {
-            alert(result.success)
+                console.log(result); // Log the response for debugging
+
                 if (result.success) {
+                    console.log("Pairing successful!"); // Log for debugging
                     // Display a success message
                     document.getElementById('message').textContent = 'Pairing successful!';
                 } else {
+                    console.log("Pairing failed!"); // Log for debugging
                     // Display an error message if pairing fails
                     document.getElementById('message').textContent = 'Pairing failed!';
                 }
@@ -220,16 +256,13 @@
             .catch(error => {
                 console.error('Error:', error);
             });
+
+
         } else {
             // Display an error message if a tutor and tutee are not both selected
             document.getElementById('message').textContent = 'Please select a tutor and a tutee to pair.';
         }
     }
-</script>
-
-
-
-
 </script>
 {% endblock %}
 

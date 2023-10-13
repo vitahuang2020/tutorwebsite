@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, flash, request, jsonify
 from flask_login import login_required, current_user
-from .models import Note, User
+from .models import Note, User, Pairs
 from . import db
 import json
 
@@ -12,14 +12,17 @@ views = Blueprint('views', __name__)
 def home():
     tutors = User.query.filter_by(role='tutor').all()
     tutees = User.query.filter_by(role='tutee').all()
-    pairs = User.query.all()
+    # pairs = Pairs.query.all()
 
+    pairs_list = (Pairs.query.join(User, User.id == Pairs.tutor_id)
+             .add_columns(Pairs.tutor_id, User.first_name, User.last_name)).all()
+    print(pairs_list)
 
     print(tutors)
     if request.method == 'GET':
         print("Get request on home page.")
         print(len(tutors))
-        return render_template("home.html", user=current_user, tutors=tutors, tutees=tutees, pairs=pairs)
+        return render_template("home.html", user=current_user, tutors=tutors, tutees=tutees, pairs_list=pairs_list)
 
 # @views.route('/delete-note', methods=['POST'])
 # def delete_note():
