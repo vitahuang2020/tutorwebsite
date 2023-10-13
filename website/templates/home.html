@@ -103,9 +103,10 @@
             {% for pairs in pairs_list %}
             <tr>
                 <th scope="col">{{ pairs.tutor_id }}</th>
-                <th scope="col">{{ pairs.first_name + " " + pairs.last_name }}</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <th scope="col">{{ pairs.tutor_first_name + " " + pairs.tutor_last_name }}</th>
+                <th scope="col">{{ pairs.tutee_id }}</th>
+                <th scope="col">{{ pairs.tutee_first_name + " " + pairs.tutee_last_name }}</th>
+
                 <!-- Add more columns as needed for other information -->
             </tr>
             {% endfor %}

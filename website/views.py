@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from .models import Note, User, Pairs
 from . import db
 import json
+from sqlalchemy.orm import aliased
 
 views = Blueprint('views', __name__)
 
@@ -14,8 +15,25 @@ def home():
     tutees = User.query.filter_by(role='tutee').all()
     # pairs = Pairs.query.all()
 
-    pairs_list = (Pairs.query.join(User, User.id == Pairs.tutor_id)
-             .add_columns(Pairs.tutor_id, User.first_name, User.last_name)).all()
+    UserTutor = aliased(User)
+    UserTutee = aliased(User)
+
+    # pairs_list = (Pairs.query.join(User, User.id == Pairs.tutor_id)
+    #         .join(User, User.id == Pairs.tutee_id)
+    #          .add_columns(Pairs.tutor_id, User.first_name, User.last_name, Pairs.tutee_id, User.first_name, User.last_name)).all()
+
+    pairs_list = (Pairs.query
+                  .join(UserTutor, UserTutor.id == Pairs.tutor_id)
+                  .join(UserTutee, UserTutee.id == Pairs.tutee_id)
+                  .add_columns(
+        Pairs.tutor_id,
+        UserTutor.first_name.label("tutor_first_name"),
+        UserTutor.last_name.label("tutor_last_name"),
+        Pairs.tutee_id,
+        UserTutee.first_name.label("tutee_first_name"),
+        UserTutee.last_name.label("tutee_last_name")
+    ).all())
+
     print(pairs_list)
 
     print(tutors)
