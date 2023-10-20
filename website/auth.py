@@ -61,7 +61,7 @@ def sign_up():
         else:
             # add user to database
 
-            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade="", subjects="")
+            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade="", subjects="", parent_email="")
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
@@ -108,17 +108,20 @@ def request_role():
         #     subjects += "compsci "
         grade = request.form.get('grade')
         subjects = request.form.get('subjects')
+        parent_email = request.form.get('parent_email')
         user = User.query.get(current_user.id)
 
         user.verified = True
         user.grade = grade
         user.subjects = subjects
+        user.parent_email = parent_email
 
         db.session.commit()
         flash('Request form filled', category='success')
         return redirect(url_for('views.home'))
 
     return render_template("request_role.html", user=current_user)
+
 
 @auth.route('/pair', methods=['GET','POST'])
 @login_required

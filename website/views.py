@@ -18,6 +18,7 @@ def home():
     UserTutor = aliased(User)
     UserTutee = aliased(User)
 
+
     # pairs_list = (Pairs.query.join(User, User.id == Pairs.tutor_id)
     #         .join(User, User.id == Pairs.tutee_id)
     #          .add_columns(Pairs.tutor_id, User.first_name, User.last_name, Pairs.tutee_id, User.first_name, User.last_name)).all()
