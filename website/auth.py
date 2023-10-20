@@ -120,6 +120,7 @@ def request_role():
 
     return render_template("request_role.html", user=current_user)
 
+
 @auth.route('/pair', methods=['GET','POST'])
 @login_required
 def pair():
