@@ -37,7 +37,7 @@ def logout():
 
 
 @auth.route('/sign-up', methods=['GET','POST'])
-def sign_up():
+def sign_up_student():
     if request.method == 'POST':
         email = request.form.get('email')
         first_name = request.form.get('firstName')
@@ -104,7 +104,7 @@ def sign_up_teacher():
         else:
             # add user to database
 
-            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade="", subjects="")
+            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade="", subject="")
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
