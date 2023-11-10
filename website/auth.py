@@ -77,7 +77,7 @@ def sign_up_student():
             print("account created")
             return redirect(url_for('views.home'))
 
-    return render_template("sign_up.html", user=current_user)
+    return render_template("sign_up_tutee.html", user=current_user)
 
 @auth.route('/sign-up-teacher', methods=['GET','POST'])
 def sign_up_teacher():
@@ -112,7 +112,7 @@ def sign_up_teacher():
             print("account created")
             return redirect(url_for('views.home'))
 
-    return render_template("sign_up_teachers.html", user=current_user)
+    return render_template("sign_up_tutor.html", user=current_user)
 
 @auth.route('/request-role', methods = ['GET', 'POST'])
 def request_role():
