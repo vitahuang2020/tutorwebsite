@@ -3,7 +3,7 @@ from .models import User, Pairs
 from werkzeug.security import generate_password_hash, check_password_hash
 from.import db
 from flask_login import login_user, login_required, logout_user, current_user
-from .util import Utils
+from .tools import Tools
 
 auth = Blueprint('auth', __name__)
 @auth.route('/login', methods=['GET','POST'])
@@ -136,6 +136,12 @@ def pair():
             pairs = Pairs.query.all()
             print(pairs)
             db.session.close()
+
+            # Query emails from the User table
+            # Prepare a list containing both emails
+
+            email_list = []
+            Tools.send_message()
 
             flash("Students paired", category='success')
             return jsonify({"message": "Pair successfully added to the database"}), 200
