@@ -63,7 +63,6 @@ def sign_up_tutee():
             flash('Please input a subject you would like to be tutored in', category='error')
         elif len(parent_email) < 1:
             flash('Please input your parent email', category='error')
-
         else:
             # add user to database
 
