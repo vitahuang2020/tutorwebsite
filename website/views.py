@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, flash, request, jsonify
 from flask_login import login_required, current_user
-from .models import Note, User, Pairs
+from .models import User, Pairs
 from . import db
 import json
 from sqlalchemy.orm import aliased

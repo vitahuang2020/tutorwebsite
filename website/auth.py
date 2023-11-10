@@ -3,7 +3,7 @@ from .models import User, Pairs
 from werkzeug.security import generate_password_hash, check_password_hash
 from.import db
 from flask_login import login_user, login_required, logout_user, current_user
-
+from .util import Utils
 
 auth = Blueprint('auth', __name__)
 @auth.route('/login', methods=['GET','POST'])
@@ -11,6 +11,8 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        #Utils.send_mail("huangvita36@gmail.com", "test", "body")
+        #return()
 
         user = User.query.filter_by(email=email).first()
         if user:
@@ -42,7 +44,10 @@ def sign_up():
         last_name = request.form.get('lastName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
-        role = request.form.get('role')
+        role = 1
+        grade = request.form.get('grade')
+        subject = request.form.get('subject')
+        parent_email = request.form.get('parent_email')
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists.', category='error')
@@ -56,12 +61,15 @@ def sign_up():
             flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
             flash('Password must be at least 7 characters', category='error')
-        elif len(role) < 1:
-            flash('Role must not be empty', category='error')
+        elif len(subject) < 1:
+            flash('Please input a subject you would like to be tutored in', category='error')
+        elif len(parent_email) < 1:
+            flash('Please input your parent email', category='error')
+
         else:
             # add user to database
 
-            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade="", subjects="", parent_email="")
+            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade=grade, parent_email=parent_email, subject=subject)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
@@ -70,6 +78,41 @@ def sign_up():
             return redirect(url_for('views.home'))
 
     return render_template("sign_up.html", user=current_user)
+
+@auth.route('/sign-up-teacher', methods=['GET','POST'])
+def sign_up_teacher():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        first_name = request.form.get('firstName')
+        last_name = request.form.get('lastName')
+        password1 = request.form.get('password1')
+        password2 = request.form.get('password2')
+        role = 2
+        user = User.query.filter_by(email=email).first()
+        if user:
+            flash('Email already exists.', category='error')
+        elif len(email) < 5:
+            flash('Email must be greater than 5 characters.', category='error')
+        elif len(first_name) < 2:
+            flash('First name must be greater than 1 character', category='error')
+        elif len(last_name) < 2:
+            flash('Last name must be greater than 1 character', category='error')
+        elif password1 != password2:
+            flash('Passwords don\'t match.', category='error')
+        elif len(password1) < 7:
+            flash('Password must be at least 7 characters', category='error')
+        else:
+            # add user to database
+
+            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade="", subjects="")
+            db.session.add(new_user)
+            db.session.commit()
+            login_user(new_user, remember=True)
+            flash('Account created!', category='success')
+            print("account created")
+            return redirect(url_for('views.home'))
+
+    return render_template("sign_up_teachers.html", user=current_user)
 
 @auth.route('/request-role', methods = ['GET', 'POST'])
 def request_role():
@@ -108,13 +151,11 @@ def request_role():
         #     subjects += "compsci "
         grade = request.form.get('grade')
         subjects = request.form.get('subjects')
-        parent_email = request.form.get('parent_email')
         user = User.query.get(current_user.id)
 
         user.verified = True
         user.grade = grade
         user.subjects = subjects
-        user.parent_email = parent_email
 
         db.session.commit()
         flash('Request form filled', category='success')
@@ -153,18 +194,3 @@ def pair():
 
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
-
-# def verifying_check():
-#     radio_checked = False
-#     if request.method == 'POST':
-#         radio_value = request.form.get('my_checkbox')
-#         if radio_value == 'on':
-#             return redirect(url_for('index'))
-#         else:
-#             return redirect(url_for('index'))
-#     db.session.commit()
-#     flash('Tutor and tutee paired up!', category='success')
-#     return render_template('index.html', radio_checked=radio_checked)
-
-def move_forward():
-    print("Moving forward...")
