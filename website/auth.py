@@ -143,3 +143,8 @@ def pair():
 
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
+
+@auth.route('/hour', methods=['GET','POST'])
+@login_required
+def hour():
+    return redirect(url_for('hour.home'))
