@@ -135,13 +135,20 @@ def pair():
             db.session.commit()
             pairs = Pairs.query.all()
             print(pairs)
-            db.session.close()
 
             # Query emails from the User table
             # Prepare a list containing both emails
 
-            email_list = []
-            Tools.send_message()
+            tutor = User.query.filter_by(id=tutor_id).all()
+            tutee = User.query.filter_by(id=tutee_id).all()
+            print(tutor[0].email)
+            print(tutee[0].email)
+
+            email_list = [tutor[0].email, tutee[0].email]
+            t = Tools()
+            t.send_message(email_list, 'Pair', 'You are paired!')
+
+            db.session.close()
 
             flash("Students paired", category='success')
             return jsonify({"message": "Pair successfully added to the database"}), 200
@@ -152,7 +159,7 @@ def pair():
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 
-@auth.route('/hour', methods=['GET','POST'])
+@auth.route('/hours', methods=['GET','POST'])
 @login_required
 def hour():
-    return redirect(url_for('hour.home'))
+    return render_template("hours.html", user=current_user)

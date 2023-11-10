@@ -14,6 +14,7 @@ class  Utils:
         #to_addr = '********@163.com'
         # 发信服务器
         smtp_server = 'smtp.gmail.com'
+        # hello
 
         # 邮箱正文内容，第一个参数为内容，第二个参数为格式(plain 为纯文本)，第三个参数为编码
         msg = MIMEText(contant, 'plain', 'utf-8')

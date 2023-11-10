@@ -4,24 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="I modified the request form to include the parent email.">
-      <change afterPath="$PROJECT_DIR$/website/templates/sign_up_teachers.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/tools.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2023-08-15,_10_14_a_m__[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2023-08-15__10_14_a_m___Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-08-14,_11_20_a_m__[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-08-14__11_20_a_m___Changes_.xml" beforeDir="false" />
+    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Inserted the send_message() function into auth.py in the pair function.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instance/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/request_role.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/request_role.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/sign_up.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/sign_up.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/templates/hours.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/hours.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/tools.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -341,7 +331,35 @@
       <option name="project" value="LOCAL" />
       <updated>1692672183008</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added the teacher/tutor sign up page but the code doesn't work yet. The error message says: no such column: user.subject.">
+      <created>1699652459512</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1699652459512</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Changed the heading to &quot;Tutee sign up&quot; and &quot;Tutor sign up&quot; instead to make it more clear.">
+      <created>1699653721415</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1699653721415</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Created the new link for the hour logging form of the tutors.">
+      <created>1699655376607</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1699655376607</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Inserted the send_message() function into auth.py in the pair function.">
+      <created>1699656631583</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1699656631583</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -377,7 +395,11 @@
     <MESSAGE value="I made the logout link go to the very end of the nav bar." />
     <MESSAGE value="I added the checkbox to the very right of the table and the pair button." />
     <MESSAGE value="making sure my commit works" />
-    <option name="LAST_COMMIT_MESSAGE" value="making sure my commit works" />
+    <MESSAGE value="Added the teacher/tutor sign up page but the code doesn't work yet. The error message says: no such column: user.subject." />
+    <MESSAGE value="Changed the heading to &quot;Tutee sign up&quot; and &quot;Tutor sign up&quot; instead to make it more clear." />
+    <MESSAGE value="Created the new link for the hour logging form of the tutors." />
+    <MESSAGE value="Inserted the send_message() function into auth.py in the pair function." />
+    <option name="LAST_COMMIT_MESSAGE" value="Inserted the send_message() function into auth.py in the pair function." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

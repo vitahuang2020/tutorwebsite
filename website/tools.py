@@ -12,7 +12,8 @@ mail = Mail(app)
 class Tools:
     @staticmethod
     def send_message(receive_mail, subject, body):
-        msg = Message('Hello', sender='huangvita36@gmail.com', recipients=receive_mail)
-        msg.body = 'Hello'
+        print('in send_message function')
+        msg = Message(subject, sender='huangvita36@gmail.com', recipients=receive_mail)
+        msg.body = body
         mail.send(msg)
         return True

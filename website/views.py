@@ -13,7 +13,6 @@ views = Blueprint('views', __name__)
 def home():
     tutors = User.query.filter_by(role=2).all()
     tutees = User.query.filter_by(role=1).all()
-    # pairs = Pairs.query.all()
 
     UserTutor = aliased(User)
     UserTutee = aliased(User)
