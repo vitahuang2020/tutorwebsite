@@ -36,8 +36,8 @@ def logout():
     return redirect(url_for('auth.login'))
 
 
-@auth.route('/sign-up', methods=['GET','POST'])
-def sign_up_student():
+@auth.route('/sign-up-tutee', methods=['GET','POST'])
+def sign_up_tutee():
     if request.method == 'POST':
         email = request.form.get('email')
         first_name = request.form.get('firstName')
@@ -79,8 +79,8 @@ def sign_up_student():
 
     return render_template("sign_up_tutee.html", user=current_user)
 
-@auth.route('/sign-up-teacher', methods=['GET','POST'])
-def sign_up_teacher():
+@auth.route('/sign-up-tutor', methods=['GET','POST'])
+def sign_up_tutor():
     if request.method == 'POST':
         email = request.form.get('email')
         first_name = request.form.get('firstName')
@@ -113,56 +113,6 @@ def sign_up_teacher():
             return redirect(url_for('views.home'))
 
     return render_template("sign_up_tutor.html", user=current_user)
-
-@auth.route('/request-role', methods = ['GET', 'POST'])
-def request_role():
-    if request.method == 'POST':
-        # math = request.form.get('math')
-        # english = request.form.get('english')
-        # geography = request.form.get('geography')
-        # history = request.form.get('history')
-        # physics = request.form.get('physics')
-        # chemistry = request.form.get('chemistry')
-        # biology = request.form.get('biology')
-        # french = request.form.get('french')
-        # mandarin = request.form.get('mandarin')
-        # compsci = request.form.get('compsci')
-        #
-        # subjects = ""
-        # if math == "math":
-        #     subjects += "math "
-        # if english == "english":
-        #     subjects += "english "
-        # if geography == "geography":
-        #     subjects += "geography "
-        # if history == "history":
-        #     subjects += "history "
-        # if physics == "physics":
-        #     subjects += "physics "
-        # if chemistry == "chemistry":
-        #     subjects += "chemistry "
-        # if biology == "biology":
-        #     subjects += "biology "
-        # if french == "french":
-        #     subjects += "french "
-        # if mandarin == "mandarin":
-        #     subjects += "mandarin "
-        # if compsci == "compsci":
-        #     subjects += "compsci "
-        grade = request.form.get('grade')
-        subjects = request.form.get('subjects')
-        user = User.query.get(current_user.id)
-
-        user.verified = True
-        user.grade = grade
-        user.subjects = subjects
-
-        db.session.commit()
-        flash('Request form filled', category='success')
-        return redirect(url_for('views.home'))
-
-    return render_template("request_role.html", user=current_user)
-
 
 @auth.route('/pair', methods=['GET','POST'])
 @login_required
