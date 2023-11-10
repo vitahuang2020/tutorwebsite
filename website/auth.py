@@ -177,6 +177,7 @@ def pair():
         print(tutor_id)
         print(tutee_id)
 
+
         if tutor_id is not None and tutee_id is not None:
             # Create a new Pair instance and add it to the database
             pair = Pairs(tutor_id=tutor_id, tutee_id=tutee_id)

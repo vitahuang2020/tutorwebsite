@@ -11,8 +11,8 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST']) # homepage
 @login_required
 def home():
-    tutors = User.query.filter_by(role='tutor').all()
-    tutees = User.query.filter_by(role='tutee').all()
+    tutors = User.query.filter_by(role=2).all()
+    tutees = User.query.filter_by(role=1).all()
     # pairs = Pairs.query.all()
 
     UserTutor = aliased(User)

@@ -30,13 +30,12 @@
             <div class="navbar-nav" style="justify-content:space-between;">
                 {% if user.is_authenticated %}
                 <a class="nav-item nav-link" id="home" href="/">Home</a>
-                <a class="nav-item nav-link" id="request-role" href="/request-role">Request</a>
                 <a class="nav-item nav-link" style="margin-left:1100px;" id="logout" href="/logout">Logout</a>
 
                 {% else %}
                 <a class="nav-item nav-link" id="login" href="/login">Login</a>
-                <a class="nav-item nav-link" id="signup" href="/sign-up">Tutee Sign Up</a>
-                <a class="nav-item nav-link" id="signup_teacher" href="/sign-up-teacher">Tutor Sign Up</a>
+                <a class="nav-item nav-link" id="sign_up_tutee" href="/sign-up-tutee">Tutee Sign Up</a>
+                <a class="nav-item nav-link" id="sign_up_tutor" href="/sign-up-tutor">Tutor Sign Up</a>
                 {% endif %}
             </div>
         </div>
