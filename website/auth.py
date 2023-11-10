@@ -86,6 +86,9 @@ def sign_up_tutor():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
         role = 2
+        grade = request.form.get('grade')
+        subject = request.form.get('subject')
+        parent_email = request.form.get('parent_email')
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists.', category='error')
@@ -102,7 +105,7 @@ def sign_up_tutor():
         else:
             # add user to database
 
-            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade="", subject="")
+            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade=grade, subject=subject, parent_email=parent_email)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
