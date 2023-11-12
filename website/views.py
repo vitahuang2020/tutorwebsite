@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, flash, request, jsonify
 from flask_login import login_required, current_user
-from .models import User, Pairs
+from .models import User, Pairs, Hours
 from . import db
 import json
 from sqlalchemy.orm import aliased
@@ -34,6 +34,17 @@ def home():
         UserTutee.last_name.label("tutee_last_name")
     ).all())
 
+    unpairs_list = (Pairs.query.filter_by(tutor_id=0)
+                  .join(UserTutee, UserTutee.id == Pairs.tutee_id)
+                  .add_columns(
+        Pairs.id,
+        Pairs.subject,
+        UserTutee.email.label("tutee_email"),
+        UserTutee.first_name.label("tutee_first_name"),
+        UserTutee.last_name.label("tutee_last_name"),
+        UserTutee.grade.label("tutee_grade"),
+    ).all())
+
     print(pairs_list)
 
     print(tutors)
@@ -53,3 +64,17 @@ def home():
 #             db.session.commit()
 #
 #     return jsonify({})
+
+@views.route('/hours', methods=['POST']) # homepage
+@login_required
+def hours():
+    if request.method == 'POST':
+        hours = request.form.get("hours")
+        new_hours = Hours(hours=hours, tutor_id=current_user.id)
+
+        db.session.add(new_hours)
+        db.session.commit()
+        flash('Hours logged in', category='success')
+
+    return(render_template("hours.html", user=current_user))
+

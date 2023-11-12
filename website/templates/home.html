@@ -48,7 +48,7 @@
 
 </br>
 
-<h1 style="text-align:center;margin-top:15px;color:#026592;">Tutees</h1>
+<h1 style="text-align:center;margin-top:15px;color:#026592;">Unpaired Tutees</h1>
 
 <table class="table" id="table2">
     <thead>
@@ -64,7 +64,7 @@
     </thead>
 
     <tbody>
-        {% for tutee in tutees %}
+        {% for tutee in unpairs_list %}
         <tr>
             <th scope="col">{{ tutee.id}}</th>
             <th scope="col">{{ tutee.email }}</th>

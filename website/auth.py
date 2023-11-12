@@ -12,13 +12,23 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
 
+        # new_user = User(email="admin@gmail.com", first_name="Denise", last_name="Ma",
+        #                 password=generate_password_hash("123456", method='sha256'), role=3)
+        # db.session.add(new_user)
+        # db.session.commit()
+        # return
+
         user = User.query.filter_by(email=email).first()
+
         if user:
             if check_password_hash(user.password, password):
                 # print(user.first_name)
                 flash(user.first_name + ' is logged in successfully!', category='success')
                 login_user(user, remember=True)
-                return redirect(url_for('views.home'))
+                if user.role == 2:
+                    return redirect(url_for('views.hours'))
+                elif user.role == 3:
+                    return redirect(url_for('views.home'))
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
@@ -44,7 +54,11 @@ def sign_up_tutee():
         password2 = request.form.get('password2')
         role = 1
         grade = request.form.get('grade')
-        subject = request.form.get('subject')
+        subject1 = request.form.get('subject1')
+        subject2 = request.form.get('subject2')
+        subject3 = request.form.get('subject3')
+        subject4 = request.form.get('subject4')
+        subject5 = request.form.get('subject5')
         parent_email = request.form.get('parent_email')
         user = User.query.filter_by(email=email).first()
         if user:
@@ -59,17 +73,42 @@ def sign_up_tutee():
             flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
             flash('Password must be at least 7 characters', category='error')
-        elif len(subject) < 1:
-            flash('Please input a subject you would like to be tutored in', category='error')
+        elif len(subject1) < 1:
+            flash('Please input a subject1 you would like to be tutored in', category='error')
         elif len(parent_email) < 1:
             flash('Please input your parent email', category='error')
         else:
             # add user to database
 
-            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade=grade, parent_email=parent_email, subject=subject)
+            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade=grade, parent_email=parent_email, subject1=subject1, subject2=subject2, subject3=subject3, subject4=subject4, subject5=subject5)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
+
+            new_pairs = Pairs(tutee_id=current_user.id, subject=subject1)
+            db.session.add(new_pairs)
+            db.session.commit()
+
+        if len(subject2) > 0:
+            new_pairs = Pairs(tutee_id=current_user.id, subject=subject2)
+            db.session.add(new_pairs)
+            db.session.commit()
+
+        if len(subject3) > 0:
+            new_pairs = Pairs(tutee_id=current_user.id, subject=subject3)
+            db.session.add(new_pairs)
+            db.session.commit()
+
+        if len(subject4) > 0:
+            new_pairs = Pairs(tutee_id=current_user.id, subject=subject4)
+            db.session.add(new_pairs)
+            db.session.commit()
+
+        if len(subject5) > 0:
+            new_pairs = Pairs(tutee_id=current_user.id, subject=subject5)
+            db.session.add(new_pairs)
+            db.session.commit()
+
             flash('Account created!', category='success')
             print("account created")
             return redirect(url_for('views.home'))
@@ -87,6 +126,7 @@ def sign_up_tutor():
         role = 2
         grade = request.form.get('grade')
         subject = request.form.get('subject')
+
         parent_email = request.form.get('parent_email')
         user = User.query.filter_by(email=email).first()
         if user:
@@ -101,13 +141,18 @@ def sign_up_tutor():
             flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
             flash('Password must be at least 7 characters', category='error')
+        elif len(subject) < 1:
+            flash('Please input a subject you would like to tutor', category='error')
+        elif len(parent_email) < 1:
+            flash('Please input your parent email', category='error')
         else:
             # add user to database
 
-            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade=grade, subject=subject, parent_email=parent_email)
+            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade=grade, parent_email=parent_email, subject1=subject)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
+
             flash('Account created!', category='success')
             print("account created")
             return redirect(url_for('views.home'))
@@ -154,7 +199,6 @@ def pair():
             return jsonify({"message": "Pair successfully added to the database"}), 200
         else:
             return jsonify({"error": "Invalid data"}), 400
-
 
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500

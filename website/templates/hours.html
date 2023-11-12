@@ -1,6 +1,23 @@
 {% extends "base.html" %}
-{% block title %}Login{% endblock %}
+
+{% block title %}Home{% endblock %}
 
 {% block content %}
-<p>Hello</p>
+<form method="POST">
+    <h3 style="text-align:center;margin-top:15px;color:#026592;">Log in Hours</h3>
+
+    <div class="form-group">
+        <label for="hours" style=" color:#026592;">Select the amount of time you've tutored</label>
+        <select id="hours" name="hours">
+            <option value="30">30 minutes</option>
+            <option value="45">45 minutes</option>
+            <option value="60">60 minutes</option>
+        </select>
+    </div>
+
+    <br />
+    <button type="submit" class="btn" style="background-color:#0287c3;color:white;">Submit</button>
+
+</form>
+
 {% endblock %}
