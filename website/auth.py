@@ -3,7 +3,7 @@ from .models import User, Pairs
 from werkzeug.security import generate_password_hash, check_password_hash
 from.import db
 from flask_login import login_user, login_required, logout_user, current_user
-from .tools import Tools
+from .util import Utils
 
 auth = Blueprint('auth', __name__)
 @auth.route('/login', methods=['GET','POST'])
@@ -189,9 +189,13 @@ def pair():
             print(tutor[0].email)
             print(tutee[0].email)
 
-            email_list = [tutor[0].email, tutee[0].email]
-            t = Tools()
-            t.send_message(email_list, 'Pair', 'You are paired!')
+            u = Utils()
+            u.send_mail(tutor[0].email,
+                        'Branksome Hall Tutor Club',
+                        'This email is to inform you that you are paired up with tutee: ' + tutee[0].first_name + ' ' + tutee[0].last_name + '.' + 'Please set up a time to begin!')
+            u.send_mail(tutee[0].email,
+                        'Branksome Hall Tutor Club',
+                        'This email is to inform you that you are paired up with tutor: ' + tutor[0].first_name + ' ' + tutor[0].last_name + '.' + 'Please set up a time to begin!')
 
             db.session.close()
 
