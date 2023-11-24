@@ -47,6 +47,9 @@ def home(tutor_id=None):
         UserTutee.grade.label("tutee_grade"),
     ).all())
 
+    print("Unpaired: ")
+    print(unpairs_list)
+
     print(pairs_list)
 
     print(tutors)
