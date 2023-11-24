@@ -67,10 +67,10 @@
         {% for tutee in unpairs_list %}
         <tr>
             <th scope="col">{{ tutee.id}}</th>
-            <th scope="col">{{ tutee_email }}</th>
-            <th scope="col">{{ tutee_first_name }}</th>
-            <th scope="col">{{ tutee_last_name }}</th>
-            <th scope="col">{{ tutee_grade }}</th>
+            <th scope="col">{{ tutee.tutee_email }}</th>
+            <th scope="col">{{ tutee.tutee_first_name }}</th>
+            <th scope="col">{{ tutee.tutee_last_name }}</th>
+            <th scope="col">{{ tutee.tutee_grade }}</th>
             <th scope="col">{{ tutee.subject }}</th>
             <th scope="col">
                 <div class="form-check">

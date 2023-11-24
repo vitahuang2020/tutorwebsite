@@ -14,11 +14,11 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
 
-        # new_user = User(email="admin@gmail.com", first_name="Denise", last_name="Ma",
-        #                 password=generate_password_hash("123456", method='sha256'), role=3)
-        # db.session.add(new_user)
-        # db.session.commit()
-        # return
+        new_user = User(email="admin@gmail.com", first_name="Denise", last_name="Ma",
+                        password=generate_password_hash("123456", method='sha256'), role=3)
+        db.session.add(new_user)
+        db.session.commit()
+        return
 
         user = User.query.filter_by(email=email).first()
 
@@ -91,25 +91,25 @@ def sign_up_tutee():
             db.session.add(new_pairs)
             db.session.commit()
 
-        if len(subject2) > 0:
-            new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0,subject=subject2)
-            db.session.add(new_pairs)
-            db.session.commit()
+            if len(subject2) > 0:
+                new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0,subject=subject2)
+                db.session.add(new_pairs)
+                db.session.commit()
 
-        if len(subject3) > 0:
-            new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject3)
-            db.session.add(new_pairs)
-            db.session.commit()
+            if len(subject3) > 0:
+                new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject3)
+                db.session.add(new_pairs)
+                db.session.commit()
 
-        if len(subject4) > 0:
-            new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject4)
-            db.session.add(new_pairs)
-            db.session.commit()
+            if len(subject4) > 0:
+                new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject4)
+                db.session.add(new_pairs)
+                db.session.commit()
 
-        if len(subject5) > 0:
-            new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject5)
-            db.session.add(new_pairs)
-            db.session.commit()
+            if len(subject5) > 0:
+                new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject5)
+                db.session.add(new_pairs)
+                db.session.commit()
 
             flash('Account created!', category='success')
             print("account created")
