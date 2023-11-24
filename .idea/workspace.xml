@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Inserted the send_message() function into auth.py in the pair function.">
+    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="I got the email function to work so that when pairing a tutor and a tutee, an email is sent to the both of them so that they would know that they were already paired up.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instance/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instance/database.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/templates/hours.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/hours.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/tools.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -359,7 +360,28 @@
       <option name="project" value="LOCAL" />
       <updated>1699656631583</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Put the email function into auth.py">
+      <created>1699659726505</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1699659726505</updated>
+    </task>
+    <task id="LOCAL-00027" summary="I added the (optional) text to subjects 2, 3, 4, and 5.">
+      <created>1700257210568</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1700257210568</updated>
+    </task>
+    <task id="LOCAL-00028" summary="I got the email function to work so that when pairing a tutor and a tutee, an email is sent to the both of them so that they would know that they were already paired up.">
+      <created>1700263777573</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1700263777573</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -399,7 +421,10 @@
     <MESSAGE value="Changed the heading to &quot;Tutee sign up&quot; and &quot;Tutor sign up&quot; instead to make it more clear." />
     <MESSAGE value="Created the new link for the hour logging form of the tutors." />
     <MESSAGE value="Inserted the send_message() function into auth.py in the pair function." />
-    <option name="LAST_COMMIT_MESSAGE" value="Inserted the send_message() function into auth.py in the pair function." />
+    <MESSAGE value="Put the email function into auth.py" />
+    <MESSAGE value="I added the (optional) text to subjects 2, 3, 4, and 5." />
+    <MESSAGE value="I got the email function to work so that when pairing a tutor and a tutee, an email is sent to the both of them so that they would know that they were already paired up." />
+    <option name="LAST_COMMIT_MESSAGE" value="I got the email function to work so that when pairing a tutor and a tutee, an email is sent to the both of them so that they would know that they were already paired up." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

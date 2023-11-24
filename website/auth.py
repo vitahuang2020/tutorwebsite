@@ -85,27 +85,27 @@ def sign_up_tutee():
             db.session.commit()
             login_user(new_user, remember=True)
 
-            new_pairs = Pairs(tutee_id=current_user.id, subject=subject1)
+            new_pairs = Pairs(tutee_id=current_user.id,tutor_id=0, subject=subject1)
             db.session.add(new_pairs)
             db.session.commit()
 
         if len(subject2) > 0:
-            new_pairs = Pairs(tutee_id=current_user.id, subject=subject2)
+            new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0,subject=subject2)
             db.session.add(new_pairs)
             db.session.commit()
 
         if len(subject3) > 0:
-            new_pairs = Pairs(tutee_id=current_user.id, subject=subject3)
+            new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject3)
             db.session.add(new_pairs)
             db.session.commit()
 
         if len(subject4) > 0:
-            new_pairs = Pairs(tutee_id=current_user.id, subject=subject4)
+            new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject4)
             db.session.add(new_pairs)
             db.session.commit()
 
         if len(subject5) > 0:
-            new_pairs = Pairs(tutee_id=current_user.id, subject=subject5)
+            new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject5)
             db.session.add(new_pairs)
             db.session.commit()
 
@@ -168,24 +168,21 @@ def pair():
         print(data)
 
         tutor_id = data.get('selectedTutorId')
-        tutee_id = data.get('selectedTuteeId')
+        pair_id = data.get('selectedTuteeId')
         print(tutor_id)
-        print(tutee_id)
+        print(pair_id)
 
-
-        if tutor_id is not None and tutee_id is not None:
+        if tutor_id is not None and pair_id is not None:
             # Create a new Pair instance and add it to the database
-            pair = Pairs(tutor_id=tutor_id, tutee_id=tutee_id)
-            db.session.add(pair)
+            pair = Pairs.query.get(id)
+            pair.tutor_id = tutor_id
             db.session.commit()
-            pairs = Pairs.query.all()
-            print(pairs)
 
             # Query emails from the User table
             # Prepare a list containing both emails
 
             tutor = User.query.filter_by(id=tutor_id).all()
-            tutee = User.query.filter_by(id=tutee_id).all()
+            tutee = User.query.filter_by(id=pair.tutee_id).all()
             print(tutor[0].email)
             print(tutee[0].email)
 

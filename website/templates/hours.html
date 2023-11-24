@@ -3,21 +3,40 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<form method="POST">
-    <h3 style="text-align:center;margin-top:15px;color:#026592;">Log in Hours</h3>
+<body>
+    <h1>Time Entry</h1>
 
-    <div class="form-group">
-        <label for="hours" style=" color:#026592;">Select the amount of time you've tutored</label>
-        <select id="hours" name="hours">
-            <option value="30">30 minutes</option>
-            <option value="45">45 minutes</option>
-            <option value="60">60 minutes</option>
+    <form method="POST" action="{{ url_for('add_time') }}">
+        <label for="selected_time">Select Time Tutored:</label>
+        <select id="selected_time" name="selected_time">
+            <option value="09:00 AM">30 minutes</option>
+            <option value="12:00 PM">45 minutes</option>
+            <option value="03:00 PM">60 minutes</option>
+            <option value="03:00 PM">75 minutes</option>
         </select>
-    </div>
+        <button type="submit">Submit</button>
+    </form>
 
-    <br />
-    <button type="submit" class="btn" style="background-color:#0287c3;color:white;">Submit</button>
-
-</form>
+    <h2>Time Entries</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Selected Time</th>
+                <th>Date Added</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in times %}
+            <tr>
+                <td>{{ entry.selected_time }}</td>
+                <td>{{ entry.date_added }}</td>
+                <td><a href="{{ url_for('delete_time', id=entry.id) }}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
 
 {% endblock %}

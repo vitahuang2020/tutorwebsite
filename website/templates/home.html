@@ -64,13 +64,13 @@
     </thead>
 
     <tbody>
-        {% for tutee in tutees %}
+        {% for tutee in unpairs_list %}
         <tr>
             <th scope="col">{{ tutee.id}}</th>
-            <th scope="col">{{ tutee.email }}</th>
-            <th scope="col">{{ tutee.first_name }}</th>
-            <th scope="col">{{ tutee.last_name }}</th>
-            <th scope="col">{{ tutee.grade }}</th>
+            <th scope="col">{{ tutee_email }}</th>
+            <th scope="col">{{ tutee_first_name }}</th>
+            <th scope="col">{{ tutee_last_name }}</th>
+            <th scope="col">{{ tutee_grade }}</th>
             <th scope="col">{{ tutee.subject }}</th>
             <th scope="col">
                 <div class="form-check">
@@ -110,7 +110,7 @@
                 <th scope="col">{{ pairs.tutee_id }}</th>
                 <th scope="col">{{ pairs.tutee_first_name + " " + pairs.tutee_last_name }}</th>
                 <th scope="col">
-                    <button type="button" class="btn btn-danger">Unpair</button>
+                    <button type="button" class="btn btn-danger" onclick="unpair( {{ pairs.id }} )">Unpair</button>
                 </th>
 
                 <!-- Add more columns as needed for other information -->
@@ -120,70 +120,34 @@
         </tbody>
     </table>
 
-<!--hello-->
-<!--<script>-->
-<!--    function pair() {-->
-
-<!--        var tutorRows = document.querySelectorAll('#table1 tbody tr');-->
-<!--        var tuteeRows = document.querySelectorAll('#table2 tbody tr');-->
-
-<!--        var selectedTutor = null;-->
-<!--        var selectedTutee = null;-->
-
-<!--        // Find the selected tutor and tutee-->
-<!--        tutorRows.forEach(function (tutorRow) {-->
-<!--            var tutorRadio = tutorRow.querySelector('input[type="radio"]');-->
-<!--            if (tutorRadio.checked) {-->
-<!--                selectedTutor = tutorRow;-->
-<!--            }-->
-<!--        });-->
-
-<!--        tuteeRows.forEach(function (tuteeRow) {-->
-<!--            var tuteeRadio = tuteeRow.querySelector('input[type="radio"]');-->
-<!--            if (tuteeRadio.checked) {-->
-<!--                selectedTutee = tuteeRow;-->
-<!--            }-->
-<!--        });-->
-
-<!--        console.log("Selected Tutor ID: " + selectedTutorId);-->
-<!--        console.log("Selected Tutee ID: " + selectedTuteeId);-->
-
-<!--        // Pair the selected tutor and tutee-->
-<!--        if (selectedTutor && selectedTutee)-->
-<!--        {-->
-
-<!--            // prepare the tutor and tutee pair data-->
-<!--             var pairData = {-->
-<!--                selectedTutorId: selectedTutor,-->
-<!--                selectedTuteeId: selectedTutee-->
-<!--            };-->
-
-<!--            // put POST request-->
-
-<!--            fetch('/pair', {-->
-<!--                method: 'POST',-->
-<!--                headers: {-->
-<!--                    'Content-Type': 'application/json'-->
-<!--                },-->
-<!--                body: JSON.stringify(pairData)-->
-<!--            })-->
-<!--            .then(response => response.json())-->
-<!--            .then(data => {-->
-<!--                // Handle the response (e.g., show a success message)-->
-<!--                console.log(data.message);-->
-<!--            })-->
-<!--            .catch(error => {-->
-<!--                // Handle errors (e.g., show an error message)-->
-<!--                console.error(error);-->
-<!--            });-->
-<!--        } else {-->
-<!--            document.getElementById("message").textContent = "Please select a tutor and a tutee to pair.";-->
-<!--        }-->
-<!--    }-->
-
 <script>
-    function unpair() {
-        var row = document.querySelectorAll('#pairedTable tbody tr');
+    function unpair(id) {
+        console.log(id)
+        let data ={"Id":id}
+        fetch('/unpair', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result); // Log the response for debugging
+
+                if (result.success) {
+                    console.log("Pairing successful!"); // Log for debugging
+                    // Display a success message
+                    location.reload();
+                } else {
+                    console.log("Pairing failed!"); // Log for debugging
+                    // Display an error message if pairing fails
+                    document.getElementById('message').textContent = 'Pairing failed!';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
 
     }
     function pair() {
@@ -222,27 +186,6 @@
             };
 
             // Send the data to the server using fetch or another AJAX method
-<!--            fetch('/pair', {-->
-<!--                method: 'POST',-->
-<!--                headers: {-->
-<!--                    'Content-Type': 'application/json'-->
-<!--                },-->
-<!--                body: JSON.stringify(data)-->
-<!--            })-->
-<!--            .then(response => response.json())-->
-<!--            .then(result => {-->
-<!--            alert(result.success)-->
-<!--                if (result.success) {-->
-<!--                    // Display a success message-->
-<!--                    document.getElementById('message').textContent = 'Pairing successful!';-->
-<!--                } else {-->
-<!--                    // Display an error message if pairing fails-->
-<!--                    document.getElementById('message').textContent = 'Pairing failed!';-->
-<!--                }-->
-<!--            })-->
-<!--            .catch(error => {-->
-<!--                console.error('Error:', error);-->
-<!--            });-->
 
                             fetch('/pair', {
                 method: 'POST',
@@ -257,6 +200,7 @@
 
                 if (result.success) {
                     console.log("Pairing successful!"); // Log for debugging
+                    location.reload();
                     // Display a success message
                     document.getElementById('message').textContent = 'Pairing successful!';
                 } else {
