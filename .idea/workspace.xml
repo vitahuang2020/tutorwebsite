@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="I got the email function to work so that when pairing a tutor and a tutee, an email is sent to the both of them so that they would know that they were already paired up.">
+    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="This is the code from last Sunday but it doesn't work.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instance/database.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/hours.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/hours.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -381,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700263777573</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="This is the code from last Sunday but it doesn't work.">
+      <created>1700861862575</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1700861862575</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -424,7 +424,8 @@
     <MESSAGE value="Put the email function into auth.py" />
     <MESSAGE value="I added the (optional) text to subjects 2, 3, 4, and 5." />
     <MESSAGE value="I got the email function to work so that when pairing a tutor and a tutee, an email is sent to the both of them so that they would know that they were already paired up." />
-    <option name="LAST_COMMIT_MESSAGE" value="I got the email function to work so that when pairing a tutor and a tutee, an email is sent to the both of them so that they would know that they were already paired up." />
+    <MESSAGE value="This is the code from last Sunday but it doesn't work." />
+    <option name="LAST_COMMIT_MESSAGE" value="This is the code from last Sunday but it doesn't work." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

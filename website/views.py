@@ -17,7 +17,7 @@ def home(tutor_id=None):
 
     UserTutor = aliased(User)
     UserTutee = aliased(User)
-
+#hello
 
     # pairs_list = (Pairs.query.join(User, User.id == Pairs.tutor_id)
     #         .join(User, User.id == Pairs.tutee_id)
