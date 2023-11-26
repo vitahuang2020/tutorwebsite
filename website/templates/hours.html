@@ -30,7 +30,7 @@
             {% for entry in times %}
             <tr>
                 <td>{{ entry.hours }}</td>
-                <td>{{ entry.time }}</td>
+                <td> {{ entry.time }} </td>
                 <td><a href="{{ url_for('views.delete_time', id=entry.id) }}">Delete</a></td>
             </tr>
             {% endfor %}
@@ -38,5 +38,11 @@
     </table>
 </body>
 </html>
+
+<script>
+    function change_date(time){
+ return time.format('YYYY/MM/DD');
+}
+</script>
 
 {% endblock %}

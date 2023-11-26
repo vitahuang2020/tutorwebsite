@@ -174,7 +174,7 @@ def pair():
 
         if tutor_id is not None and pair_id is not None:
             # Create a new Pair instance and add it to the database
-            pair = Pairs.query.get(id)
+            pair = Pairs.query.get(pair_id)
             pair.tutor_id = tutor_id
             db.session.commit()
 

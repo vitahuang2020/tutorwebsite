@@ -5,6 +5,7 @@ from . import db
 from sqlalchemy.orm import aliased
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import time
 
 views = Blueprint('views', __name__)
 
@@ -75,6 +76,10 @@ def unpair():
 def hours():
     # Fetch and display time entries
     times = Hours.query.filter_by(tutor_id=current_user.id).all()
+    for time in times:
+        time.time = time.strftime("%Y-%m-%d", time.time)
+        a = time.strftime("%Y-%m-%d", time.time)
+        print(a)
 
     if request.method == 'POST':
         selected_time = int(request.form.get('selected_time'))

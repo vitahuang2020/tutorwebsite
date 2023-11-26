@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Changed every file to help Denise debug.">
+    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Edited the hours.html and views.py for the hour-logging form.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instance/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/templates/hours.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/hours.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
@@ -393,7 +393,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700863446644</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Edited the hours.html and views.py for the hour-logging form.">
+      <created>1701007239979</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1701007239979</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -438,7 +445,8 @@
     <MESSAGE value="I got the email function to work so that when pairing a tutor and a tutee, an email is sent to the both of them so that they would know that they were already paired up." />
     <MESSAGE value="This is the code from last Sunday but it doesn't work." />
     <MESSAGE value="Changed every file to help Denise debug." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed every file to help Denise debug." />
+    <MESSAGE value="Edited the hours.html and views.py for the hour-logging form." />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited the hours.html and views.py for the hour-logging form." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
