@@ -3,9 +3,7 @@ from flask_login import login_required, current_user
 from .models import User, Pairs, Hours
 from . import db
 from sqlalchemy.orm import aliased
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-import time
 
 views = Blueprint('views', __name__)
 
@@ -71,15 +69,11 @@ def unpair():
         return jsonify({"error": "Invalid data"}), 400
 
 
-@views.route('/hours', methods=['POST'])
+@views.route('/hours', methods=['GET', 'POST'])
 @login_required
 def hours():
     # Fetch and display time entries
     times = Hours.query.filter_by(tutor_id=current_user.id).all()
-
-    # Format the time entries
-    for time_entry in times:
-        time_entry.formatted_time = time_entry.time.strftime("%Y-%m-%d")
 
     if request.method == 'POST':
         selected_time = int(request.form.get('selected_time'))
@@ -91,8 +85,6 @@ def hours():
         db.session.add(new_hour)
         db.session.commit()
         flash('Hours logged!', category='success')
-
-        # Redirect to the 'hours' endpoint after adding a new entry
 
     return render_template("hours.html", user=current_user, times=times)
 
@@ -108,5 +100,5 @@ def delete_time(id):
     else:
         flash('Time entry not found.', category='danger')
 
-    # Redirect to the 'hours' endpoint after deletion
-    return render_template('views.hours')
+    # Render the 'hours.html' template after deletion
+    return render_template('hours.html', user=current_user, times=Hours.query.filter_by(tutor_id=current_user.id).all())

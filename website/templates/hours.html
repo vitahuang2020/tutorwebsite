@@ -4,45 +4,82 @@
 
 {% block content %}
 <body>
-    <h1>Time Entry</h1>
+    <h1 style="margin-top:30px">Time Entry</h1>
 
-    <form method="POST" action="{{ url_for('views.hours') }}">
-        <label for="selected_time">Select Time Tutored:</label>
+    <form method="POST" action="{{ url_for('views.hours') }}" class="time-entry-form">
+        <label for="selected_time" style="margin-top:20px;">Select Time Tutored:</label>
         <select id="selected_time" name="selected_time">
             <option value="30">30 minutes</option>
             <option value="45">45 minutes</option>
             <option value="60">60 minutes</option>
             <option value="75">75 minutes</option>
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-primary" style="margin-top:10px">Submit</button>
     </form>
 
     <h2>Time Entries</h2>
-    <table>
+    <table class="time-table">
         <thead>
             <tr>
-                <th>Selected Time</th>
+                <th>Time Tutored</th>
                 <th>Date Added</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-        {% for entry in times %}
+            {% for entry in times %}
             <tr>
-                <td>{{ entry.hours }}</td>
+                <td class="center">{{ entry.hours }} minutes</td>
                 <td>{{ entry.formatted_time }}</td>
-                <td><a href="{{ url_for('views.delete_time', id=entry.id) }}">Delete</a></td>
+                <td><a href="{{ url_for('views.delete_time', id=entry.id) }}" class="btn btn-danger">Delete</a></td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
 </body>
 </html>
 
-<script>
-    function change_date(time){
- return time.format('YYYY/MM/DD');
-}
-</script>
+<style>
+    .time-entry-form {
+        margin-bottom: 20px;
+    }
 
+    .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        background-color: #007BFF; /* Blue color, you can change it to your preferred color */
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+    }
+
+    .btn:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    .time-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .time-table th, .time-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .time-table th {
+        background-color: #f2f2f2;
+    }
+
+    .td {
+        text-align: center;
+    }
+</style>
 {% endblock %}

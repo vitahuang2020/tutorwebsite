@@ -1,6 +1,7 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from datetime import datetime
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,8 +27,13 @@ class Pairs(db.Model, UserMixin):
 
 class Hours(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    hours = db.Column(db.Integer)
-    tutor_id = db.Column(db.Integer)
-    time = db.Column(db.DateTime(timezone=True), default=func.now())
+    hours = db.Column(db.Integer, nullable=False)
+    tutor_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    # Add this property to format the time
+    @property
+    def formatted_time(self):
+        return self.time.strftime("%Y-%m-%d")
 
 

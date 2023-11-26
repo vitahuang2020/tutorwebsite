@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Tried to delete the last portion of the time displayed on the hour-logging form but doesn't work yet.">
+    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="I figured out how to just keep the date.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instance/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/templates/hours.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/hours.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -401,7 +405,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701011475394</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="I figured out how to just keep the date.">
+      <created>1701011773137</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1701011773137</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -448,7 +459,8 @@
     <MESSAGE value="Changed every file to help Denise debug." />
     <MESSAGE value="Edited the hours.html and views.py for the hour-logging form." />
     <MESSAGE value="Tried to delete the last portion of the time displayed on the hour-logging form but doesn't work yet." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tried to delete the last portion of the time displayed on the hour-logging form but doesn't work yet." />
+    <MESSAGE value="I figured out how to just keep the date." />
+    <option name="LAST_COMMIT_MESSAGE" value="I figured out how to just keep the date." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
