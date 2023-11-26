@@ -76,10 +76,10 @@ def unpair():
 def hours():
     # Fetch and display time entries
     times = Hours.query.filter_by(tutor_id=current_user.id).all()
-    for time in times:
-        time.time = time.strftime("%Y-%m-%d", time.time)
-        a = time.strftime("%Y-%m-%d", time.time)
-        print(a)
+
+    # Format the time entries
+    for time_entry in times:
+        time_entry.formatted_time = time_entry.time.strftime("%Y-%m-%d")
 
     if request.method == 'POST':
         selected_time = int(request.form.get('selected_time'))

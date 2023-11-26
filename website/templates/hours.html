@@ -27,13 +27,13 @@
             </tr>
         </thead>
         <tbody>
-            {% for entry in times %}
+        {% for entry in times %}
             <tr>
                 <td>{{ entry.hours }}</td>
-                <td> {{ entry.time }} </td>
+                <td>{{ entry.formatted_time }}</td>
                 <td><a href="{{ url_for('views.delete_time', id=entry.id) }}">Delete</a></td>
             </tr>
-            {% endfor %}
+        {% endfor %}
         </tbody>
     </table>
 </body>
