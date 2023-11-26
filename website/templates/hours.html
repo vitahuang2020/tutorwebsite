@@ -6,13 +6,13 @@
 <body>
     <h1>Time Entry</h1>
 
-    <form method="POST" action="{{ url_for('views.add_time') }}">
+    <form method="POST" action="{{ url_for('views.hours') }}">
         <label for="selected_time">Select Time Tutored:</label>
         <select id="selected_time" name="selected_time">
-            <option value="09:00 AM">30 minutes</option>
-            <option value="12:00 PM">45 minutes</option>
-            <option value="03:00 PM">60 minutes</option>
-            <option value="03:00 PM">75 minutes</option>
+            <option value="30">30 minutes</option>
+            <option value="45">45 minutes</option>
+            <option value="60">60 minutes</option>
+            <option value="75">75 minutes</option>
         </select>
         <button type="submit">Submit</button>
     </form>
@@ -29,9 +29,9 @@
         <tbody>
             {% for entry in times %}
             <tr>
-                <td>{{ entry.selected_time }}</td>
-                <td>{{ entry.date_added }}</td>
-                <td><a href="{{ url_for('delete_time', id=entry.id) }}">Delete</a></td>
+                <td>{{ entry.hours }}</td>
+                <td>{{ entry.time }}</td>
+                <td><a href="{{ url_for('views.delete_time', id=entry.id) }}">Delete</a></td>
             </tr>
             {% endfor %}
         </tbody>

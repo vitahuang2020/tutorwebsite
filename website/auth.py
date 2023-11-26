@@ -5,8 +5,6 @@ from.import db
 from flask_login import login_user, login_required, logout_user, current_user
 from .util import Utils
 
-#hello
-
 auth = Blueprint('auth', __name__)
 @auth.route('/login', methods=['GET','POST'])
 def login():
@@ -14,11 +12,11 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
 
-        new_user = User(email="admin@gmail.com", first_name="Denise", last_name="Ma",
-                        password=generate_password_hash("123456", method='sha256'), role=3)
-        db.session.add(new_user)
-        db.session.commit()
-        return
+        # new_user = User(email="admin@gmail.com", first_name="Denise", last_name="Ma",
+        #                 password=generate_password_hash("123456", method='sha256'), role=3)
+        # db.session.add(new_user)
+        # db.session.commit()
+        # return
 
         user = User.query.filter_by(email=email).first()
 

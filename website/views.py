@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, request, url_for, jsonify
+from flask import Blueprint, render_template, flash, request, jsonify
 from flask_login import login_required, current_user
 from .models import User, Pairs, Hours
 from . import db
@@ -17,7 +17,6 @@ def home(tutor_id=None):
 
     UserTutor = aliased(User)
     UserTutee = aliased(User)
-#hello
 
     # pairs_list = (Pairs.query.join(User, User.id == Pairs.tutor_id)
     #         .join(User, User.id == Pairs.tutee_id)
@@ -70,32 +69,39 @@ def unpair():
     else:
         return jsonify({"error": "Invalid data"}), 400
 
-@views.route('/hours', methods=['POST']) # homepage
+
+@views.route('/hours', methods=['POST'])
 @login_required
 def hours():
+    # Fetch and display time entries
+    times = Hours.query.filter_by(tutor_id=current_user.id).all()
+
     if request.method == 'POST':
-        hours = request.form.get("hours")
-        new_hours = Hours(hours=hours, tutor_id=current_user.id)
+        selected_time = int(request.form.get('selected_time'))
 
-        db.session.add(new_hours)
+        # Calculate the hours based on the selected time
+        hours_logged = selected_time
+
+        new_hour = Hours(hours=hours_logged, tutor_id=current_user.id, time=datetime.utcnow())
+        db.session.add(new_hour)
         db.session.commit()
-        flash('Hours logged in', category='success')
+        flash('Hours logged!', category='success')
 
-    return(render_template("hours.html", user=current_user))
+        # Redirect to the 'hours' endpoint after adding a new entry
 
-class TimeEntry(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    selected_time = db.Column(db.String(10), nullable=False)
-    date_added = db.Column(db.DateTime, default=datetime.utcnow)
+    return render_template("hours.html", user=current_user, times=times)
 
-@views.route('/')
-def index():
-    times = TimeEntry.query.all()
-    return render_template('index.html', times=times)
+@views.route('/delete_time/<int:id>', methods=['GET', 'POST'])
+@login_required
+def delete_time(id):
+    # Implement logic to delete the time entry with the specified ID
+    time_entry = Hours.query.get(id)
+    if time_entry:
+        db.session.delete(time_entry)
+        db.session.commit()
+        flash('Time entry deleted!', category='success')
+    else:
+        flash('Time entry not found.', category='danger')
 
-@views.route('/add', methods=['POST'])
-def add_time():
-    selected_time = request.form.get('selected_time')
-    new_entry = TimeEntry(selected_time=selected_time)
-    db.session.add(new_entry)
-    db.session.commit()
+    # Redirect to the 'hours' endpoint after deletion
+    return render_template('views.hours')
