@@ -25,10 +25,10 @@ def login():
                 # print(user.first_name)
                 flash(user.first_name + ' is logged in successfully!', category='success')
                 login_user(user, remember=True)
-                if user.role == 2:
-                    return redirect(url_for('views.hours'))
-                elif user.role == 3:
-                    return redirect(url_for('views.home'))
+                if user.role == 0:
+                    return redirect(url_for('auth.tutee_page'))
+                elif user.role == 1:
+                    return redirect(url_for('auth.hour'))
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
@@ -174,7 +174,7 @@ def pair():
 
         if tutor_id is not None and pair_id is not None:
             # Create a new Pair instance and add it to the database
-            pair = Pairs.query.get(pair_id)
+            pair = Pairs.query.get(id)
             pair.tutor_id = tutor_id
             db.session.commit()
 
@@ -208,3 +208,8 @@ def pair():
 @login_required
 def hour():
     return render_template("hours.html", user=current_user)
+
+@auth.route('/tutee_page', methods=['GET','POST'])
+@login_required
+def tutee_page():
+    return render_template("tutee_page.html", user=current_user)
