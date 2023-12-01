@@ -25,10 +25,10 @@ def login():
                 # print(user.first_name)
                 flash(user.first_name + ' is logged in successfully!', category='success')
                 login_user(user, remember=True)
-                if user.role == 2:
-                    return redirect(url_for('views.hours'))
-                elif user.role == 3:
-                    return redirect(url_for('views.home'))
+                if user.role == 1:
+                    return redirect(url_for('views.tutee_page'))
+                elif user.role == 2:
+                    return redirect(url_for('auth.hour'))
             else:
                 flash('Incorrect password, try again.', category='error')
         else:

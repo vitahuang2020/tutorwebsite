@@ -102,3 +102,8 @@ def delete_time(id):
 
     # Render the 'hours.html' template after deletion
     return render_template('hours.html', user=current_user, times=Hours.query.filter_by(tutor_id=current_user.id).all())
+
+@views.route('/tutee_page', methods=['GET','POST'])
+@login_required
+def tutee_page():
+    return render_template("tutee_page.html", user=current_user)
