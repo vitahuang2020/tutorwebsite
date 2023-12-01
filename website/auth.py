@@ -12,11 +12,10 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
 
-        # new_user = User(email="admin@gmail.com", first_name="Denise", last_name="Ma",
+        # new_user = User(email="admin@gmail.com", first_name="Admin", last_name="Admin",
         #                 password=generate_password_hash("123456", method='sha256'), role=3)
         # db.session.add(new_user)
         # db.session.commit()
-        # return
 
         user = User.query.filter_by(email=email).first()
 
@@ -28,14 +27,15 @@ def login():
                 if user.role == 1:
                     return redirect(url_for('views.tutee_page'))
                 elif user.role == 2:
-                    return redirect(url_for('auth.hour'))
+                    return redirect(url_for('auth.hours'))
+                elif user.role == 3:
+                    return redirect(url_for('views.home'))
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
             flash('Email does not exist.', category='error')
 
     return render_template("login.html", user=current_user)
-#
 
 @auth.route('/logout')
 @login_required
@@ -43,8 +43,7 @@ def logout():
     logout_user()
     return redirect(url_for('auth.login'))
 
-
-@auth.route('/sign-up-tutee', methods=['GET','POST'])
+@auth.route('/sign_up_tutee', methods=['GET','POST'])
 def sign_up_tutee():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -115,7 +114,7 @@ def sign_up_tutee():
 
     return render_template("sign_up_tutee.html", user=current_user)
 
-@auth.route('/sign-up-tutor', methods=['GET','POST'])
+@auth.route('/sign_up_tutor', methods=['GET','POST'])
 def sign_up_tutor():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -206,5 +205,5 @@ def pair():
 
 @auth.route('/hours', methods=['GET','POST'])
 @login_required
-def hour():
+def hours():
     return render_template("hours.html", user=current_user)
