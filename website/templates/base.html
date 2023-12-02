@@ -23,11 +23,11 @@
 
 <body style="background-color:#cee8f0;">
     <nav class="navbar navbar-expand-lg" style="background-color:#003d80;color:blue;">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar" style="justify-content:space-between;">
-            {% if user.is_authenticated %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+        {% if user.is_authenticated %}
             {% if user.role == 3 %}  <!-- Check if user is admin -->
                 <a class="nav-item nav-link" id="home" href="/">Home</a>
             {% endif %}
@@ -37,15 +37,18 @@
             {% if user.role == 2 %}
                 <a class="nav-item nav-link" id="hours" href="/hours">Hour-Logging</a>
             {% endif %}
-                <a class="nav-item nav-link" style="margin-left:1100px;" id="logout" href="/logout">Logout</a>
-            {% else %}
-                <a class="nav-item nav-link" id="login" href="/login">Login</a>
-                <a class="nav-item nav-link" id="sign_up_tutee" href="/sign_up_tutee">Tutee Sign Up</a>
-                <a class="nav-item nav-link" id="sign_up_tutor" href="/sign_up_tutor">Tutor Sign Up</a>
-            {% endif %}
+            <div class="ml-auto">
+                <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
             </div>
-        </div>
-    </nav>
+        {% else %}
+            <a class="nav-item nav-link" id="login" href="/login">Login</a>
+            <a class="nav-item nav-link" id="sign_up_tutee" href="/sign_up_tutee">Tutee Sign Up</a>
+            <a class="nav-item nav-link" id="sign_up_tutor" href="/sign_up_tutor">Tutor Sign Up</a>
+        {% endif %}
+    </div>
+</nav>
+
+
 
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages%}
