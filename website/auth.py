@@ -108,6 +108,16 @@ def sign_up_tutee():
                 db.session.add(new_pairs)
                 db.session.commit()
 
+            u = Utils()
+            u.send_mail(parent_email,
+                        'Branksome Hall Tutor Club',
+                        'This email is to inform you that you are paired up with tutee: ' + first_name + ' ' +
+                        last_name + '.' + 'Please set up a time to begin!')
+            u.send_mail(email,
+                        'Branksome Hall Tutor Club',
+                        'This email is to inform you that you are paired up with tutor: ' + first_name + ' ' +
+                        last_name + '.' + 'Please set up a time to begin!')
+
             flash('Account created!', category='success')
             print("account created")
             return redirect(url_for('views.home'))
@@ -151,6 +161,14 @@ def sign_up_tutor():
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
+
+            u = Utils()
+            u.send_mail(parent_email,
+                        'Branksome Hall Tutor Club',
+                        'This email is to inform you that your child is signed up for the Branksome Hall Tutor Program. If there is an issue, please directly contact Ms. Contreras or Ms. Blyth.')
+            u.send_mail(email,
+                        'Branksome Hall Tutor Club',
+                        'This email is to inform you that you are signed up for the Branksome Hall Tutor Program!')
 
             flash('Account created!', category='success')
             print("account created")

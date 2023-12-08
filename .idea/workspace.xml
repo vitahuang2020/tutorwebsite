@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="I figured out how to just keep the date.">
+    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Differentiation in user interface is done.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instance/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/hours.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/hours.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -412,7 +411,49 @@
       <option name="project" value="LOCAL" />
       <updated>1701011773137</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Now the hour-logging form works.">
+      <created>1701016068420</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1701016068420</updated>
+    </task>
+    <task id="LOCAL-00035" summary="I am working on having the user interface for students and teachers different.">
+      <created>1701469253536</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1701469253536</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Debugging home.html">
+      <created>1701470096997</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1701470096997</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Working version.">
+      <created>1701470647450</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1701470647450</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Made the login page direct tutors to hours.html and tutees to tutee_page.html.">
+      <created>1701471192988</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1701471192988</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Differentiation in user interface is done.">
+      <created>1701472365082</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1701472365082</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -439,8 +480,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added the form for the subject selection." />
-    <MESSAGE value="I started the footer." />
     <MESSAGE value="Making sure my Github is working." />
     <MESSAGE value="Making sure my Github is working pt2." />
     <MESSAGE value="I updated the homepage, but am still having issues with the initial image on the homepage. It's a minor issue, so I'll update as soon as I have that done." />
@@ -460,7 +499,13 @@
     <MESSAGE value="Edited the hours.html and views.py for the hour-logging form." />
     <MESSAGE value="Tried to delete the last portion of the time displayed on the hour-logging form but doesn't work yet." />
     <MESSAGE value="I figured out how to just keep the date." />
-    <option name="LAST_COMMIT_MESSAGE" value="I figured out how to just keep the date." />
+    <MESSAGE value="Now the hour-logging form works." />
+    <MESSAGE value="I am working on having the user interface for students and teachers different." />
+    <MESSAGE value="Debugging home.html" />
+    <MESSAGE value="Working version." />
+    <MESSAGE value="Made the login page direct tutors to hours.html and tutees to tutee_page.html." />
+    <MESSAGE value="Differentiation in user interface is done." />
+    <option name="LAST_COMMIT_MESSAGE" value="Differentiation in user interface is done." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
