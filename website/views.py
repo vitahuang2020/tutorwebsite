@@ -77,11 +77,11 @@ def hours():
 
     if request.method == 'POST':
         selected_time = int(request.form.get('selected_time'))
-
+        note = request.form.get('notes')
         # Calculate the hours based on the selected time
         hours_logged = selected_time
 
-        new_hour = Hours(hours=hours_logged, tutor_id=current_user.id, time=datetime.utcnow())
+        new_hour = Hours(hours=hours_logged, note=note, tutor_id=current_user.id, time=datetime.utcnow())
         db.session.add(new_hour)
         db.session.commit()
         flash('Hours logged!', category='success')

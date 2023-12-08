@@ -30,6 +30,7 @@ class Hours(db.Model, UserMixin):
     hours = db.Column(db.Integer, nullable=False)
     tutor_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    note = db.Column(db.String(512))
 
     # Add this property to format the time
     @property

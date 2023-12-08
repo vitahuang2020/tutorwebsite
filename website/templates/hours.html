@@ -7,13 +7,22 @@
     <h1 style="margin-top:30px">Time Entry</h1>
 
     <form method="POST" action="{{ url_for('views.hours') }}" class="time-entry-form">
-        <label for="selected_time" style="margin-top:20px;">Select Time Tutored:</label>
-        <select id="selected_time" name="selected_time">
-            <option value="30">30 minutes</option>
-            <option value="45">45 minutes</option>
-            <option value="60">60 minutes</option>
-            <option value="75">75 minutes</option>
-        </select>
+        <div class="form-group">
+            <label for="selected_time" style="margin-top:20px;">Select Time Tutored:</label>
+            <select id="selected_time" name="selected_time">
+                <option value="30">30 minutes</option>
+                <option value="45">45 minutes</option>
+                <option value="60">60 minutes</option>
+                <option value="75">75 minutes</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="notes" style="color:#026592;">Notes</label>
+                <textarea id="notes" name="notes" placeholder="Briefly describe what you did this session" style="width:80%;height:50px;text-align:left" rows="3" cols="33">
+
+                </textarea>
+        </div>
         <button type="submit" class="btn btn-primary" style="margin-top:10px">Submit</button>
     </form>
 
@@ -22,6 +31,7 @@
         <thead>
             <tr>
                 <th>Time Tutored</th>
+                <th>Notes</th>
                 <th>Date Added</th>
                 <th>Action</th>
             </tr>
@@ -30,6 +40,7 @@
             {% for entry in times %}
             <tr>
                 <td class="center">{{ entry.hours }} minutes</td>
+                <td>{{ entry.note }}</td>
                 <td>{{ entry.formatted_time }}</td>
                 <td><a href="{{ url_for('views.delete_time', id=entry.id) }}" class="btn btn-danger">Delete</a></td>
             </tr>
