@@ -1,37 +1,62 @@
 {% extends "base.html" %}
 
 {% block title %}Home{% endblock %}
-<!--hello-->
 {% block content %}
+<style>
+    color:#000000;
+</style>
 <form method="POST">
-    <h3 style="text-align:center;margin-top:15px;color:#026592;">Tutee Sign Up</h3>
+    <h3 style="text-align:center;margin-top:15px;color:#000000;">Peer Tutee Sign Up</h3>
+    </br>
+    <p style="color:#000000;">
+        Thank you for your interest in peer tutoring. If you would like to have a peer tutor to support you in your learning, please read about the program with your parent/guardian and complete this form.
+    </p>
+
+    <h6 style="color:#000000;">
+        About the Peer Tutoring Program:
+    </h6>
+    <p style="color:#000000;">
+        The program will be available to grade 7-12 students. Student pairings will meet together at least once a week, either in person before or after school, or on Zoom. Teacher supervisors will be available to students via email if needed. The tutors will receive training in how to be effective and supportive tutors. Students will be paired with a student who is skilled and experienced in the required subject.
+    </p>
+    <h6 style="color:#000000;">
+        Expectations:
+    </h6>
+    <p style="color:#000000;">
+        <b>1.</b> Respond to your peer tutor and agree upon a time to meet regularly and at which location. Check your email daily, gmail calendar  invites, and/or exchange phone numbers. On occasion either you or your tutor will have to cancel a meeting  and this is the best way to keep each other informed.
+    </p>
+    <p style="color:#000000;">
+        <b>2.</b> If you do have to cancel a meeting with your tutor for a good reason, please let your tutor know ahead of time  and offer a new time/day to meet. <b>Missing two sessions without notice or a good reason means that you no longer want to be part of the program.</b>
+    </p>
+    <p style="color:#000000;">
+        <b>3.</b> Be punctual. Out of respect for your tutor, please make sure that you are at your meeting at the agreed  upon time.
+    </p>
+    <p style="color:#000000;">
+        <b>4.</b> Be prepared. Choose a central location in the home or a quiet location in the classroom for tutoring. Make  sure you have all the materials you need, including: textbooks, calculator (for math), dictionary (for French),  notebook, a laptop with charger, earphones, and a writing utensil.
+    </p>
+    <p style="color:#000000;">
+        <b>5.</b> Adhere to the Branksome Hall Student Code of Conduct.
+    </p>
+    <p style="color:#000000;">
+        6.</b> If you have any concerns (e.g. you have problems communicating or meeting with your tutor) or if you no  longer wish to participate, please let your Club Heads know.
+    </p>
+
     <div class="form-group">
-        <label for="email" style="color:#026592;">Email Address</label>
+        <label for="email" style="color:#000000;">Email Address</label>
         <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" />
     </div>
 
     <div class="form-group">
-        <label for="firstName" style="color:#026592;">First Name</label>
+        <label for="firstName" style="color:#000000;">First Name</label>
         <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name" />
     </div>
 
     <div class="form-group">
-        <label for="lastName" style="color:#026592;">Last Name</label>
+        <label for="lastName" style="color:#000000;">Last Name</label>
         <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter last name" />
     </div>
 
     <div class="form-group">
-        <label for="password1" style="color:#026592;">Password</label>
-        <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter password" />
-    </div>
-
-    <div class="form-group">
-        <label for="password2" style="color:#026592;">Confirm Password</label>
-        <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm password" />
-    </div>
-
-    <div class="form-group">
-        <label for="grade" style=" color:#026592;">Select Grade</label>
+        <label for="grade" style=" color:#000000;">Select Grade</label>
         <select id="grade" name="grade">
             <option value="7">7</option>
             <option value="8">8</option>
@@ -42,64 +67,121 @@
         </select>
     </div>
 
+    <p style="color:#000000;">
+    Subjects eligible for tutoring are: Math, French, Spanish, Latin, the sciences and occasionally history and geography.
+
+Please indicate which subject you would like to be tutored. Be specific (e.g. Math A&A SL).
+    </p>
+
     <div class="form-group">
-        <label for="subject1" style="color:#026592;">Subject 1</label>
+        <label for="subject1" style="color:#000000;">Subject 1</label>
         <input type="text" class="form-control" id="subject1" name="subject1" placeholder="Subject 1" />
     </div>
 
     <div class="form-group">
-        <label for="subject2" style="color:#026592;">Subject 2 (optional)</label>
+        <label for="subject2" style="color:#000000;">Subject 2 (optional)</label>
         <input type="text" class="form-control" id="subject2" name="subject2" placeholder="Subject 2" />
     </div>
 
     <div class="form-group">
-        <label for="subject3" style="color:#026592;">Subject 3 (optional)</label>
+        <label for="subject3" style="color:#000000;">Subject 3 (optional)</label>
         <input type="text" class="form-control" id="subject3" name="subject3" placeholder="Subject 3" />
     </div>
 
     <div class="form-group">
-        <label for="subject4" style="color:#026592;">Subject 4 (optional)</label>
+        <label for="subject4" style="color:#000000;">Subject 4 (optional)</label>
         <input type="text" class="form-control" id="subject4" name="subject4" placeholder="Subject 4" />
     </div>
 
     <div class="form-group">
-        <label for="subject5" style="color:#026592;">Subject 5 (optional)</label>
+        <label for="subject5" style="color:#000000;">Subject 5 (optional)</label>
         <input type="text" class="form-control" id="subject5" name="subject5" placeholder="Subject 5" />
     </div>
 
     <div class="form-group">
-        <label for="parent_email" style="color:#026592;">Parent Email</label>
+        <label for="teacher_email" style="color:#000000;">Subject Teacher Email</label>
+        <input type="text" class="form-control" id="teacher_email" name="teacher_email" placeholder="Teacher Email" />
+    </div>
+
+    <p style="color:#000000;">
+        I agree to follow the expectations of the Peer Tutoring program. I understand that all aspects of
+        Branksome Hall’s Code of Conduct is applicable during tutoring sessions.
+    </p>
+
+    <div class="form-check" id="form1" style="color:#000000;">
+    <input class="form-check-input" type="radio" name="flexRadioGroup1" id="Yep" checked>
+    <label class="form-check-label" for="Yep">
+        Yes
+    </label>
+    </br>
+    <input class="form-check-input" type="radio" name="flexRadioGroup1" id="Nope">
+    <label class="form-check-label" for="Nope">
+        No
+    </label>
+</div>
+
+<p style="color:#000000;">
+    I have discussed and informed my parent/guardian about my participation in and the expectations of the Peer Tutoring Program.
+</p>
+
+<div class="form-check" id="form2" style="color:#000000;">
+    <input class="form-check-input" type="radio" name="flexRadioGroup2" id="Yes" checked>
+    <label class="form-check-label" for="Yes">
+        Yes
+    </label>
+    </br>
+    <input class="form-check-input" type="radio" name="flexRadioGroup2" id="No">
+    <label class="form-check-label" for="No">
+        No
+    </label>
+</div>
+</br>
+
+    <div class="form-group">
+        <label for="parent_email" style="color:#000000;">Parent Email</label>
         <input type="text" class="form-control" id="parent_email" name="parent_email" placeholder="Parent Email" />
     </div>
 
-    <br />
-    <button type="submit" class="btn" style="background-color:#0287c3;color:white;">Submit</button>
+    <div class="form-group">
+        <label for="password1" style="color:#000000;">Password</label>
+        <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter password" />
+    </div>
 
+    <div class="form-group">
+        <label for="password2" style="color:#000000;">Confirm Password</label>
+        <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm password" />
+    </div>
+    <br />
+    <button id="submitBtn" type="submit" class="btn" style="background-color:#008000;color:white;">Submit</button>
 </form>
 
-<!--
-<h3 style="text-align:center;color:#026592;">Are you a tutor, tutee or admin?</h3>
+<script>
+    function checkForms() {
+        var form1Yes = document.getElementById('Yep').checked;
+        var form2Yes = document.getElementById('Yes').checked;
 
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="role" id="tutor" value="tutor" checked>
-  <label class="form-check-label" for="tutor" style="color:#026592;">
-    Tutor
-  </label>
-</div>
+        if (!(form1Yes && form2Yes)) {
+            // Use Python flash() function to display messages
+            var message = 'Please select "Yes" for both forms before submitting.';
+            // You can customize the category based on your needs
+            var category = 'error';
 
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="role" id="tutee" value="tutee" checked>
-  <label class="form-check-label" for="tutee" style="color:#026592;">
-    Tutee
-  </label>
-</div>
+            // Send the message to the server to be displayed using Python flash()
+            fetch('/flash_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: message,
+                    category: category,
+                }),
+            });
 
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="role" id="admin" value="admin">
-  <label class="form-check-label" for="admin" style="color:#026592;">
-    Admin
-  </label>
-</div>
--->
+            event.preventDefault(); // Prevent form submission
+        }
+    }
 
+    document.getElementById('submitBtn').addEventListener('click', checkForms);
+</script>
 {% endblock %}

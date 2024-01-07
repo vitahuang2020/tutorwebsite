@@ -41,6 +41,7 @@ def home(tutor_id=None):
         Pairs.id,
         Pairs.subject,
         UserTutee.email.label("tutee_email"),
+        UserTutee.teacher_email.label("tutee_teacher_email"),
         UserTutee.first_name.label("tutee_first_name"),
         UserTutee.last_name.label("tutee_last_name"),
         UserTutee.grade.label("tutee_grade"),
@@ -63,23 +64,33 @@ def unpair():
     data_id = data['Id']
     pair = Pairs.query.get(data_id)
     if pair:
+        # Save tutor_id and tutee_id before setting tutor_id to 0
+        tutor_id = pair.tutor_id
+        tutee_id = pair.tutee_id
+
         pair.tutor_id = 0
         db.session.commit()
 
-        tutors = User.query.filter_by(id=pair.tutor_id).all()
-        tutees = User.query.filter_by(id=pair.tutee_id).all()
+        tutors = User.query.filter_by(id=tutor_id).all()
+        tutees = User.query.filter_by(id=tutee_id).all()
 
-        u = Utils()
-        u.send_mail(tutors[0].email,
-                    'Branksome Hall Tutor Club',
-                    'This email is to inform you that you are no longer paired up with tutee: ' + tutors[0].first_name + ' ' +
-                    tutors[0].last_name + '.' + 'Please wait until you are paired up with another student.')
-        u.send_mail(tutees[0].email,
-                    'Branksome Hall Tutor Club',
-                    'This email is to inform you that you are no longer paired up with tutor: ' + tutees[0].first_name + ' ' +
-                    tutees[0].last_name + '.' + 'If you would still like tutoring in this subject, please let Ms. Contreras and Ms. Blyth know.')
+        if tutors and tutees:
+            u = Utils()
+            u.send_mail(tutors[0].email,
+                        'Branksome Hall Tutor Club',
+                        'This email is to inform you that you are no longer paired up with tutee: ' + tutees[0].first_name + ' ' +
+                        tutees[0].last_name + '. Please wait until you are paired up with another student.')
 
-        return jsonify({"message": "Unpaired successfully"}), 200
+            u.send_mail(tutees[0].email,
+                        'Branksome Hall Tutor Club',
+                        'This email is to inform you that you are no longer paired up with tutor: ' + tutors[0].first_name + ' ' +
+                        tutors[0].last_name + '. If you would still like tutoring in this subject, please let Ms. Contreras and Ms. Blyth know.')
+
+            db.session.close()
+
+            return jsonify({"message": "Unpaired successfully"}), 200
+        else:
+            return jsonify({"error": "Invalid user data"}), 400
     else:
         return jsonify({"error": "Invalid data"}), 400
 

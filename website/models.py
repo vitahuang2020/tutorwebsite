@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     subject3 = db.Column(db.String(150))
     subject4 = db.Column(db.String(150))
     subject5 = db.Column(db.String(150))
-
+    teacher_email = db.Column(db.String(150))
     parent_email = db.Column(db.String(150))
 
 class Pairs(db.Model, UserMixin):

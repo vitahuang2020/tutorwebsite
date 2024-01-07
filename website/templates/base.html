@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
   <head>
@@ -21,72 +21,77 @@
     <title>{% block title %}Home{% endblock %}</title>
   </head>
 
-<body style="background-color:#cee8f0;">
-    <nav class="navbar navbar-expand-lg" style="background-color:#003d80;color:blue;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+  <style>
+    a:hover {
+        color: #0c2d1c; /* Green color on hover */
+        text-decoration: none;
+    }
+  </style>
+
+  <body style="background-color: #d4f2da; color: #008000;">
+    <nav class="navbar navbar-expand-lg" style="background-color: #004d00; color: #008000;">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
         <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbar">
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
         {% if user.is_authenticated %}
-            {% if user.role == 3 %}  <!-- Check if user is admin -->
-                <a class="nav-item nav-link" id="home" href="/">Home</a>
-            {% endif %}
-            {% if user.role == 1 %}
-                <a class="nav-item nav-link" id="tutee_page" href="/tutee_page">Tutee Page</a>
-            {% endif %}
-            {% if user.role == 2 %}
-                <a class="nav-item nav-link" id="hours" href="/hours">Hour-Logging</a>
-            {% endif %}
-            <div class="ml-auto">
-                <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-            </div>
+          {% if user.role == 3 %} <!-- Check if user is admin -->
+            <a class="nav-item nav-link" id="home" href="/" style="color: #568f56;">Home</a>
+          {% endif %}
+          {% if user.role == 1 %}
+            <a class="nav-item nav-link" id="tutee_page" href="/tutee_page" style="color: #568f56;">Tutee Page</a>
+          {% endif %}
+          {% if user.role == 2 %}
+            <a class="nav-item nav-link" id="hours" href="/hours" style="color: #568f56;">Hour-Logging</a>
+          {% endif %}
+          <div class="ml-auto">
+            <a class="nav-item nav-link" id="logout" href="/logout" style="color: #568f56;">Logout</a>
+          </div>
         {% else %}
-            <a class="nav-item nav-link" id="login" href="/login">Login</a>
-            <a class="nav-item nav-link" id="sign_up_tutee" href="/sign_up_tutee">Tutee Sign Up</a>
-            <a class="nav-item nav-link" id="sign_up_tutor" href="/sign_up_tutor">Tutor Sign Up</a>
+          <a class="nav-item nav-link" id="login" href="/login" style="color: #568f56;">Login</a>
+          <a class="nav-item nav-link" id="sign_up_tutee" href="/sign_up_tutee" style="color: #568f56;">Tutee Sign Up</a>
+          <a class="nav-item nav-link" id="sign_up_tutor" href="/sign_up_tutor" style="color: #568f56;">Tutor Sign Up</a>
         {% endif %}
-    </div>
-</nav>
-
-
+      </div>
+    </nav>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages%}
-        {% for category, message in messages %}
-        {% if category == 'error' %}
-        <div class="alert alert-danger alert-dismissable fade show" role="alert">
-             {{ message }}
-             <button type="button" class="close" data-dismiss="alert">
-                 <span aria-hidden="true">&times;</span>
-             </button>
-        </div>
-        {% else %}
-        <div class="alert alert-success alert-dismissable fade show" role="alert">
-             {{ message }}
-             <button type="button" class="close" data-dismiss="alert">
-                 <span aria-hidden="true">&times;</span>
-             </button>
-        </div>
-        {% endif %}
-        {% endfor %}
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="alert alert-danger alert-dismissable fade show" role="alert" style="color: #008000;">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alert-dismissable fade show" role="alert" style="color: #008000;">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %}
+    {% endfor %}
     {% endif%}
     {% endwith %}
 
     <div class="container">
-        {% block content %}
-        {% endblock %}
+      {% block content %}
+      {% endblock %}
     </div>
 
     <br />
 
     <div class="container">
-        {% block tutor_table %}
-        {% endblock %}
+      {% block tutor_table %}
+      {% endblock %}
     </div>
 
     <div class="container">
-        {% block tutee_table %}
-        {% endblock %}
+      {% block tutee_table %}
+      {% endblock %}
     </div>
 
     <script
@@ -109,7 +114,5 @@
       type="text/javascript"
       src="{{ url_for('static', filename='index.js')}}">
     </script>
-
-
-</body>
+  </body>
 </html>

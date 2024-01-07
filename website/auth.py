@@ -58,8 +58,17 @@ def sign_up_tutee():
         subject3 = request.form.get('subject3')
         subject4 = request.form.get('subject4')
         subject5 = request.form.get('subject5')
+        teacher_email = request.form.get('teacher_email')
         parent_email = request.form.get('parent_email')
         user = User.query.filter_by(email=email).first()
+
+        # no_option_form1 = request.form.get('flexRadioGroup1') == 'Nope'
+        # no_option_form2 = request.form.get('flexRadioGroup2') == 'No'
+        #
+        # if no_option_form1 or no_option_form2:
+        #     flash('You cannot sign up if you have selected "No" in either of the forms.', category='error')
+        #     return render_template("sign_up_tutee.html", user=current_user)
+
         if user:
             flash('Email already exists.', category='error')
         elif len(email) < 5:
@@ -76,10 +85,26 @@ def sign_up_tutee():
             flash('Please input a subject1 you would like to be tutored in', category='error')
         elif len(parent_email) < 1:
             flash('Please input your parent email', category='error')
+        elif len(teacher_email) < 1:
+            flash('Please input your teacher email', category='error')
         else:
             # add user to database
 
-            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade=grade, parent_email=parent_email, subject1=subject1, subject2=subject2, subject3=subject3, subject4=subject4, subject5=subject5)
+            new_user = User(
+                email=email,
+                first_name=first_name,
+                last_name=last_name,
+                password=generate_password_hash(password1, method='sha256'),
+                role=role,
+                grade=grade,
+                teacher_email=teacher_email,
+                parent_email=parent_email,
+                subject1=subject1,
+                subject2=subject2,
+                subject3=subject3,
+                subject4=subject4,
+                subject5=subject5
+            )
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
@@ -111,16 +136,14 @@ def sign_up_tutee():
             u = Utils()
             u.send_mail(parent_email,
                         'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are paired up with tutee: ' + first_name + ' ' +
-                        last_name + '.' + 'Please set up a time to begin!')
+                        'This email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutee for the Branksome Hall Tutor Program. If you have any questions, please directly contact Ms. Contreras or Ms. Blyth.')
             u.send_mail(email,
                         'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are paired up with tutor: ' + first_name + ' ' +
-                        last_name + '.' + 'Please set up a time to begin!')
+                        'This email is to inform you that you are signed up for the Branksome Hall Tutor Program!')
 
             flash('Account created!', category='success')
             print("account created")
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.tutee_page'))
 
     return render_template("sign_up_tutee.html", user=current_user)
 
@@ -135,7 +158,7 @@ def sign_up_tutor():
         role = 2
         grade = request.form.get('grade')
         subject = request.form.get('subject')
-
+        teacher_email = request.form.get('teacher_email')
         parent_email = request.form.get('parent_email')
         user = User.query.filter_by(email=email).first()
         if user:
@@ -154,10 +177,10 @@ def sign_up_tutor():
             flash('Please input a subject you would like to tutor', category='error')
         elif len(parent_email) < 1:
             flash('Please input your parent email', category='error')
+        elif len(teacher_email) < 1:
+            flash('Please input your teacher email for a reference', category='error')
         else:
-            # add user to database
-
-            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade=grade, parent_email=parent_email, subject1=subject)
+            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade=grade, parent_email=parent_email, subject1=subject, teacher_email=teacher_email)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
@@ -165,16 +188,30 @@ def sign_up_tutor():
             u = Utils()
             u.send_mail(parent_email,
                         'Branksome Hall Tutor Club',
-                        'This email is to inform you that your child is signed up for the Branksome Hall Tutor Program. If there is an issue, please directly contact Ms. Contreras or Ms. Blyth.')
+                        'This email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutor for the Branksome Hall Tutor Program. If you have any questions, please directly contact Ms. Contreras or Ms. Blyth.')
             u.send_mail(email,
                         'Branksome Hall Tutor Club',
                         'This email is to inform you that you are signed up for the Branksome Hall Tutor Program!')
 
             flash('Account created!', category='success')
             print("account created")
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.hours'))
 
     return render_template("sign_up_tutor.html", user=current_user)
+
+@auth.route('/flash_message', methods=['POST'])
+def flash_message():
+    data = request.get_json()
+
+    # Extract message and category from the JSON data
+    message = data.get('message')
+    category = data.get('category', 'info')  # Default category is 'info'
+
+    # Flash the message with the specified category
+    flash(message, category='error')
+
+    # Return a JSON response to acknowledge the receipt of the message
+    return jsonify({'status': 'success'})
 
 @auth.route('/pair', methods=['GET','POST'])
 @login_required
@@ -206,10 +243,10 @@ def pair():
             u = Utils()
             u.send_mail(tutor[0].email,
                         'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are paired up with tutee: ' + tutee[0].first_name + ' ' + tutee[0].last_name + '.' + 'Please set up a time to begin!')
+                        'This email is to inform you that you are paired up with tutee: ' + tutee[0].first_name + ' ' + tutee[0].last_name + '. Please set up a time to begin!')
             u.send_mail(tutee[0].email,
                         'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are paired up with tutor: ' + tutor[0].first_name + ' ' + tutor[0].last_name + '.' + 'Please set up a time to begin!')
+                        'This email is to inform you that you are paired up with tutor: ' + tutor[0].first_name + ' ' + tutor[0].last_name + '. Please set up a time to begin!')
 
             db.session.close()
 
