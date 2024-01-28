@@ -44,7 +44,7 @@
             <th scope="col">{{ tutor.subject1 }}</th>
             <th scope="col"><a href="https://www.w3schools.com">Visit W3Schools.com!</a></th>
             <th scope="col">
-                <button type="button" class="btn btn-danger" onclick="deleteUser('tutor', {{ tutor.id }})">Delete</button>
+                <button type="button" class="btn btn-danger" onclick="delete_user('tutor', {{ tutor.id }})">Delete</button>
             </th>
             <th scope="col">
                 <div class="form-check">
@@ -84,7 +84,7 @@
             <th scope="col">{{ tutee.tutee_grade }}</th>
             <th scope="col">{{ tutee.subject }}</th>
             <th scope="col">
-                <button type="button" class="btn btn-danger" onclick="deleteUser('tutee', {{ tutee.id }})">Delete</button>
+                <button type="button" class="btn btn-danger" onclick="delete_user('tutee', {{ tutee.tutee_id }})">Delete</button>
             </th>
             <th scope="col">
                 <div class="form-check">

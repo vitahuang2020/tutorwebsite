@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="I fixed the problem that the email wasn't sending when we deleted the pair. I changed the sign-up forms to make them more detailed. Also, now the sign-up forms don't allow users to sign up if they've clicked &quot;no&quot; to the parental consent or honor code. Finally, I changed the color scheme to green.">
-      <change afterPath="$PROJECT_DIR$/website/templates/homepage.html" afterDir="false" />
+    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Created a dockerfile.">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dockerfile" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/instance/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/hours.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/hours.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -472,7 +472,21 @@
       <option name="project" value="LOCAL" />
       <updated>1704643189926</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Trying to delete tutors and tutees.">
+      <created>1706403174244</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1706403174244</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Created a dockerfile.">
+      <created>1706404444640</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1706404444640</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -499,8 +513,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="I updated the homepage, but am still having issues with the initial image on the homepage. It's a minor issue, so I'll update as soon as I have that done." />
-    <MESSAGE value="I updated the homepage" />
     <MESSAGE value="I made the logout link go to the very end of the nav bar." />
     <MESSAGE value="I added the checkbox to the very right of the table and the pair button." />
     <MESSAGE value="making sure my commit works" />
@@ -524,7 +536,9 @@
     <MESSAGE value="Differentiation in user interface is done." />
     <MESSAGE value="Email sending for the sign up and delete pair functions." />
     <MESSAGE value="I fixed the problem that the email wasn't sending when we deleted the pair. I changed the sign-up forms to make them more detailed. Also, now the sign-up forms don't allow users to sign up if they've clicked &quot;no&quot; to the parental consent or honor code. Finally, I changed the color scheme to green." />
-    <option name="LAST_COMMIT_MESSAGE" value="I fixed the problem that the email wasn't sending when we deleted the pair. I changed the sign-up forms to make them more detailed. Also, now the sign-up forms don't allow users to sign up if they've clicked &quot;no&quot; to the parental consent or honor code. Finally, I changed the color scheme to green." />
+    <MESSAGE value="Trying to delete tutors and tutees." />
+    <MESSAGE value="Created a dockerfile." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a dockerfile." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

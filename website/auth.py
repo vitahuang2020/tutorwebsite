@@ -195,7 +195,7 @@ def sign_up_tutor():
 
             flash('Account created!', category='success')
             print("account created")
-            return redirect(url_for('views.hours'))
+            return redirect(url_for('login.html'))
 
     return render_template("sign_up_tutor.html", user=current_user)
 

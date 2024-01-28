@@ -1,14 +1,18 @@
-# Use the official Python image as the base image
-FROM python:3.8
+# Base Image
+FROM python:3.9-slim
 
-# Set the working directory in the container
+# Work directory
 WORKDIR /app
 
-# Copy the application files into the working directory
-COPY . /app
-
-# Install the application dependencies
+# Copy requirements and install dependencies
+COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-# Define the entry point for the container
-CMD ["flask", "run", "--host=0.0.0.0"]
+# Copy other project files
+COPY . .
+
+# Expose a port to Containers
+EXPOSE 8080
+
+# Command to run on server
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]

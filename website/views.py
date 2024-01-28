@@ -39,6 +39,7 @@ def home(tutor_id=None):
                   .join(UserTutee, UserTutee.id == Pairs.tutee_id)
                   .add_columns(
         Pairs.id,
+        Pairs.tutee_id,
         Pairs.subject,
         UserTutee.email.label("tutee_email"),
         UserTutee.teacher_email.label("tutee_teacher_email"),
