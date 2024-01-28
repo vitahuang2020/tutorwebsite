@@ -36,5 +36,3 @@ class Hours(db.Model, UserMixin):
     @property
     def formatted_time(self):
         return self.time.strftime("%Y-%m-%d")
-
-

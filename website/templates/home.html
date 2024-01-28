@@ -23,11 +23,12 @@
         <tr>
             <th scope='col'>#</th>
             <th scope="col">Email</th>
-            <th scope="col">Teacher Email</th>
             <th scope="col">First name</th>
             <th scope="col">Last name</th>
             <th scope="col">Grade</th>
             <th scope="col">Subject</th>
+            <th scope="col">Hours logged</th>
+            <th scope="col">Delete</th>
             <th scope="col">Checkbox</th>
         </tr>
     </thead>
@@ -37,11 +38,14 @@
         <tr>
             <th scope="col">{{ tutor.id }}</th>
             <th scope="col">{{ tutor.email }}</th>
-            <th scope="col">{{ tutor.teacher_email }}</th>
             <th scope="col">{{ tutor.first_name }}</th>
             <th scope="col">{{ tutor.last_name }}</th>
             <th scope="col">{{ tutor.grade }}</th>
             <th scope="col">{{ tutor.subject1 }}</th>
+            <th scope="col"><a href="https://www.w3schools.com">Visit W3Schools.com!</a></th>
+            <th scope="col">
+                <button type="button" class="btn btn-danger" onclick="deleteUser('tutor', {{ tutor.id }})">Delete</button>
+            </th>
             <th scope="col">
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="pair1" id="tutorradio">
@@ -61,11 +65,11 @@
         <tr>
             <th scope='col'>#</th>
             <th scope="col">Tutee Email</th>
-            <th scope="col">Teacher Email</th>
             <th scope="col">First name</th>
             <th scope="col">Last name</th>
             <th scope="col">Grade</th>
             <th scope="col">Subject</th>
+            <th scope="col">Delete</th>
             <th scope="col">Checkbox</th>
         </tr>
     </thead>
@@ -75,11 +79,13 @@
         <tr>
             <th scope="col">{{ tutee.id}}</th>
             <th scope="col">{{ tutee.tutee_email }}</th>
-            <th scope="col">{{ tutee.tutee_teacher_email }}</th>
             <th scope="col">{{ tutee.tutee_first_name }}</th>
             <th scope="col">{{ tutee.tutee_last_name }}</th>
             <th scope="col">{{ tutee.tutee_grade }}</th>
             <th scope="col">{{ tutee.subject }}</th>
+            <th scope="col">
+                <button type="button" class="btn btn-danger" onclick="deleteUser('tutee', {{ tutee.id }})">Delete</button>
+            </th>
             <th scope="col">
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="pair2" id="tuteeradio">
@@ -225,5 +231,41 @@
             document.getElementById('message').textContent = 'Please select a tutor and a tutee to pair.';
         }
     }
+
+
+    function delete_user(user_type, user_id) {
+    let confirmation = confirm("Are you sure you want to delete this user?");
+    if (!confirmation) {
+        return;
+    }
+
+    fetch(`/delete_user/${user_type}/${user_id}`, {
+        method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log(result); // Log the response for debugging
+
+        if (result.success) {
+            console.log("Deletion successful!"); // Log for debugging
+
+            // Remove the deleted row from the table
+            let tableId = user_type === 'tutor' ? 'table1' : 'table2';
+            let table = document.getElementById(tableId);
+            let deletedRow = document.querySelector(`#${tableId} tbody tr th:contains(${user_id})`).parentNode;
+            table.tBodies[0].removeChild(deletedRow);
+
+            // Display a success message
+            document.getElementById('message').textContent = 'User deleted!';
+        } else {
+            console.log("Deletion failed!"); // Log for debugging
+            // Display an error message if deletion fails
+            document.getElementById('message').textContent = 'User deletion failed!';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
 </script>
 {% endblock %}

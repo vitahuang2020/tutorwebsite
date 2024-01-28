@@ -104,6 +104,7 @@ def hours():
     if request.method == 'POST':
         selected_time = int(request.form.get('selected_time'))
         note = request.form.get('notes')
+        print(note)
         # Calculate the hours based on the selected time
         hours_logged = selected_time
 
@@ -133,3 +134,34 @@ def delete_time(id):
 @login_required
 def tutee_page():
     return render_template("tutee_page.html", user=current_user)
+
+@views.route('/delete_user/<string:user_type>/<int:user_id>', methods=['DELETE'])
+@login_required
+def delete_user(user_type, user_id):
+    user = None
+
+    if user_type == 'tutor':
+        user = User.query.filter_by(id=user_id, role=2).first()
+    elif user_type == 'tutee':
+        user = User.query.filter_by(id=user_id, role=1).first()
+
+    print(user_type, user_id, user)  # Debugging line
+
+    if user:
+        db.session.delete(user)
+        try:
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()  # Rollback changes if an exception occurs
+            print(f"Error committing changes: {str(e)}")
+
+        # Send notification email to the user
+        u = Utils()
+        u.send_mail(user.email,
+                    'Branksome Hall Tutor Club',
+                    'This email is to inform you that your account has been deleted from the Branksome Hall Tutor Program.')
+
+        flash('User deleted!', category='success')
+        return jsonify({"success": True}), 200
+    else:
+        return jsonify({"success": False, "error": "Invalid user type or ID"}), 400

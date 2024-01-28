@@ -18,10 +18,10 @@
         </div>
 
         <div class="form-group">
-            <label for="notes" style="color:#008000;">Remarks:</label>
+            <label style="color:#008000;">Remarks:</label>
             </br>
-                <textarea id="notes" placeholder="Briefly describe what you did during this session." style="width:60%;
-                height:60px;" cols="42" rows="5" name="sitelink"></textarea>
+                <textarea id="notes" for="notes" name="notes" placeholder="Briefly describe what you did during this session." style="width:60%;
+                height:60px;" cols="42" rows="5"></textarea>
         </div>
         <button type="submit" class="btn btn-primary" style="margin-top:10px; background-color:#008000;">Submit</button>
     </form>
@@ -31,7 +31,6 @@
         <thead>
             <tr>
                 <th>Time Tutored</th>
-                <th>Notes</th>
                 <th>Date Added</th>
                 <th>Note</th>
                 <th>Action</th>
@@ -41,7 +40,6 @@
             {% for entry in times %}
             <tr>
                 <td class="center">{{ entry.hours }} minutes</td>
-                <td>{{ entry.note }}</td>
                 <td>{{ entry.formatted_time }}</td>
                 <td>{{ entry.note }}</td>
                 <td><a href="{{ url_for('views.delete_time', id=entry.id) }}" class="btn btn-danger" style="background-color:#008000;">Delete</a></td>
