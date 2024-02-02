@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Edited main.py for the ports.">
+    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Edited main.py because it still doesn't deploy.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instance/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,13 +179,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682276594670</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Added the form for the subject selection.">
-      <created>1682280244289</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1682280244289</updated>
     </task>
     <task id="LOCAL-00002" summary="Added the form for the subject selection.">
       <created>1682280965946</created>
@@ -508,7 +502,28 @@
       <option name="project" value="LOCAL" />
       <updated>1706453333352</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Edited main.py and dockerfile for further modification of the ports.">
+      <created>1706453681004</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1706453681004</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Edited main.py and dockerfile for further modification of the ports.">
+      <created>1706453782476</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1706453782477</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Edited main.py because it still doesn't deploy.">
+      <created>1706454041538</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1706454041540</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -535,8 +550,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="making sure my commit works" />
-    <MESSAGE value="Added the teacher/tutor sign up page but the code doesn't work yet. The error message says: no such column: user.subject." />
     <MESSAGE value="Changed the heading to &quot;Tutee sign up&quot; and &quot;Tutor sign up&quot; instead to make it more clear." />
     <MESSAGE value="Created the new link for the hour logging form of the tutors." />
     <MESSAGE value="Inserted the send_message() function into auth.py in the pair function." />
@@ -560,7 +573,9 @@
     <MESSAGE value="Created a dockerfile." />
     <MESSAGE value="Edited dockerfile." />
     <MESSAGE value="Edited main.py for the ports." />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited main.py for the ports." />
+    <MESSAGE value="Edited main.py and dockerfile for further modification of the ports." />
+    <MESSAGE value="Edited main.py because it still doesn't deploy." />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited main.py because it still doesn't deploy." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

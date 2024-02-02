@@ -14,5 +14,8 @@ COPY . .
 # Expose a port to Containers
 EXPOSE 8080
 
+# Set environment variables
+ENV DATABASE_URL="your_database_url"
+
 # Command to run on server
 CMD ["gunicorn", "-b", "0.0.0.0:8080", "--reload", "app:app"]
