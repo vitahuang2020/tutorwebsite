@@ -3,7 +3,8 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<form method="POST" action="/submit">
+<!--<form method="POST" action="{{ url_for('auth.sign_up_tutor') }}">-->
+    <form>
     <h3 style="text-align:center;margin-top:15px;color:#000000;">Peer Tutor Sign Up</h3>
     </br>
     <p style="color:#000000;">
@@ -151,13 +152,16 @@
     </div>
 
     <br />
-    <button id="submitBtn" type="submit" class="btn" style="background-color:#008000;color:white;">Submit</button>
+    <button id="submitBtn" class="btn" onclick="checkForms()" style="background-color:#008000;color:white;">Submit</button>
 </form>
 
 <script>
     function checkForms() {
         var form1Yes = document.getElementById('Yep').checked;
         var form2Yes = document.getElementById('Yes').checked;
+        var firstName = document.getElementById('firstName').value;
+        if(!firstName) alert('firstName is not empty')
+        console.log('firstName='+firstName)
 
         if (!(form1Yes && form2Yes)) {
             // Use Python flash() function to display messages
@@ -181,6 +185,6 @@
         }
     }
 
-    document.getElementById('submitBtn').addEventListener('click', checkForms);
+<!--    document.getElementById('submitBtn').addEventListener('click', checkForms);-->
 </script>
 {% endblock %}

@@ -6,6 +6,11 @@ WORKDIR /app
 
 # Copy requirements and install dependencies
 COPY requirements.txt requirements.txt
+
+# Install build-essential and other necessary development libraries
+RUN apt-get update && \
+    apt-get install -y build-essential libssl-dev libffi-dev python3-dev
+
 RUN pip install -r requirements.txt
 
 # Copy other project files
