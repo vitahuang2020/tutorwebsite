@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="I made the dockerfile closer to working.">
+    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Made changes to the database.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instance/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/sign_up_tutor.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/sign_up_tutor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,13 +177,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682276594670</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Making sure my Github is working.">
-      <created>1685299091399</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1685299091399</updated>
     </task>
     <task id="LOCAL-00005" summary="Making sure my Github is working.">
       <created>1685299105691</created>
@@ -526,7 +514,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706915117293</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Made changes to the database.">
+      <created>1707663556573</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1707663556574</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -553,7 +548,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Inserted the send_message() function into auth.py in the pair function." />
     <MESSAGE value="Put the email function into auth.py" />
     <MESSAGE value="I added the (optional) text to subjects 2, 3, 4, and 5." />
     <MESSAGE value="I got the email function to work so that when pairing a tutor and a tutee, an email is sent to the both of them so that they would know that they were already paired up." />
@@ -578,7 +572,8 @@
     <MESSAGE value="Edited main.py because it still doesn't deploy." />
     <MESSAGE value="I made the dockerfile work." />
     <MESSAGE value="I made the dockerfile closer to working." />
-    <option name="LAST_COMMIT_MESSAGE" value="I made the dockerfile closer to working." />
+    <MESSAGE value="Made changes to the database." />
+    <option name="LAST_COMMIT_MESSAGE" value="Made changes to the database." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
