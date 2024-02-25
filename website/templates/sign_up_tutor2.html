@@ -3,7 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<form method="POST" action="{{ url_for('auth.sign_up_tutor') }}">
+<form method="POST">
     <form>
     <h3 style="text-align:center;margin-top:15px;color:#000000;">Peer Tutor Sign Up</h3>
     </br>
@@ -152,41 +152,39 @@
     </div>
 
     <br />
-    <button id="submitBtn" class="btn" style="background-color:#008000;color:white;">Submit</button>
+    <button id="submitBtn" onclick="checkForms()" class="btn" style="background-color:#008000;color:white;">Submit</button>
 </form>
 
-<!--<script>-->
-<!--    function checkForms(event) {-->
-<!--    event.preventDefault(); // Prevent form submission-->
+<script>
+    function checkForms() {
 
-<!--    var form1Yes = document.getElementById('Yep').checked;-->
-<!--    var form2Yes = document.getElementById('Yes').checked;-->
-<!--    var firstName = document.getElementById('firstName').value;-->
-<!--    if (!firstName) {-->
-<!--        alert('firstName is not empty');-->
-<!--    }-->
-<!--    console.log('firstName=' + firstName);-->
+    var form1Yes = document.getElementById('Yep').checked;
+    var form2Yes = document.getElementById('Yes').checked;
+    var firstName = document.getElementById('firstName').value;
+    if (!firstName) {
+        alert('firstName is not empty');
+    }
+    console.log('firstName=' + firstName);
 
-<!--    if (!(form1Yes && form2Yes)) {-->
-<!--        // Use Python flash() function to display messages-->
-<!--        var message = 'Please select "Yes" for both forms before submitting.';-->
-<!--        // You can customize the category based on your needs-->
-<!--        var category = 'error';-->
+    if (!(form1Yes && form2Yes)) {
+        // Use Python flash() function to display messages
+        var message = 'Please select "Yes" for both forms before submitting.';
+        // You can customize the category based on your needs
+        var category = 'error';
 
-<!--        // Send the message to the server to be displayed using Python flash()-->
-<!--        fetch('/flash_message', {-->
-<!--            method: 'POST',-->
-<!--            headers: {-->
-<!--                'Content-Type': 'application/json',-->
-<!--            },-->
-<!--            body: JSON.stringify({-->
-<!--                message: message,-->
-<!--                category: category,-->
-<!--            }),-->
-<!--        });-->
-<!--    }-->
-<!--}-->
+        // Send the message to the server to be displayed using Python flash()
+        fetch('/flash_message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                message: message,
+                category: category,
+            }),
+        });
+    }
+}
 
-<!--    document.getElementById('submitBtn').addEventListener('click', checkForms);-->
-<!--</script>-->
+</script>
 {% endblock %}

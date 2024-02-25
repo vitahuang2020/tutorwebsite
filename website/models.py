@@ -21,8 +21,8 @@ class User(db.Model, UserMixin):
 
 class Pairs(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    tutor_id = db.Column(db.Integer) # to add foreign key constrain
-    tutee_id = db.Column(db.Integer) # to add foreign key constrain
+    tutor_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # Add foreign key constraint
+    tutee_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # Add foreign key constraint
     subject = db.Column(db.String(150))
 
 class Hours(db.Model, UserMixin):

@@ -104,33 +104,31 @@
     <!-- Add an empty table to display paired information -->
     <h1 style="text-align:center;margin-top:15px;color:#008000;">Paired Tutors and Tutees</h1>
     <table class="table" id="pairedTable">
-        <thead>
-            <tr>
-                <th scope="col">Tutor Id</th>
-                <th scope="col">Tutor Name</th>
-                <th scope="col">Tutee Id</th>
-                <th scope="col">Tutee Name</th>
-                <th scope="col">Unpair</th>
-                <!-- Add more columns as needed for other information -->
-            </tr>
-        </thead>
-        <tbody>
-            {% for pairs in pairs_list %}
-            <tr>
-                <th scope="col">{{ pairs.tutor_id }}</th>
-                <th scope="col">{{ pairs.tutor_first_name + " " + pairs.tutor_last_name }}</th>
-                <th scope="col">{{ pairs.tutee_id }}</th>
-                <th scope="col">{{ pairs.tutee_first_name + " " + pairs.tutee_last_name }}</th>
-                <th scope="col">
-                    <button type="button" class="btn btn-danger" onclick="unpair( {{ pairs.id }} )">Unpair</button>
-                </th>
-
-                <!-- Add more columns as needed for other information -->
-            </tr>
-            {% endfor %}
-
-        </tbody>
-    </table>
+    <thead>
+        <tr>
+            <th scope="col">Tutor Id</th>
+            <th scope="col">Tutor Name</th>
+            <th scope="col">Tutee Id</th>
+            <th scope="col">Tutee Name</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Unpair</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pair in pairs_list %}
+        <tr>
+            <td>{{ pair.tutor_id }}</td>
+            <td>{{ pair.tutor_first_name }} {{ pair.tutor_last_name }}</td>
+            <td>{{ pair.tutee_id }}</td>
+            <td>{{ pair.tutee_first_name }} {{ pair.tutee_last_name }}</td>
+            <td>{{ pair.subject }}</td> <!-- Display tutee subject -->
+            <td>
+                <button type="button" class="btn btn-danger" onclick="unpair({{ pair.id }})">Unpair</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 <script>
     function unpair(id) {

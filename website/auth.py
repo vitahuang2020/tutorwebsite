@@ -61,6 +61,7 @@ def sign_up_tutee():
         teacher_email = request.form.get('teacher_email')
         parent_email = request.form.get('parent_email')
         user = User.query.filter_by(email=email).first()
+        subjects_list = []
 
         # no_option_form1 = request.form.get('flexRadioGroup1') == 'Nope'
         # no_option_form2 = request.form.get('flexRadioGroup2') == 'No'
@@ -113,33 +114,41 @@ def sign_up_tutee():
             db.session.add(new_pairs)
             db.session.commit()
 
+            subjects_list.append(subject1)
+
             if len(subject2) > 0:
                 new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0,subject=subject2)
                 db.session.add(new_pairs)
                 db.session.commit()
+                subjects_list.append(subject2)
 
             if len(subject3) > 0:
                 new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject3)
                 db.session.add(new_pairs)
                 db.session.commit()
+                subjects_list.append(subject3)
 
             if len(subject4) > 0:
                 new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject4)
                 db.session.add(new_pairs)
                 db.session.commit()
+                subjects_list.append(subject4)
 
             if len(subject5) > 0:
                 new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject5)
                 db.session.add(new_pairs)
                 db.session.commit()
+                subjects_list.append(subject5)
 
             u = Utils()
             u.send_mail(parent_email,
                         'Branksome Hall Tutor Club',
-                        'This email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutee for the Branksome Hall Tutor Program. If you have any questions, please directly contact Ms. Contreras or Ms. Blyth.')
+                        'This email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutee for the Branksome Hall Tutor Program for: ' + ','.join(subjects_list) +
+                        '. If you have any questions, please directly contact Ms. Contreras (mcontreras@branksome.on.ca) or Ms. Blyth (cblyth@branksome.on.ca).')
             u.send_mail(email,
                         'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are signed up for the Branksome Hall Tutor Program!')
+                        'This email is to inform you that you are signed up for the Branksome Hall Tutor Program for: ' + ','.join(subjects_list) +
+                        '! Please directly email Ms. Contreras (mcontreras@branksome.on.ca) or Ms. Blyth (cblyth@branksome.on.ca) if you have any questions.')
 
             flash('Account created!', category='success')
             print("account created")
@@ -188,10 +197,10 @@ def sign_up_tutor():
             u = Utils()
             u.send_mail(parent_email,
                         'Branksome Hall Tutor Club',
-                        'This email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutor for the Branksome Hall Tutor Program. If you have any questions, please directly contact Ms. Contreras or Ms. Blyth.')
+                        'This email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutor for the Branksome Hall Tutor Program for ' + subject + '. If you have any questions, please directly contact Ms. Contreras or Ms. Blyth.')
             u.send_mail(email,
                         'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are signed up for the Branksome Hall Tutor Program!')
+                        'This email is to inform you that you are signed up for the Branksome Hall Tutor Program for ' + subject + '!')
 
             flash('Account created!', category='success')
             print("account created")
@@ -243,10 +252,10 @@ def pair():
             u = Utils()
             u.send_mail(tutor[0].email,
                         'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are paired up with tutee: ' + tutee[0].first_name + ' ' + tutee[0].last_name + '. Please set up a time to begin!')
+                        'This email is to inform you that you are paired up with tutee: ' + tutee[0].first_name + ' ' + tutee[0].last_name + ' for ' + tutee[0].subject + '. Please set up a time to begin!')
             u.send_mail(tutee[0].email,
                         'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are paired up with tutor: ' + tutor[0].first_name + ' ' + tutor[0].last_name + '. Please set up a time to begin!')
+                        'This email is to inform you that you are paired up with tutor: ' + tutor[0].first_name + ' ' + tutor[0].last_name + ' for ' + tutee[0].subject + '. Please set up a time to begin!')
 
             db.session.close()
 

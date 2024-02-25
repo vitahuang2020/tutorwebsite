@@ -31,6 +31,7 @@ def home(tutor_id=None):
         UserTutor.last_name.label("tutor_last_name"),
         Pairs.tutee_id,
         Pairs.id,
+        Pairs.subject,
         UserTutee.first_name.label("tutee_first_name"),
         UserTutee.last_name.label("tutee_last_name")
     ).all())
@@ -135,6 +136,12 @@ def delete_time(id):
 @login_required
 def tutee_page():
     return render_template("tutee_page.html", user=current_user)
+
+@views.route('/training', methods=['GET','POST'])
+@login_required
+def training():
+    return render_template("training.html", user=current_user)
+
 
 @views.route('/delete_user/<string:user_type>/<int:user_id>', methods=['DELETE'])
 @login_required
