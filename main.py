@@ -1,6 +1,9 @@
+from flask import Flask
 from website import create_app
 
+
 app = create_app()
+app = Flask(__name__)
 
 # entry point to app
 if __name__ == '__main__':
