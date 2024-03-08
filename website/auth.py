@@ -88,6 +88,8 @@ def sign_up_tutee():
             flash('Please input your parent email', category='error')
         elif len(teacher_email) < 1:
             flash('Please input your teacher email', category='error')
+        elif email == parent_email:
+            flash('The email of your parent cannot be your email.', category='error')
         else:
             # add user to database
 
@@ -188,6 +190,8 @@ def sign_up_tutor():
             flash('Please input your parent email', category='error')
         elif len(teacher_email) < 1:
             flash('Please input your teacher email for a reference', category='error')
+        elif email == parent_email:
+            flash('The email of your parent cannot be your email.', category='error')
         else:
             new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade=grade, parent_email=parent_email, subject1=subject, teacher_email=teacher_email)
             db.session.add(new_user)
