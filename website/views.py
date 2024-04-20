@@ -142,7 +142,6 @@ def tutee_page():
 def training():
     return render_template("training.html", user=current_user)
 
-
 @views.route('/delete_user/<string:user_type>/<int:user_id>', methods=['DELETE'])
 @login_required
 def delete_user(user_type, user_id):
@@ -173,3 +172,18 @@ def delete_user(user_type, user_id):
         return jsonify({"success": True}), 200
     else:
         return jsonify({"success": False, "error": "Invalid user type or ID"}), 400
+
+    @views.route('/tutor_hours/<int:tutor_id>', methods=['GET'])
+    @login_required
+    def tutor_hours(tutor_id):
+        # Fetch and display time entries logged by the specified tutor
+        times = Hours.query.filter_by(tutor_id=tutor_id).all()
+
+        return render_template("tutor_hours.html", user=current_user, times=times)
+
+@views.route('/tutor_hours/<int:tutor_id>')
+@login_required
+def tutor_hours(tutor_id):
+    tutor = User.query.get_or_404(tutor_id)
+    times = Hours.query.filter_by(tutor_id=tutor_id).all()
+    return render_template("tutor_hours.html", user=current_user, tutor=tutor, times=times)

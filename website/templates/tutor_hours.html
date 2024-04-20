@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Tutor Hours{% endblock %}
+
+{% block content %}
+<body>
+    <h1>Hours Logged by {{ tutor.first_name }} {{ tutor.last_name }}</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Hours</th>
+                <th scope="col">Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for time in times %}
+            <tr>
+                <td>{{ time.formatted_time }}</td>
+                <td>{{ time.hours }}</td>
+                <td>{{ time.note }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+{% endblock %}

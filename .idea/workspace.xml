@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="I added a redundant line of code in main.py that I deleted.">
+    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Downgraded all the requirements.txt packages because I kept getting a sha256 error.">
+      <change afterPath="$PROJECT_DIR$/website/templates/tutor_hours.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instance/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +59,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "/Users/vitahuang/PycharmProjects/tutorwebsite/website",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "two.files.diff.last.used.file": "/Users/vitahuang/PycharmProjects/tutorwebsite/website/templates/sign_up_tutor2.html"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -179,13 +182,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682276594670</updated>
-    </task>
-    <task id="LOCAL-00015" summary="I made the logout link go to the very end of the nav bar.">
-      <created>1692198259369</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1692198259369</updated>
     </task>
     <task id="LOCAL-00016" summary="I made the logout link go to the very end of the nav bar.">
       <created>1692198893794</created>
@@ -523,7 +519,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709265416119</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Downgraded all the requirements.txt packages because I kept getting a sha256 error.">
+      <created>1709939378784</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1709939378785</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -550,7 +553,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Debugging home.html" />
     <MESSAGE value="Working version." />
     <MESSAGE value="Made the login page direct tutors to hours.html and tutees to tutee_page.html." />
     <MESSAGE value="Differentiation in user interface is done." />
@@ -575,7 +577,8 @@
     <MESSAGE value="Updated all the extensions." />
     <MESSAGE value="I accidentally deleted the file." />
     <MESSAGE value="I added a redundant line of code in main.py that I deleted." />
-    <option name="LAST_COMMIT_MESSAGE" value="I added a redundant line of code in main.py that I deleted." />
+    <MESSAGE value="Downgraded all the requirements.txt packages because I kept getting a sha256 error." />
+    <option name="LAST_COMMIT_MESSAGE" value="Downgraded all the requirements.txt packages because I kept getting a sha256 error." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
