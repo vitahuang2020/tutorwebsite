@@ -36,21 +36,21 @@
     <tbody>
         {% for tutor in tutors %}
         <tr>
-            <td scope="col">{{ tutor.id }}</td>
-            <td scope="col">{{ tutor.email }}</td>
-            <td scope="col">{{ tutor.first_name }}</td>
-            <td scope="col">{{ tutor.last_name }}</td>
-            <td scope="col">{{ tutor.grade }}</td>
-            <td scope="col">{{ tutor.subject1 }}</td>
-            <td><a href="{{ url_for('views.tutor_hours', tutor_id=tutor.id) }}">View Hours</a></td>
-            <td scope="col">
+            <th scope="col">{{ tutor.id }}</th>
+            <th scope="col">{{ tutor.email }}</th>
+            <th scope="col">{{ tutor.first_name }}</th>
+            <th scope="col">{{ tutor.last_name }}</th>
+            <th scope="col">{{ tutor.grade }}</th>
+            <th scope="col">{{ tutor.subject1 }}</th>
+            <th><a href="{{ url_for('views.tutor_hours', tutor_id=tutor.id) }}">View Hours</a></th>
+            <th scope="col">
                 <button type="button" class="btn btn-danger" onclick="delete_user('tutor', {{ tutor.id }})">Delete</button>
-            </td>
-            <td scope="col">
+            </th>
+            <th scope="col">
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="pair1" id="tutorradio">
                 </div>
-            </td>
+            </th>
         </tr>
         {% endfor %}
     </tbody>
@@ -117,14 +117,14 @@
     <tbody>
         {% for pair in pairs_list %}
         <tr>
-            <td>{{ pair.tutor_id }}</td>
-            <td>{{ pair.tutor_first_name }} {{ pair.tutor_last_name }}</td>
-            <td>{{ pair.tutee_id }}</td>
-            <td>{{ pair.tutee_first_name }} {{ pair.tutee_last_name }}</td>
-            <td>{{ pair.subject }}</td> <!-- Display tutee subject -->
-            <td>
+            <th>{{ pair.tutor_id }}</th>
+            <th>{{ pair.tutor_first_name }} {{ pair.tutor_last_name }}</th>
+            <th>{{ pair.tutee_id }}</th>
+            <th>{{ pair.tutee_first_name }} {{ pair.tutee_last_name }}</th>
+            <th>{{ pair.subject }}</th> <!-- Display tutee subject -->
+            <th>
                 <button type="button" class="btn btn-danger" onclick="unpair({{ pair.id }})">Unpair</button>
-            </td>
+            </th>
         </tr>
         {% endfor %}
     </tbody>

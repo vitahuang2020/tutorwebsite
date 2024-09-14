@@ -144,13 +144,17 @@ def sign_up_tutee():
 
             u = Utils()
             u.send_mail(parent_email,
-                        'Branksome Hall Tutor Club',
+                        'Confirmation of Enrollment of ' + first_name + last_name + ' in the Branksome Hall Tutor Program',
                         'This email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutee for the Branksome Hall Tutor Program for: ' + ','.join(subjects_list) +
-                        '. If you have any questions, please directly contact Ms. Contreras (mcontreras@branksome.on.ca) or Ms. Blyth (cblyth@branksome.on.ca).')
+                        '. The program is designed to provide additional support and guidance in these subjects. A tutor will be assigned soon, and you will receive further details regarding the pairing. '
+                        'If you have any questions or require further assistance, please do not hesitate to contact Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca. '
+                        'Thank you for your support, and we look forward to a successful tutoring experience.')
             u.send_mail(email,
-                        'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are signed up for the Branksome Hall Tutor Program for: ' + ','.join(subjects_list) +
-                        '! Please directly email Ms. Contreras (mcontreras@branksome.on.ca) or Ms. Blyth (cblyth@branksome.on.ca) if you have any questions.')
+                        'Welcome to the Branksome Hall Tutor Program!',
+                        'Congratulations on signing up for the Branksome Hall Tutor Program! We are excited to help you excel in the following subjects: ' + ','.join(subjects_list) +
+                        '! You will soon be paired with a tutor who will assist you in these areas. Please keep an eye on your email for further instructions regarding your tutor assignment. '
+                        'If you have any questions or need additional information, feel free to reach out to Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca.'
+                        'We wish you a productive and enriching experience in the program!')
 
             flash('Account created!', category='success')
             print("account created")
@@ -200,11 +204,14 @@ def sign_up_tutor():
 
             u = Utils()
             u.send_mail(parent_email,
-                        'Branksome Hall Tutor Club',
-                        'This email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutor for the Branksome Hall Tutor Program for ' + subject + '. If you have any questions, please directly contact Ms. Contreras or Ms. Blyth.')
+                        'Confirmation of Enrollment of ' + first_name + ' ' + last_name + ' in the Branksome Hall Tutor Program',
+                        'This email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutee for the Branksome Hall Tutor Program for ' + subject + '. ' + first_name + ' will be offering tutoring. The program is committed to providing excellent support to students, and ' + first_name + ' will play a crucial role in this effort. If you have any questions, please directly contact Ms. Contreras or Ms. Blyth. Thank you for your support, and we look forward to a successful tutoring experience!')
             u.send_mail(email,
-                        'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are signed up for the Branksome Hall Tutor Program for ' + subject + '!')
+                        'Welcome to the Branksome Hall Tutor Program!',
+                        'Thank you for joining the Branksome Hall Tutor Program as a tutor! We are thrilled to have you on board and are confident that your expertise in ' + subject + ' will greatly benefit our students. '
+                        'You will soon receive further details about your assigned tutees and the next steps in the program. Please keep an eye on your email for updates and instructions. '
+                        'If you have any questions or require additional information, please feel free to reach out to Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca. '
+                        'We look forward to working with you and achieving great results together!')
 
             flash('Account created!', category='success')
             print("account created")
@@ -248,25 +255,51 @@ def pair():
             # Query emails from the User table
             # Prepare a list containing both emails
 
-            tutor = User.query.filter_by(id=tutor_id).all()
-            tutee = User.query.filter_by(id=pair.tutee_id).all()
-            print(tutor[0].email)
-            print(tutee[0].email)
+            tutor = User.query.filter_by(id=tutor_id).first()
+            tutee = User.query.filter_by(id=pair.tutee_id).first()
+            print(tutor.email)
+            subject=""
+            if tutor.subject1 is not None and len(tutor.subject1)>0:
+                subject+=tutor.subject1 + ","
+
+            if tutor.subject2 is not None and len(tutor.subject2)>0:
+                subject += tutor.subject2 + ","
+
+            print(tutee.email)
+
+            tutee_subject=""
+            if tutee.subject1 is not None and len(tutee.subject1)>0:
+                tutee_subject += tutee.subject1 + ","
+
+            if tutee.subject2 is not None and len(tutee.subject2)>0:
+                tutee_subject += tutee.subject2 + ","
+
+            if tutee.subject3 is not None and len(tutee.subject3)>0:
+                tutee_subject += tutee.subject3 + ","
+
+            if tutee.subject4 is not None and len(tutee.subject4)>0:
+                tutee_subject += tutee.subject4 + ","
+
+            if tutee.subject5 is not None and len(tutee.subject5)>0:
+                tutee_subject += tutee.subject5 + ","
 
             u = Utils()
-            u.send_mail(tutor[0].email,
-                        'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are paired up with tutee: ' + tutee[0].first_name + ' ' + tutee[0].last_name + ' for ' + tutee[0].subject + '. Please set up a time to begin!')
-            u.send_mail(tutee[0].email,
-                        'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are paired up with tutor: ' + tutor[0].first_name + ' ' + tutor[0].last_name + ' for ' + tutee[0].subject + '. Please set up a time to begin!')
+            u.send_mail(tutor.email,
+                        'You Have Been Paired with a Tutee!',
+                        'We are pleased to inform you that you have been paired with a tutee: ' + tutee.first_name + ' ' + tutee.last_name + ' for ' + tutee_subject + '. '          
+                        'Please reach out to ' + tutee.first_name + ' to schedule your first meeting and begin the tutoring sessions. We trust that your expertise will be incredibly beneficial to their learning experience.'
+                                                                    'If you have any questions or need assistance, please contact Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca. Thank you for your dedication to our program!')
+            u.send_mail(tutee.email,
+                        'You Have Been Paired with a Tutor!',
+                        'We are excited to inform you that you have been paired with a tutor, ' + tutor.first_name + ' ' + tutor.last_name + ', for ' + subject + '. '
+                        'Please contact ' + tutor.first_name + ' to schedule your first meeting and start your tutoring sessions. We believe this pairing will greatly enhance your learning experience in these subjects.')
 
             db.session.close()
 
-            flash("Students paired", category='success')
-            return jsonify({"message": "Pair successfully added to the database"}), 200
+            flash("Students successfully paired!", category='success')
+            return jsonify({"success": True,"message": "Pair successfully added to the database"}), 200
         else:
-            return jsonify({"error": "Invalid data"}), 400
+            return jsonify({"success": False,"error": "Invalid data"}), 400
 
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
