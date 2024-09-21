@@ -85,13 +85,21 @@ def unpair():
             u = Utils()
             u.send_mail(tutors[0].email,
                         'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are no longer paired up with tutee: ' + tutees[0].first_name + ' ' +
-                        tutees[0].last_name + '. Please wait until you are paired up with another student.')
+                        'Hi ' + tutors[0].first_name + ','
+                        '\n\nThis email is to inform you that you are no longer paired up with the tutee: ' + tutees[0].first_name + ' ' +
+                        tutees[0].last_name + '.'
+                        '\n\nPlease wait until you are paired up with another student.'
+                        '\n\nSincerely,'
+                        '\n\nThe Peer Tutoring Team')
 
             u.send_mail(tutees[0].email,
                         'Branksome Hall Tutor Club',
-                        'This email is to inform you that you are no longer paired up with tutor: ' + tutors[0].first_name + ' ' +
-                        tutors[0].last_name + '. If you would still like tutoring in this subject, please let Ms. Contreras and Ms. Blyth know.')
+                        'Hi ' + tutees[0].first_name + ','
+                        '\n\nThis email is to inform you that you are no longer paired up with tutor: ' + tutors[0].first_name + ' ' +
+                        tutors[0].last_name + '.' 
+                        '\n\nIf you would still like tutoring in this subject, please let Ms. Contreras, Ms. Blyth, Vita, or Megan know.'
+                        '\n\nSincerely,'
+                        '\n\nThe Peer Tutoring Team')
 
             db.session.close()
 
@@ -175,7 +183,10 @@ def delete_user(user_type, user_id):
         u = Utils()
         u.send_mail(user.email,
                     'Branksome Hall Tutor Club',
-                    'This email is to inform you that your account has been deleted from the Branksome Hall Tutor Program.')
+                    'Hi ' + user.first_name + ','
+                    '\n\nThis email is to inform you that your account has been deleted from the Branksome Hall Tutor Program. Please notify the teacher supervisors (Ms. Contreras and Ms. Blyth) or the club heads (Vita Huang and Megan Kwan) if you think this has been a mistake.'
+                    '\n\nSincerely,'
+                    '\n\nThe Peer Tutoring Team')
 
         flash('User deleted!', category='success')
         return jsonify({"success": True}), 200

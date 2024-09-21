@@ -145,17 +145,23 @@ def sign_up_tutee():
 
             u = Utils()
             u.send_mail(parent_email,
-                        'Confirmation of Enrollment of ' + first_name + last_name + ' in the Branksome Hall Tutor Program',
-                        'This email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutee for the Branksome Hall Tutor Program for: ' + ','.join(subjects_list) +
-                        '. The program is designed to provide additional support and guidance in these subjects. A tutor will be assigned soon, and you will receive further details regarding the pairing. '
-                        'If you have any questions or require further assistance, please do not hesitate to contact Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca. '
-                        'Thank you for your support, and we look forward to a successful tutoring experience.')
+                        'Confirmation of Enrollment of ' + first_name + ' ' + last_name + ' in the Branksome Hall Tutor Program',
+                        'Hello!' 
+                        '\n\nThis email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutee for the Branksome Hall Tutor Program for: ' + ', '.join(subjects_list) + '.'
+                        '\n\nThe peer tutoring program is designed to provide additional support and guidance in these subjects. A tutor will be assigned soon, and you will get more details about the pairing. If you have any questions or need any help, please do not hesitate to contact Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca.'
+                        '\n\nThank you for your support, and we look forward to a successful tutoring experience!'
+                        '\n\nSincerely, '
+                        '\n\nThe Peer Tutoring Team')
             u.send_mail(email,
                         'Welcome to the Branksome Hall Tutor Program!',
-                        'Congratulations on signing up for the Branksome Hall Tutor Program! We are excited to help you excel in the following subjects: ' + ','.join(subjects_list) +
-                        '! You will soon be paired with a tutor who will assist you in these areas. Please keep an eye on your email for further instructions regarding your tutor assignment. '
-                        'If you have any questions or need additional information, feel free to reach out to Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca.'
-                        'We wish you a productive and enriching experience in the program!')
+                        'Dear ' + first_name + ' ' + last_name + ','
+                        '\n\nThank you for signing up for the Branksome Hall Tutor Program! We are excited to help you excel in the following subjects: ' + ', '.join(subjects_list) + '!'
+                        '\n\nYou will soon be paired with a tutor who will assist you in these areas. Please keep an eye on your email for further instructions regarding your tutor assignment.'
+                        '\n\nIf you have any questions or need additional information, feel free to reach out to Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca. You can also reach Vita Huang at vhuang@branksome.on.ca and Megan Kwan at mkwan@branksome.on.ca who are the 2024-2025 club heads.'
+                        '\n\nWe wish you a productive and enriching experience in the program!'
+                        '\n\nSincerely,'
+                        '\n\nThe Peer Tutoring Team'
+                        )
 
             flash('Account created!', category='success')
             print("account created")
@@ -215,13 +221,21 @@ def sign_up_tutor():
             u = Utils()
             u.send_mail(parent_email,
                         'Confirmation of Enrollment of ' + first_name + ' ' + last_name + ' in the Branksome Hall Tutor Program',
-                        'This email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutee for the Branksome Hall Tutor Program for ' + subject + '. ' + first_name + ' will be offering tutoring. The program is committed to providing excellent support to students, and ' + first_name + ' will play a crucial role in this effort. If you have any questions, please directly contact Ms. Contreras or Ms. Blyth. Thank you for your support, and we look forward to a successful tutoring experience!')
+                        'Hello!'
+                        '\n\nThis email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutor for the Branksome Hall Tutor Program for ' + subject + '.'
+                        '\n\nThe program is committed to providing excellent support to students, and ' + first_name + ' will play a crucial role in this effort.'
+                        '\n\nIf you have any questions, please directly contact Ms. Contreras or Ms. Blyth. Thank you for your support, and we look forward to a successful tutoring experience!'
+                        '\n\nSincerely,'
+                        '\n\nThe Peer Tutoring Team')
             u.send_mail(email,
                         'Welcome to the Branksome Hall Tutor Program!',
-                        'Thank you for joining the Branksome Hall Tutor Program as a tutor! We are thrilled to have you on board and are confident that your expertise in ' + subject + ' will greatly benefit our students. '
-                        'You will soon receive further details about your assigned tutees and the next steps in the program. Please keep an eye on your email for updates and instructions. '
-                        'If you have any questions or require additional information, please feel free to reach out to Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca. '
-                        'We look forward to working with you and achieving great results together!')
+                        'Dear ' + first_name + ','
+                        '\n\nThank you for joining the Branksome Hall Tutor Program as a tutor! We are thrilled to have you on board and are confident that your expertise in ' + subject + ' will greatly benefit our students.'
+                        '\n\nYou will soon receive further details about your assigned tutees and the next steps in the program. Please keep an eye on your email for updates and instructions!'
+                        '\n\nIf you have any questions or require additional information, please feel free to reach out to Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca. You can also email the 2024-2025 club heads: Vita Huang (vhuang@branksome.on.ca) and Megan Kwan (mkwan@branksome.on.ca).'
+                        '\n\nWe look forward to working with you and achieving great results together!'
+                        '\n\nSincerely,'
+                        '\n\nThe Peer Tutoring Team')
 
             flash('Account created!', category='success')
             print("account created")
@@ -298,13 +312,22 @@ def pair():
             u = Utils()
             u.send_mail(tutor.email,
                         'You Have Been Paired with a Tutee!',
-                        'We are pleased to inform you that you have been paired with a tutee: ' + tutee.first_name + ' ' + tutee.last_name + ' for ' + tutee_subject + '. '          
-                        'Please reach out to ' + tutee.first_name + ' to schedule your first meeting and begin the tutoring sessions. We trust that your expertise will be incredibly beneficial to their learning experience.'
-                                                                 '\n If you have any questions or need assistance, please contact Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca. Thank you for your dedication to our program!')
+                        'Dear ' + tutor.first_name + ','
+                        '\n\nWe are pleased to inform you that you have been paired with a tutee: ' + tutee.first_name + ' ' + tutee.last_name + ' for ' + tutor.tutor_subject + '. '
+                        '\n\nPlease reach out to ' + tutee.first_name + ' to schedule your first meeting and begin the tutoring sessions. We trust that your expertise will be incredibly beneficial to their learning experience. We recommend first emailing them and establishing a point of connection, whether that be through text, email, or other social media platforms. That way, it will be easier to get updates on your sessions and schedule regular ones.'
+                        '\n\nAs a reminder, please upload your hours to the "Time Entry" page on the website promptly if you wish to get service hours.'
+                        '\n\nIf you have any questions or need assistance, please contact Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca. You can also direct your questions to the 2024-2025 club heads: Vita Huang (vhuang@branksome.on.ca) and Megan Kwan (mkwan@branksome.on.ca). Thank you for your dedication to our program!'
+                        '\n\nSincerely,'
+                        '\n\nThe Peer Tutoring Team')
             u.send_mail(tutee.email,
                         'You Have Been Paired with a Tutor!',
-                        'We are excited to inform you that you have been paired with a tutor, ' + tutor.first_name + ' ' + tutor.last_name + ', for ' + subject + '. '
-                        'Please contact ' + tutor.first_name + ' to schedule your first meeting and start your tutoring sessions. We believe this pairing will greatly enhance your learning experience in these subjects.')
+                        'Dear ' + tutee.first_name + ','
+                        '\n\nWe are excited to inform you that you have been paired with a tutor, ' + tutor.first_name + ' ' + tutor.last_name + ', for ' + subject + '. '
+                        '\n\n' + tutor.first_name + ' will reach out shortly to schedule your first meeting and start your tutoring sessions. We believe this pairing will greatly enhance your learning experience in these subjects.'
+                        '\n\n If your tutor does not reach out promptly, you can try emailing them as well. If you have any questions, feel free to contact Ms. Contreras at mcontreras@branksome.on.ca, Ms. Blyth at cblyth@branksome.on.ca, Vita Huang at vhuang@branksome.on.ca or Megan Kwan at mkwan@branksome.on.ca. Ms. Contreras and Ms. Blyth are the teachers responsible for the programs and Vita and Megan are the 2024-2025 club heads.'
+                        '\n\nWe hope that you have a productive year and feel more confident in ' + subject + '!'
+                        '\n\nSincerely,'
+                        '\n\nThe Peer Tutoring Team')
 
             db.session.close()
 
