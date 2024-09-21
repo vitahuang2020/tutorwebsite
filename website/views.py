@@ -75,6 +75,11 @@ def unpair():
 
         tutors = User.query.filter_by(id=tutor_id).all()
         tutees = User.query.filter_by(id=tutee_id).all()
+        tutor = tutors[0]
+        tutor.pair_num = tutor.pair_num - 1
+        if tutor.pair_num < 0:
+            tutor.pair_num = 0;
+        db.session.commit()
 
         if tutors and tutees:
             u = Utils()
@@ -107,10 +112,14 @@ def hours():
         selected_time = int(request.form.get('selected_time'))
         note = request.form.get('notes')
         print(note)
+        inday = request.form.get('inday')
         # Calculate the hours based on the selected time
         hours_logged = selected_time
+        # date_format = "%Y-%m-%d %H:%M:%S"
+        # datetime_obj = datetime.strptime(inday, date_format)
+        print(inday)
 
-        new_hour = Hours(hours=hours_logged, note=note, tutor_id=current_user.id, time=datetime.utcnow())
+        new_hour = Hours(hours=hours_logged, note=note, tutor_id=current_user.id, time=datetime.utcnow(),inday=inday)
         db.session.add(new_hour)
         db.session.commit()
         flash('Hours logged!', category='success')
@@ -173,13 +182,13 @@ def delete_user(user_type, user_id):
     else:
         return jsonify({"success": False, "error": "Invalid user type or ID"}), 400
 
-    @views.route('/tutor_hours/<int:tutor_id>', methods=['GET'])
-    @login_required
-    def tutor_hours(tutor_id):
-        # Fetch and display time entries logged by the specified tutor
-        times = Hours.query.filter_by(tutor_id=tutor_id).all()
-
-        return render_template("tutor_hours.html", user=current_user, times=times)
+# @views.route('/tutor_hours/<int:tutor_id>', methods=['GET'])
+# @login_required
+# def tutor_hours(tutor_id):
+#         # Fetch and display time entries logged by the specified tutor
+#         times = Hours.query.filter_by(tutor_id=tutor_id).all()
+#
+#         return render_template("tutor_hours.html", user=current_user, times=times)
 
 @views.route('/tutor_hours/<int:tutor_id>')
 @login_required

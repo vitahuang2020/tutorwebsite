@@ -1,53 +1,62 @@
-Here is hours.html: 
 {% extends "base.html" %}
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
 <body>
-    <h1 style="margin-top:30px">Time Entry</h1>
+<h1 style="margin-top:30px">Time Entry</h1>
 
-    <form method="POST" action="{{ url_for('views.hours') }}" class="time-entry-form">
-        <div class="form-group">
-            <label for="selected_time" style="margin-top:20px;">Select Time Tutored:</label>
-            <select id="selected_time" name="selected_time">
-                <option value="30">30 minutes</option>
-                <option value="45">45 minutes</option>
-                <option value="60">60 minutes</option>
-                <option value="75">75 minutes</option>
-            </select>
-        </div>
+<form method="POST" action="{{ url_for('views.hours') }}" class="time-entry-form">
+    <div class="form-group">
+        <label for="inday" style="color:#008000;">Date:</label>
+<!--        <div class="input-group date" >-->
+<!--            <input type="text"  id="inday" class="form-control"/>-->
+<!--            <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span></span>-->
+<!--        </div>-->
+                    <input type="date" id="inday" />
+    </div>
+    <div class="form-group">
+        <label for="selected_time" style="margin-top:20px;">Select Time Tutored:</label>
+        <select id="selected_time" name="selected_time">
+            <option value="30">30 minutes</option>
+            <option value="45">45 minutes</option>
+            <option value="60">60 minutes</option>
+            <option value="75">75 minutes</option>
+        </select>
+    </div>
 
-        <div class="form-group">
-            <label style="color:#008000;">Remarks:</label>
-            </br>
-                <textarea id="notes" for="notes" name="notes" placeholder="Briefly describe what you did during this session." style="width:60%;
+    <div class="form-group">
+        <label style="color:#008000;">Remarks:</label>
+        </br>
+        <textarea id="notes" for="notes" name="notes" placeholder="Briefly describe what you did during this session."
+                  style="width:60%;
                 height:60px;" cols="42" rows="5"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="margin-top:10px; background-color:#008000;">Submit</button>
-    </form>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-top:10px; background-color:#008000;">Submit</button>
+</form>
 
-    <h2>Time Entries</h2>
-    <table class="time-table">
-        <thead>
-            <tr>
-                <th>Time Tutored</th>
-                <th>Date Added</th>
-                <th>Note</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for entry in times %}
-            <tr>
-                <td class="center">{{ entry.hours }} minutes</td>
-                <td>{{ entry.formatted_time }}</td>
-                <td>{{ entry.note }}</td>
-                <td><a href="{{ url_for('views.delete_time', id=entry.id) }}" class="btn btn-danger" style="background-color:#008000;">Delete</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<h2>Time Entries</h2>
+<table class="time-table">
+    <thead>
+    <tr>
+        <th>Time Tutored</th>
+        <th>Date Added</th>
+        <th>Note</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for entry in times %}
+    <tr>
+        <td class="center">{{ entry.hours }} minutes</td>
+        <td>{{ entry.formatted_time }}</td>
+        <td>{{ entry.note }}</td>
+        <td><a href="{{ url_for('views.delete_time', id=entry.id) }}" class="btn btn-danger"
+               style="background-color:#008000;">Delete</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 </body>
 </html>
 
@@ -94,4 +103,11 @@ Here is hours.html:
         text-align: center;
     }
 </style>
+
+<script>
+  const today = new Date();
+  const isoToday = today.toISOString().substr(0, 10); // 获取今天的日期
+  console.log("isoToday===="+isoToday)
+  document.getElementById('inday').max = isoToday;
+</script>
 {% endblock %}

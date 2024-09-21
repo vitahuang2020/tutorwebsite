@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
     subject5 = db.Column(db.String(150))
     teacher_email = db.Column(db.String(150))
     parent_email = db.Column(db.String(150))
+    pair_num = db.Column(db.Integer) #pair次数
 
 class Pairs(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -31,7 +32,7 @@ class Hours(db.Model, UserMixin):
     tutor_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     note = db.Column(db.String(512))
-
+    inday = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # Add this property to format the time
     @property
     def formatted_time(self):

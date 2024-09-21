@@ -7,17 +7,19 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Date (please input in the format month/day/year)</th>
+                <th scope="col">Date</th>
                 <th scope="col">Minutes</th>
                 <th scope="col">Note</th>
+                <th scope="col">Create Date</th>
             </tr>
         </thead>
         <tbody>
             {% for time in times %}
             <tr>
-                <td>{{ time.formatted_time }}</td>
+                <td>{{ time.inday }}</td>
                 <td>{{ time.hours }}</td>
                 <td>{{ time.note }}</td>
+                <td>{{ time.time }}</td>
             </tr>
             {% endfor %}
         </tbody>

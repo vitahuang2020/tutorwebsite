@@ -27,6 +27,7 @@
             <th scope="col">Last name</th>
             <th scope="col">Grade</th>
             <th scope="col">Subject</th>
+             <th scope="col">Pair Num</th>
             <th scope="col">Hours logged</th>
             <th scope="col">Delete</th>
             <th scope="col">Checkbox</th>
@@ -42,6 +43,7 @@
             <th scope="col">{{ tutor.last_name }}</th>
             <th scope="col">{{ tutor.grade }}</th>
             <th scope="col">{{ tutor.subject1 }}</th>
+            <th scope="col">{{ tutor.pair_num }}</th>
             <th><a href="{{ url_for('views.tutor_hours', tutor_id=tutor.id) }}">View Hours</a></th>
             <th scope="col">
                 <button type="button" class="btn btn-danger" onclick="delete_user('tutor', {{ tutor.id }})">Delete</button>

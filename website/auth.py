@@ -106,7 +106,8 @@ def sign_up_tutee():
                 subject2=subject2,
                 subject3=subject3,
                 subject4=subject4,
-                subject5=subject5
+                subject5=subject5,
+                pair_num=0
             )
             db.session.add(new_user)
             db.session.commit()
@@ -197,7 +198,16 @@ def sign_up_tutor():
         elif email == parent_email:
             flash('The email of your parent cannot be your email.', category='error')
         else:
-            new_user = User(email=email, first_name=first_name, last_name=last_name, password=generate_password_hash(password1,method='sha256'), role=role, grade=grade, parent_email=parent_email, subject1=subject, teacher_email=teacher_email)
+            new_user = User(email=email,
+                            first_name=first_name,
+                            last_name=last_name,
+                            password=generate_password_hash(password1,method='sha256'),
+                            role=role,
+                            grade=grade,
+                            parent_email=parent_email,
+                            subject1=subject,
+                            teacher_email=teacher_email,
+                            pair_num=0)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
@@ -257,6 +267,8 @@ def pair():
 
             tutor = User.query.filter_by(id=tutor_id).first()
             tutee = User.query.filter_by(id=pair.tutee_id).first()
+            tutor.pair_num =  tutor.pair_num +1
+            db.session.commit()
             print(tutor.email)
             subject=""
             if tutor.subject1 is not None and len(tutor.subject1)>0:
@@ -288,7 +300,7 @@ def pair():
                         'You Have Been Paired with a Tutee!',
                         'We are pleased to inform you that you have been paired with a tutee: ' + tutee.first_name + ' ' + tutee.last_name + ' for ' + tutee_subject + '. '          
                         'Please reach out to ' + tutee.first_name + ' to schedule your first meeting and begin the tutoring sessions. We trust that your expertise will be incredibly beneficial to their learning experience.'
-                                                                    'If you have any questions or need assistance, please contact Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca. Thank you for your dedication to our program!')
+                                                                 '\n If you have any questions or need assistance, please contact Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca. Thank you for your dedication to our program!')
             u.send_mail(tutee.email,
                         'You Have Been Paired with a Tutor!',
                         'We are excited to inform you that you have been paired with a tutor, ' + tutor.first_name + ' ' + tutor.last_name + ', for ' + subject + '. '
