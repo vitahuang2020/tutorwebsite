@@ -56,8 +56,8 @@ def sign_up_tutee():
         subject1 = request.form.get('subject1')
         subject2 = request.form.get('subject2')
         subject3 = request.form.get('subject3')
-        subject4 = request.form.get('subject4')
-        subject5 = request.form.get('subject5')
+        # subject4 = request.form.get('subject4')
+        # subject5 = request.form.get('subject5')
         teacher_email = request.form.get('teacher_email')
         parent_email = request.form.get('parent_email')
         user = User.query.filter_by(email=email).first()
@@ -105,8 +105,8 @@ def sign_up_tutee():
                 subject1=subject1,
                 subject2=subject2,
                 subject3=subject3,
-                subject4=subject4,
-                subject5=subject5,
+                subject4="",
+                subject5="",
                 pair_num=0
             )
             db.session.add(new_user)
@@ -131,17 +131,17 @@ def sign_up_tutee():
                 db.session.commit()
                 subjects_list.append(subject3)
 
-            if len(subject4) > 0:
-                new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject4)
-                db.session.add(new_pairs)
-                db.session.commit()
-                subjects_list.append(subject4)
-
-            if len(subject5) > 0:
-                new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject5)
-                db.session.add(new_pairs)
-                db.session.commit()
-                subjects_list.append(subject5)
+            # if len(subject4) > 0:
+            #     new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject4)
+            #     db.session.add(new_pairs)
+            #     db.session.commit()
+            #     subjects_list.append(subject4)
+            #
+            # if len(subject5) > 0:
+            #     new_pairs = Pairs(tutee_id=current_user.id, tutor_id=0, subject=subject5)
+            #     db.session.add(new_pairs)
+            #     db.session.commit()
+            #     subjects_list.append(subject5)
 
             u = Utils()
             u.send_mail(parent_email,
@@ -303,11 +303,11 @@ def pair():
             if tutee.subject3 is not None and len(tutee.subject3)>0:
                 tutee_subject += tutee.subject3 + ","
 
-            if tutee.subject4 is not None and len(tutee.subject4)>0:
-                tutee_subject += tutee.subject4 + ","
-
-            if tutee.subject5 is not None and len(tutee.subject5)>0:
-                tutee_subject += tutee.subject5 + ","
+            # if tutee.subject4 is not None and len(tutee.subject4)>0:
+            #     tutee_subject += tutee.subject4 + ","
+            #
+            # if tutee.subject5 is not None and len(tutee.subject5)>0:
+            #     tutee_subject += tutee.subject5 + ","
 
             u = Utils()
             u.send_mail(tutor.email,

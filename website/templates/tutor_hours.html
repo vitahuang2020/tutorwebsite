@@ -14,13 +14,13 @@
             </tr>
         </thead>
         <tbody>
-            {% for time in times %}
-            <tr>
-                <td>{{ time.inday }}</td>
-                <td>{{ time.hours }}</td>
-                <td>{{ time.note }}</td>
-                <td>{{ time.time }}</td>
-            </tr>
+            {% for tm in times_list %}
+                <tr>
+                    <td>{{ tm.inday }}</td>
+                    <td>{{ tm.hours }}</td>
+                    <td>{{ tm.note }}</td>
+                    <td>{{ tm.time }}</td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>

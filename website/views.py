@@ -120,12 +120,13 @@ def hours():
         selected_time = int(request.form.get('selected_time'))
         note = request.form.get('notes')
         print(note)
-        inday = request.form.get('inday')
+        date_string = request.form.get('inday')
+        inday = datetime.strptime(date_string, "%Y-%m-%d")
         # Calculate the hours based on the selected time
         hours_logged = selected_time
         # date_format = "%Y-%m-%d %H:%M:%S"
         # datetime_obj = datetime.strptime(inday, date_format)
-        print(inday)
+        print(date_string)
 
         new_hour = Hours(hours=hours_logged, note=note, tutor_id=current_user.id, time=datetime.utcnow(),inday=inday)
         db.session.add(new_hour)
@@ -205,5 +206,7 @@ def delete_user(user_type, user_id):
 @login_required
 def tutor_hours(tutor_id):
     tutor = User.query.get_or_404(tutor_id)
-    times = Hours.query.filter_by(tutor_id=tutor_id).all()
-    return render_template("tutor_hours.html", user=current_user, tutor=tutor, times=times)
+    times_list = (Hours.query.filter_by(tutor_id=tutor_id).all())
+    for item in times_list:
+        print(item.inday)
+    return render_template("tutor_hours.html", user=current_user, tutor=tutor, times_list=times_list)

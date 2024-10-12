@@ -21,7 +21,7 @@
 <table class="table" id="table1">
     <thead>
         <tr>
-            <th scope='col'>#</th>
+<!--            <th scope='col'>#</th>-->
             <th scope="col">Email</th>
             <th scope="col">First name</th>
             <th scope="col">Last name</th>
@@ -37,7 +37,7 @@
     <tbody>
         {% for tutor in tutors %}
         <tr>
-            <th scope="col">{{ tutor.id }}</th>
+<!--            <th scope="col">{{ tutor.id }}</th>-->
             <th scope="col">{{ tutor.email }}</th>
             <th scope="col">{{ tutor.first_name }}</th>
             <th scope="col">{{ tutor.last_name }}</th>
@@ -65,7 +65,7 @@
 <table class="table" id="table2">
     <thead>
         <tr>
-            <th scope='col'>#</th>
+<!--            <th scope='col'>#</th>-->
             <th scope="col">Tutee Email</th>
             <th scope="col">First name</th>
             <th scope="col">Last name</th>
@@ -79,7 +79,7 @@
     <tbody>
         {% for tutee in unpairs_list %}
         <tr>
-            <th scope="col">{{ tutee.id}}</th>
+<!--            <th scope="col">{{ tutee.id}}</th>-->
             <th scope="col">{{ tutee.tutee_email }}</th>
             <th scope="col">{{ tutee.tutee_first_name }}</th>
             <th scope="col">{{ tutee.tutee_last_name }}</th>
@@ -108,7 +108,7 @@
     <table class="table" id="pairedTable">
     <thead>
         <tr>
-            <th scope="col">Tutor Id</th>
+<!--            <th scope="col">Tutor Id</th>-->
             <th scope="col">Tutor Name</th>
             <th scope="col">Tutee Id</th>
             <th scope="col">Tutee Name</th>
@@ -119,7 +119,7 @@
     <tbody>
         {% for pair in pairs_list %}
         <tr>
-            <th>{{ pair.tutor_id }}</th>
+<!--            <th>{{ pair.tutor_id }}</th>-->
             <th>{{ pair.tutor_first_name }} {{ pair.tutor_last_name }}</th>
             <th>{{ pair.tutee_id }}</th>
             <th>{{ pair.tutee_first_name }} {{ pair.tutee_last_name }}</th>

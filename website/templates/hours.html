@@ -13,7 +13,7 @@
 <!--            <input type="text"  id="inday" class="form-control"/>-->
 <!--            <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span></span>-->
 <!--        </div>-->
-                    <input type="date" id="inday" />
+                    <input type="date" style="width: 30vw" class="form-control" name="inday" id="inday" />
     </div>
     <div class="form-group">
         <label for="selected_time" style="margin-top:20px;">Select Time Tutored:</label>
@@ -49,7 +49,7 @@
     {% for entry in times %}
     <tr>
         <td class="center">{{ entry.hours }} minutes</td>
-        <td>{{ entry.formatted_time }}</td>
+        <td>{{ entry.inday }}</td>
         <td>{{ entry.note }}</td>
         <td><a href="{{ url_for('views.delete_time', id=entry.id) }}" class="btn btn-danger"
                style="background-color:#008000;">Delete</a></td>
