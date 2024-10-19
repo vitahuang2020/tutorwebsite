@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Update the code">
+    <list default="true" id="20f88bb8-cf54-4985-8f5f-e2247ed669b1" name="Changes" comment="Changed password requirements.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/instance/database.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instance/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/hours.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/hours.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/tutor_hours.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/tutor_hours.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/templates/sign_up_tutee.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/sign_up_tutee.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/templates/sign_up_tutor.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/sign_up_tutor.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,8 +49,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/website/auth.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/website/models.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/website/views.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/models.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -197,34 +196,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682276594670</updated>
-    </task>
-    <task id="LOCAL-00019" summary="I added the checkbox to the very right of the table and the pair button.">
-      <created>1692281689512</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1692281689512</updated>
-    </task>
-    <task id="LOCAL-00020" summary="making sure my commit works">
-      <created>1692672130959</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1692672130959</updated>
-    </task>
-    <task id="LOCAL-00021" summary="making sure my commit works">
-      <created>1692672183008</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1692672183008</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Added the teacher/tutor sign up page but the code doesn't work yet. The error message says: no such column: user.subject.">
-      <created>1699652459512</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1699652459512</updated>
     </task>
     <task id="LOCAL-00023" summary="Changed the heading to &quot;Tutee sign up&quot; and &quot;Tutor sign up&quot; instead to make it more clear.">
       <created>1699653721415</created>
@@ -541,7 +512,35 @@
       <option name="project" value="LOCAL" />
       <updated>1726318877801</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Added manually inputted dates.">
+      <created>1726924653968</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1726924653968</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Rewrote the emails.">
+      <created>1726929897423</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1726929897424</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Fixed the hours">
+      <created>1728742769717</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1728742769719</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Changed password requirements.">
+      <created>1728959959262</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1728959959263</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -568,10 +567,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Email sending for the sign up and delete pair functions." />
-    <MESSAGE value="I fixed the problem that the email wasn't sending when we deleted the pair. I changed the sign-up forms to make them more detailed. Also, now the sign-up forms don't allow users to sign up if they've clicked &quot;no&quot; to the parental consent or honor code. Finally, I changed the color scheme to green." />
-    <MESSAGE value="Trying to delete tutors and tutees." />
-    <MESSAGE value="Created a dockerfile." />
     <MESSAGE value="Edited dockerfile." />
     <MESSAGE value="Edited main.py for the ports." />
     <MESSAGE value="Edited main.py and dockerfile for further modification of the ports." />
@@ -593,7 +588,11 @@
     <MESSAGE value="I made it so that the admin can see the hours that the tutor has logged." />
     <MESSAGE value="I changed the column name to &quot;minutes&quot; instead of &quot;hours&quot; in the tutor_hours.html" />
     <MESSAGE value="Update the code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update the code" />
+    <MESSAGE value="Added manually inputted dates." />
+    <MESSAGE value="Rewrote the emails." />
+    <MESSAGE value="Fixed the hours" />
+    <MESSAGE value="Changed password requirements." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed password requirements." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

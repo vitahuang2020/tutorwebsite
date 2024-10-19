@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     teacher_email = db.Column(db.String(150))
     parent_email = db.Column(db.String(150))
     pair_num = db.Column(db.Integer) #pair次数
+    is_boarding = db.Column(db.Integer)
 
 class Pairs(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)

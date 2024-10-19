@@ -42,6 +42,7 @@ def home(tutor_id=None):
         Pairs.id,
         Pairs.tutee_id,
         Pairs.subject,
+        UserTutee.is_boarding,
         UserTutee.email.label("tutee_email"),
         UserTutee.teacher_email.label("tutee_teacher_email"),
         UserTutee.first_name.label("tutee_first_name"),

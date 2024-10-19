@@ -60,6 +60,8 @@ def sign_up_tutee():
         # subject5 = request.form.get('subject5')
         teacher_email = request.form.get('teacher_email')
         parent_email = request.form.get('parent_email')
+        print(request.form.get("is_boarding"))
+        is_boarding = request.form.get('is_boarding')
         user = User.query.filter_by(email=email).first()
         subjects_list = []
 
@@ -107,7 +109,8 @@ def sign_up_tutee():
                 subject3=subject3,
                 subject4="",
                 subject5="",
-                pair_num=0
+                pair_num=0,
+                is_boarding=is_boarding
             )
             db.session.add(new_user)
             db.session.commit()
@@ -183,6 +186,7 @@ def sign_up_tutor():
         teacher_email = request.form.get('teacher_email')
         parent_email = request.form.get('parent_email')
         user = User.query.filter_by(email=email).first()
+        is_boarding = request.form.get('is_boarding')
         if user:
             flash('Email already exists.', category='error')
         elif len(email) < 5:
@@ -213,7 +217,8 @@ def sign_up_tutor():
                             parent_email=parent_email,
                             subject1=subject,
                             teacher_email=teacher_email,
-                            pair_num=0)
+                            pair_num=0,
+                            is_boarding= is_boarding)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)

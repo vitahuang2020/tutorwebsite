@@ -27,7 +27,8 @@
             <th scope="col">Last name</th>
             <th scope="col">Grade</th>
             <th scope="col">Subject</th>
-             <th scope="col">Pair Num</th>
+            <th scope="col">In Boarding?</th>
+            <th scope="col">Pair Num</th>
             <th scope="col">Hours logged</th>
             <th scope="col">Delete</th>
             <th scope="col">Checkbox</th>
@@ -43,6 +44,13 @@
             <th scope="col">{{ tutor.last_name }}</th>
             <th scope="col">{{ tutor.grade }}</th>
             <th scope="col">{{ tutor.subject1 }}</th>
+            <th scope="col">
+                {% if tutor.is_boarding==1 %}
+                    <p>Yes</p >
+                {% else %}
+                    <p>No</p >
+                {% endif %}
+            </th>
             <th scope="col">{{ tutor.pair_num }}</th>
             <th><a href="{{ url_for('views.tutor_hours', tutor_id=tutor.id) }}">View Hours</a></th>
             <th scope="col">
@@ -71,6 +79,7 @@
             <th scope="col">Last name</th>
             <th scope="col">Grade</th>
             <th scope="col">Subject</th>
+            <th scope="col">In boarding?</th>
             <th scope="col">Delete</th>
             <th scope="col">Checkbox</th>
         </tr>
@@ -85,6 +94,13 @@
             <th scope="col">{{ tutee.tutee_last_name }}</th>
             <th scope="col">{{ tutee.tutee_grade }}</th>
             <th scope="col">{{ tutee.subject }}</th>
+            <th scope="col">
+                {% if tutee.is_boarding==1 %}
+                    <p>Yes</p >
+                {% else %}
+                    <p>No</p >
+                {% endif %}
+            </th>
             <th scope="col">
                 <button type="button" class="btn btn-danger" onclick="delete_user('tutee', {{ tutee.tutee_id }})">Delete</button>
             </th>
@@ -110,7 +126,7 @@
         <tr>
 <!--            <th scope="col">Tutor Id</th>-->
             <th scope="col">Tutor Name</th>
-            <th scope="col">Tutee Id</th>
+<!--            <th scope="col">Tutee Id</th>-->
             <th scope="col">Tutee Name</th>
             <th scope="col">Subject</th>
             <th scope="col">Unpair</th>
@@ -121,7 +137,7 @@
         <tr>
 <!--            <th>{{ pair.tutor_id }}</th>-->
             <th>{{ pair.tutor_first_name }} {{ pair.tutor_last_name }}</th>
-            <th>{{ pair.tutee_id }}</th>
+<!--            <th>{{ pair.tutee_id }}</th>-->
             <th>{{ pair.tutee_first_name }} {{ pair.tutee_last_name }}</th>
             <th>{{ pair.subject }}</th> <!-- Display tutee subject -->
             <th>
