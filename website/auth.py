@@ -150,11 +150,14 @@ def sign_up_tutee():
             u.send_mail(parent_email,
                         'Confirmation of Enrollment of ' + first_name + ' ' + last_name + ' in the Branksome Hall Tutor Program',
                         'Hello!' 
-                        '\n\nThis email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutee for the Branksome Hall Tutor Program for: ' + ', '.join(subjects_list) + '.'
-                        '\n\nThe peer tutoring program is designed to provide additional support and guidance in these subjects. A tutor will be assigned soon, and you will get more details about the pairing. If you have any questions or need any help, please do not hesitate to contact Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca.'
+                        '\n\nThis email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutee for the Branksome Hall Tutor Program for: ' + ', '.join(subjects_list) + '. We are very happy to support their interest in the program. They should discuss with you what it involves in order to make their commitment.'
+                        '\n\nThe peer tutoring program is designed to provide additional support and guidance in these subjects. Here are the details about our progrma. It will be available to grade 7-12 students. Student pairings will meet together at school at least once a week for 40 minutes to 1 hour, either in person before or after school, lunch, or on Zoom. Teacher supervisors will be available to students via email if needed. The tutors will receive training in how to be effective and supportive tutors so that tutees will be paired with a Tutor who is skilled in the required subject.  Students must communicate clearly and agree upon a time and place to meet regularly. They must check email daily, gmail calendar invites, and/or exchange phone numbers. '
+                        '\n\nOnce they are paired with a tutor, the first meeting time will be set and confirmed with the team. We are very grateful for this support of the program and to continue to see how much it benefits students.'
+                        '\n\nIf you have any questions or need any help, please do not hesitate to contact Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca.'
                         '\n\nThank you for your support, and we look forward to a successful tutoring experience!'
                         '\n\nSincerely, '
-                        '\n\nThe Peer Tutoring Team')
+                        '\n\nMegan Kwan and Vita Huang, Co Heads of Peer Tutoring'
+                        '\n\nCaley Blyth and Maya Contreras, Teacher Supports for Peer Tutoring')
             u.send_mail(email,
                         'Welcome to the Branksome Hall Tutor Program!',
                         'Dear ' + first_name + ' ' + last_name + ','
@@ -227,11 +230,12 @@ def sign_up_tutor():
             u.send_mail(parent_email,
                         'Confirmation of Enrollment of ' + first_name + ' ' + last_name + ' in the Branksome Hall Tutor Program',
                         'Hello!'
-                        '\n\nThis email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutor for the Branksome Hall Tutor Program for ' + subject + '.'
-                        '\n\nThe program is committed to providing excellent support to students, and ' + first_name + ' will play a crucial role in this effort.'
-                        '\n\nIf you have any questions, please directly contact Ms. Contreras or Ms. Blyth. Thank you for your support, and we look forward to a successful tutoring experience!'
+                        '\n\nThis email is to inform you that your child, ' + first_name + ' ' + last_name + ', is signed up as a tutor for the Branksome Hall Tutor Program for ' + subject + '. We are grateful for their interest in the program. They should discuss with you what it involves in order to make their commitment.'
+                        '\n\nThe program is committed to providing excellent support to students, and ' + first_name + ' will play a crucial role in this effort. Here are the details for you. The program will be available to grade 7-12 students. Student pairings will meet together at least once a week for 40 min to 1 hour, either in person before or after school, lunch, or on Zoom. Teacher supervisors will be available to students via email if needed. The tutors will receive training in how to be effective and supportive tutors. Tutors receive service hours for volunteering and tutees will be paired with a Tutor who is skilled in the required subject. Students must communicate clearly and agree upon a time and place to meet regularly. They must check email daily, gmail calendar invites, and/or exchange phone numbers. '
+                        '\n\nWe are very grateful for this support of the program and continue to see how much it benefits students. If you have any questions, please directly contact Ms. Contreras or Ms. Blyth. Thank you for your support, and we look forward to a successful tutoring experience!'
                         '\n\nSincerely,'
-                        '\n\nThe Peer Tutoring Team')
+                        '\n\nMegan Kwan and Vita Huang, Co Heads of Peer Tutoring'
+                        '\n\nCaley Blyth and Maya Contreras, Teacher Supports for Peer Tutoring')
             u.send_mail(email,
                         'Welcome to the Branksome Hall Tutor Program!',
                         'Dear ' + first_name + ','
@@ -318,19 +322,20 @@ def pair():
             u.send_mail(tutor.email,
                         'You Have Been Paired with a Tutee!',
                         'Dear ' + tutor.first_name + ','
-                        '\n\nWe are pleased to inform you that you have been paired with a tutee: ' + tutee.first_name + ' ' + tutee.last_name + ' for ' + tutor.tutor_subject + '. '
-                        '\n\nPlease reach out to ' + tutee.first_name + ' to schedule your first meeting and begin the tutoring sessions. We trust that your expertise will be incredibly beneficial to their learning experience. We recommend first emailing them and establishing a point of connection, whether that be through text, email, or other social media platforms. That way, it will be easier to get updates on your sessions and schedule regular ones.'
+                        '\n\nWe are delighted to inform you that you have been paired. We would like to extend to you a warm welcome to the program and appreciate your commitment. Your tutee is: ' + tutee.first_name + ' ' + tutee.last_name + ' for ' + tutor.tutor_subject + '. '
+                        '\n\nPlease reach out to ' + tutee.first_name + ' to schedule your first meeting and begin the tutoring sessions. Before tutoring, please thoroughly read the Tutor Manual to guide your tutoring, which can be found in website under the tab "Peer Tutor Manual" beside "Hour-Logging". We trust that your expertise will be incredibly beneficial to their learning experience. We encourage you both to schedule your first meeting at your earliest convenience. We recommend first emailing them and establishing a point of connection, whether that be through text, email, or other social media platforms. That way, it will be easier to get updates on your sessions and schedule regular ones. Please let us know when you have completed your first meeting.'
                         '\n\nAs a reminder, please upload your hours to the "Time Entry" page on the website promptly if you wish to get service hours.'
-                        '\n\nIf you have any questions or need assistance, please contact Ms. Contreras at mcontreras@branksome.on.ca or Ms. Blyth at cblyth@branksome.on.ca. You can also direct your questions to the 2024-2025 club heads: Vita Huang (vhuang@branksome.on.ca) and Megan Kwan (mkwan@branksome.on.ca). Thank you for your dedication to our program!'
+                        '\n\nIf you have any questions or need assistance, please contact the 2024-2025 club heads: Vita Huang (vhuang@branksome.on.ca) and Megan Kwan (mkwan@branksome.on.ca). Thank you for your dedication to our program!'
                         '\n\nSincerely,'
                         '\n\nThe Peer Tutoring Team')
             u.send_mail(tutee.email,
                         'You Have Been Paired with a Tutor!',
                         'Dear ' + tutee.first_name + ','
                         '\n\nWe are excited to inform you that you have been paired with a tutor, ' + tutor.first_name + ' ' + tutor.last_name + ', for ' + subject + '. '
-                        '\n\n' + tutor.first_name + ' will reach out shortly to schedule your first meeting and start your tutoring sessions. We believe this pairing will greatly enhance your learning experience in these subjects.'
-                        '\n\n If your tutor does not reach out promptly, you can try emailing them as well. If you have any questions, feel free to contact Ms. Contreras at mcontreras@branksome.on.ca, Ms. Blyth at cblyth@branksome.on.ca, Vita Huang at vhuang@branksome.on.ca or Megan Kwan at mkwan@branksome.on.ca. Ms. Contreras and Ms. Blyth are the teachers responsible for the programs and Vita and Megan are the 2024-2025 club heads.'
-                        '\n\nWe hope that you have a productive year and feel more confident in ' + subject + '!'
+                        '\n\n' + tutor.first_name + ' will reach out shortly to schedule your first meeting and start your tutoring sessions. We believe this pairing will greatly enhance your learning experience in these subjects. Do not hesitate to ask questions, seek guidance, and make the most of this learning experience. Please come prepared for your sessions with questions and everything you need such as workbooks and necessary materials to maximize your support.'
+                        '\n\nIf your tutor does not reach out promptly, you can try emailing them as well.'
+                        '\n\nPlease remember that effective communication is key to a successful tutor-tutee relationship. Keep in mind that learning is a collaborative effort, and both of you have the potential to learn and grow from this experience. We hope that you have a productive year and feel more confident in ' + subject + '!'
+                        '\n\nIf you have any questions, feel free to contact the 2024-2025 club heads: Vita Huang at vhuang@branksome.on.ca or Megan Kwan at mkwan@branksome.on.ca.'                                                                                                                                                                                                                                                                                                                   
                         '\n\nSincerely,'
                         '\n\nThe Peer Tutoring Team')
 
