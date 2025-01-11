@@ -3,9 +3,10 @@
 
 {% block content %}
 <body>
-    <h1>Minutes Logged by {{ tutor.first_name }} {{ tutor.last_name }}</h1>
-    <table class="table">
-        <thead>
+     <h1 style="text-align:center;margin-top:15px;color:#008000;">Minutes Logged by {{ tutor.first_name }} {{ tutor.last_name }}</h1>
+    <table  style="border: 1px solid #fff;background-color: #fff"
+                   class="table table-striped table-bordered table-hover text-nowrap" id="pairedTable">
+        <thead style="background-color: #399d43;color:#fff">
             <tr>
                 <th scope="col">Date</th>
                 <th scope="col">Minutes</th>

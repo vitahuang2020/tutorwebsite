@@ -22,19 +22,6 @@ def home(tutor_id=None):
     #         .join(User, User.id == Pairs.tutee_id)
     #          .add_columns(Pairs.tutor_id, User.first_name, User.last_name, Pairs.tutee_id, User.first_name, User.last_name)).all()
 
-    pairs_list = (Pairs.query
-                  .join(UserTutor, UserTutor.id == Pairs.tutor_id)
-                  .join(UserTutee, UserTutee.id == Pairs.tutee_id)
-                  .add_columns(
-        Pairs.tutor_id,
-        UserTutor.first_name.label("tutor_first_name"),
-        UserTutor.last_name.label("tutor_last_name"),
-        Pairs.tutee_id,
-        Pairs.id,
-        Pairs.subject,
-        UserTutee.first_name.label("tutee_first_name"),
-        UserTutee.last_name.label("tutee_last_name")
-    ).all())
 
     unpairs_list = (Pairs.query.filter_by(tutor_id=0)
                   .join(UserTutee, UserTutee.id == Pairs.tutee_id)
@@ -42,6 +29,7 @@ def home(tutor_id=None):
         Pairs.id,
         Pairs.tutee_id,
         Pairs.subject,
+        UserTutee.subject1,
         UserTutee.is_boarding,
         UserTutee.email.label("tutee_email"),
         UserTutee.teacher_email.label("tutee_teacher_email"),
@@ -49,17 +37,51 @@ def home(tutor_id=None):
         UserTutee.last_name.label("tutee_last_name"),
         UserTutee.grade.label("tutee_grade"),
     ).all())
-
-    print("Unpaired: ")
+    #
+    # print("Unpaired: ")
     print(unpairs_list)
 
-    print(pairs_list)
+    # print(pairs_list)
 
     print(tutors)
     if request.method == 'GET':
         print("Get request on home page.")
         print(len(tutors))
-        return render_template("home.html", user=current_user, tutors=tutors, tutees=tutees, pairs_list=pairs_list, unpairs_list=unpairs_list)
+        return render_template("home.html", user=current_user, tutors=tutors, tutees=tutees,unpairs_list=unpairs_list )
+
+
+
+
+@views.route('/pair_record', methods=['GET', 'POST']) # pair_record
+@login_required
+def pair_record(tutor_id=None):
+    tutors = User.query.filter_by(role=2).all()
+    tutees = User.query.filter_by(role=1).all()
+
+    UserTutor = aliased(User)
+    UserTutee = aliased(User)
+    pairs_list = (Pairs.query
+                  .join(UserTutor, UserTutor.id == Pairs.tutor_id)
+                  .join(UserTutee, UserTutee.id == Pairs.tutee_id)
+                  .add_columns(
+        Pairs.tutor_id,
+        UserTutor.first_name.label("tutor_first_name"),
+        UserTutor.last_name.label("tutor_last_name"),
+        UserTutor.grade.label("tutor_grade"),
+        Pairs.tutee_id,
+        Pairs.id,
+        Pairs.subject,
+        UserTutee.first_name.label("tutee_first_name"),
+        UserTutee.grade.label("tutee_grade"),
+        UserTutee.last_name.label("tutee_last_name")
+    ).all())
+
+    print(pairs_list)
+    if request.method == 'GET':
+        print("Get request on home page.")
+        print(len(tutors))
+        return render_template("pair_record.html", user=current_user, pairs_list=pairs_list   )
+
 
 @views.route('/unpair', methods=['POST'])
 def unpair():
@@ -70,9 +92,9 @@ def unpair():
         # Save tutor_id and tutee_id before setting tutor_id to 0
         tutor_id = pair.tutor_id
         tutee_id = pair.tutee_id
-
+        # pair.subject = ""
         pair.tutor_id = 0
-        db.session.commit()
+        # db.session.commit()
 
         tutors = User.query.filter_by(id=tutor_id).all()
         tutees = User.query.filter_by(id=tutee_id).all()
@@ -208,6 +230,6 @@ def delete_user(user_type, user_id):
 def tutor_hours(tutor_id):
     tutor = User.query.get_or_404(tutor_id)
     times_list = (Hours.query.filter_by(tutor_id=tutor_id).all())
-    for item in times_list:
-        print(item.inday)
+    # for item in times_list:
+    #     print(item.inday)
     return render_template("tutor_hours.html", user=current_user, tutor=tutor, times_list=times_list)

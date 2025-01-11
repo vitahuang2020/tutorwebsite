@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      href="https://hzly.zhelan.net/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      href="https://hzly.zhelan.net/font-awesome.min.css"
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://hzly.zhelan.net/bootstrap-icons.css">
 
     <title>{% block title %}Home{% endblock %}</title>
   </head>
@@ -37,6 +37,7 @@
         {% if user.is_authenticated %}
           {% if user.role == 3 %} <!-- Check if user is admin -->
             <a class="nav-item nav-link" id="home" href="/" style="color: #568f56;">Home</a>
+            <a class="nav-item nav-link" id="pair_record" href="/pair_record" style="color: #568f56;">Pair record</a>
           {% endif %}
           {% if user.role == 1 %}
             <a class="nav-item nav-link" id="tutee_page" href="/tutee_page" style="color: #568f56;">Tutee Page</a>
@@ -55,7 +56,7 @@
         {% endif %}
       </div>
     </nav>
-
+<!--flash("Students successfully paired!", category='success')-->
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages%}
     {% for category, message in messages %}
@@ -96,17 +97,17 @@
     </div>
 
     <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      src="https://hzly.zhelan.net/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
       crossorigin="anonymous"
     ></script>
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      src="https://hzly.zhelan.net/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
       crossorigin="anonymous"
     ></script>
     <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      src="https://hzly.zhelan.net/bootstrap.min.js"
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>

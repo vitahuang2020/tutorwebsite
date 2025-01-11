@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
-
+<script src="../static/dialog.css"></script>
 <style>
     a:hover {
         color: #0c2d1c; /* Green color on hover */
@@ -15,168 +15,135 @@
 <!--add new url endpoint that corresponds to the pair button and then insert the pair selected into the pairs table-->
 <body>
 <form method="POST">
-{% block tutor_table %}
-<h1 style="text-align:center;margin-top:15px;color:#008000;">Tutors</h1>
-
-<table class="table" id="table1">
-    <thead>
-        <tr>
-<!--            <th scope='col'>#</th>-->
-            <th scope="col">Email</th>
-            <th scope="col">First name</th>
-            <th scope="col">Last name</th>
-            <th scope="col">Grade</th>
-            <th scope="col">Subject</th>
-            <th scope="col">In Boarding?</th>
-            <th scope="col">Pair Num</th>
-            <th scope="col">Hours logged</th>
-            <th scope="col">Delete</th>
-            <th scope="col">Checkbox</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        {% for tutor in tutors %}
-        <tr>
-<!--            <th scope="col">{{ tutor.id }}</th>-->
-            <th scope="col">{{ tutor.email }}</th>
-            <th scope="col">{{ tutor.first_name }}</th>
-            <th scope="col">{{ tutor.last_name }}</th>
-            <th scope="col">{{ tutor.grade }}</th>
-            <th scope="col">{{ tutor.subject1 }}</th>
-            <th scope="col">
-                {% if tutor.is_boarding==1 %}
-                    <p>Yes</p >
-                {% else %}
-                    <p>No</p >
-                {% endif %}
-            </th>
-            <th scope="col">{{ tutor.pair_num }}</th>
-            <th><a href="{{ url_for('views.tutor_hours', tutor_id=tutor.id) }}">View Hours</a></th>
-            <th scope="col">
-                <button type="button" class="btn btn-danger" onclick="delete_user('tutor', {{ tutor.id }})">Delete</button>
-            </th>
-            <th scope="col">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pair1" id="tutorradio">
-                </div>
-            </th>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-</br>
-
-<h1 style="text-align:center;margin-top:15px;color:#008000;">Unpaired Tutees</h1>
-
-<table class="table" id="table2">
-    <thead>
-        <tr>
-<!--            <th scope='col'>#</th>-->
-            <th scope="col">Tutee Email</th>
-            <th scope="col">First name</th>
-            <th scope="col">Last name</th>
-            <th scope="col">Grade</th>
-            <th scope="col">Subject</th>
-            <th scope="col">In boarding?</th>
-            <th scope="col">Delete</th>
-            <th scope="col">Checkbox</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        {% for tutee in unpairs_list %}
-        <tr>
-<!--            <th scope="col">{{ tutee.id}}</th>-->
-            <th scope="col">{{ tutee.tutee_email }}</th>
-            <th scope="col">{{ tutee.tutee_first_name }}</th>
-            <th scope="col">{{ tutee.tutee_last_name }}</th>
-            <th scope="col">{{ tutee.tutee_grade }}</th>
-            <th scope="col">{{ tutee.subject }}</th>
-            <th scope="col">
-                {% if tutee.is_boarding==1 %}
-                    <p>Yes</p >
-                {% else %}
-                    <p>No</p >
-                {% endif %}
-            </th>
-            <th scope="col">
-                <button type="button" class="btn btn-danger" onclick="delete_user('tutee', {{ tutee.tutee_id }})">Delete</button>
-            </th>
-            <th scope="col">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pair2" id="tuteeradio">
-                </div>
-            </th>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-     <!-- Add a "Pair" button -->
-    <button onclick="pair()" type="button" class="btn btn-primary" style="background-color:#008000;">Pair</button>
     <p id="message" style="color: #008000;"></p>
+    {% block tutor_table %}
+    <!--    <h1 style="text-align:center; color:#008000;">Tutors</h1>-->
+    <div style="padding:5px 20px;font-weight: 500; font-size: 22px; background-color: #399d43;color:#fff">
+        Tutors
+    </div>
+    <div style="height: 45vh;overflow: auto">
+
+        <table id="table1" style="border: 1px solid #fff;background-color: #fff"
+               class="table table-striped table-bordered table-hover text-nowrap">
+            <thead style="background-color: #399d43;color:#fff">
+            <tr>
+                <!--            <th scope='col'>#</th>-->
+                <th scope="col">Email</th>
+                <th scope="col"> name</th>
+                <!--            <th scope="col">  name</th>-->
+                <th scope="col">Grade</th>
+                <th scope="col">Subject</th>
+                <th scope="col">In Boarding?</th>
+                <th scope="col">Pair Num</th>
+                <th scope="col">Hours logged</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for tutor in tutors %}
+            <tr>
+                <!--            <th scope="col">{{ tutor.id }}</th>-->
+                <th scope="col">{{ tutor.email }}</th>
+                <th scope="col">{{ tutor.first_name }} {{ tutor.last_name }}</th>
+                <!--            <th scope="col"></th>-->
+                <th scope="col">{{ tutor.grade }}</th>
+                <th scope="col">{{ tutor.subject1 }}</th>
+                <th scope="col">
+                    {% if tutor.is_boarding==1 %}
+                    <p>Yes</p>
+                    {% else %}
+                    <p>No</p>
+                    {% endif %}
+                </th>
+                <th scope="col">{{ tutor.pair_num }}</th>
+                <!-- <th><a onclick="doHours({{tutor.id}})">View Hours</a></th>-->
+                <th><a href="{{ url_for('views.tutor_hours', tutor_id=tutor.id) }}">View Hours</a></th>
+                <th scope="col">
+                    <button type="button" class="btn btn-danger" onclick="delete_user('tutor', {{ tutor.id }})">Delete
+                    </button>
+                </th>
+                <th scope="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pair1" id="{{ tutor.id }}">
+                    </div>
+                </th>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div style="margin-top: 22px; padding:5px 20px;font-weight: 500; font-size: 22px; background-color: #399d43;color:#fff">
+        Unpaired Tutees
+    </div>
+    <div style="height: 45vh;overflow: auto">
+
+
+        <table id="table2" style="border: 1px solid #fff;background-color: #fff"
+               class="table table-striped table-bordered table-hover text-nowrap">
+            <thead style="background-color: #399d43;color:#fff">
+            <tr>
+                <!--            <th scope='col'>#</th>-->
+                <th scope="col">Tutee Email</th>
+                <th scope="col"> name</th>
+                <!--            <th scope="col">Last name</th>-->
+                <th scope="col">Grade</th>
+                <th scope="col">Subject</th>
+                <th scope="col">In boarding?</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for tutee in unpairs_list %}
+            <tr id="{{tutee.id}}">
+                <!--            <th scope="col">{{ tutee.id}}</th>-->
+                <th scope="col">{{ tutee.tutee_email }}</th>
+                <th scope="col">{{ tutee.tutee_first_name }} {{ tutee.tutee_last_name }}</th>
+                <!--            <th scope="col"></th>-->
+                <th scope="col">{{ tutee.tutee_grade }}</th>
+                <th scope="col">{{ tutee.subject1 }}</th>
+                <th scope="col">
+                    {% if tutee.is_boarding==1 %}
+                    <p>Yes</p>
+                    {% else %}
+                    <p>No</p>
+                    {% endif %}
+                </th>
+                <th scope="col">
+                    <button type="button" class="btn btn-danger" onclick="delete_user('tutee', {{ tutee.tutee_id }})">
+                        Delete
+                    </button>
+                </th>
+                <th scope="col">
+                    <div class="form-check">
+                        <input class="form-check-input"
+                               type="radio" name="pair2" id="{{ tutee.id }}">
+                    </div>
+                </th>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add a "Pair" button -->
+
+    <button onclick="pair()" type="button" class="btn btn-primary"
+            style="background-color:#008000;width: 100px;position: absolute; bottom:50px; right: 30px">Pair
+    </button>
+
+
 </form>
-
-    <!-- Add an empty table to display paired information -->
-    <h1 style="text-align:center;margin-top:15px;color:#008000;">Paired Tutors and Tutees</h1>
-    <table class="table" id="pairedTable">
-    <thead>
-        <tr>
-<!--            <th scope="col">Tutor Id</th>-->
-            <th scope="col">Tutor Name</th>
-<!--            <th scope="col">Tutee Id</th>-->
-            <th scope="col">Tutee Name</th>
-            <th scope="col">Subject</th>
-            <th scope="col">Unpair</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for pair in pairs_list %}
-        <tr>
-<!--            <th>{{ pair.tutor_id }}</th>-->
-            <th>{{ pair.tutor_first_name }} {{ pair.tutor_last_name }}</th>
-<!--            <th>{{ pair.tutee_id }}</th>-->
-            <th>{{ pair.tutee_first_name }} {{ pair.tutee_last_name }}</th>
-            <th>{{ pair.subject }}</th> <!-- Display tutee subject -->
-            <th>
-                <button type="button" class="btn btn-danger" onclick="unpair({{ pair.id }})">Unpair</button>
-            </th>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
+<script src="../static/jquery-1.11.0.min.js"></script>
+<script src="../static/dialog.js"></script>
 <script>
-    function unpair(id) {
-        console.log(id)
-        let data ={"Id":id}
-        fetch('/unpair', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(result => {
-                console.log(result); // Log the response for debugging
+    function doHours(tutor_id) {
 
-                if (result.success) {
-                    console.log("Pairing successful!"); // Log for debugging
-                    // Display a success message
-                    location.reload();
-                } else {
-                    console.log("Pairing failed!"); // Log for debugging
-                    // Display an error message if pairing fails
-                    document.getElementById('message').textContent = 'Pairing failed!';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
     }
+
     function pair() {
         var tutorRows = document.querySelectorAll('#table1 tbody tr');
         var tuteeRows = document.querySelectorAll('#table2 tbody tr');
@@ -188,7 +155,7 @@
         tutorRows.forEach(function (tutorRow) {
             var tutorRadio = tutorRow.querySelector('input[type="radio"]');
             if (tutorRadio.checked) {
-                selectedTutor = tutorRow;
+                selectedTutor = tutorRadio.getAttribute("id");
 
             }
         });
@@ -196,50 +163,51 @@
         tuteeRows.forEach(function (tuteeRow) {
             var tuteeRadio = tuteeRow.querySelector('input[type="radio"]');
             if (tuteeRadio.checked) {
-                selectedTutee = tuteeRow;
+                // selectedTutee = tuteeRow;
+                selectedTutee = tuteeRadio.getAttribute("id");
             }
         });
 
         // Check if both a tutor and tutee are selected
         if (selectedTutor && selectedTutee) {
             // Get the data needed for the pairing
-            var tutorId = selectedTutor.querySelector('th:nth-child(1)').textContent;
-            var tuteeId = selectedTutee.querySelector('th:nth-child(1)').textContent;
+            // var tutorId = selectedTutor.querySelector('th:nth-child(1)').textContent;
+            // var tuteeId = selectedTutee.querySelector('th:nth-child(1)').textContent;
 
             // Create an object to send to the server
             var data = {
-                selectedTutorId: tutorId,
-                selectedTuteeId: tuteeId
+                selectedTutorId: selectedTutor,
+                selectedTuteeId: selectedTutee
             };
             console.log(data)
 
             // Send the data to the server using fetch or another AJAX method
 
-                            fetch('/pair', {
+            fetch('/pair', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => response.json())
-            .then(result => {
-                console.log(result); // Log the response for debugging
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result); // Log the response for debugging
 
-                if (result.success) {
-                    console.log("Pairing successful!"); // Log for debugging
-                    location.reload();
-                    // Display a success message
-                    document.getElementById('message').textContent = 'Pairing successful!';
-                } else {
-                    console.log("Pairing failed!"); // Log for debugging
-                    // Display an error message if pairing fails
-                    document.getElementById('message').textContent = 'Pairing failed!';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                    if (result.success) {
+                        console.log("Pairing successful!"); // Log for debugging
+                        location.reload();
+                        // Display a success message
+                        document.getElementById('message').textContent = 'Pairing successful!';
+                    } else {
+                        console.log("Pairing failed!"); // Log for debugging
+                        // Display an error message if pairing fails
+                        document.getElementById('message').textContent = 'Pairing failed!';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
 
 
         } else {
@@ -250,38 +218,51 @@
 
 
     function delete_user(user_type, user_id) {
-    let confirmation = confirm("Are you sure you want to delete this user?");
-    if (!confirmation) {
-        return;
-    }
-
-    fetch(`/delete_user/${user_type}/${user_id}`, {
-        method: 'DELETE'
-    })
-    .then(response => response.json())
-    .then(result => {
-        console.log(result); // Log the response for debugging
-
-        if (result.success) {
-            console.log("Deletion successful!"); // Log for debugging
-
-            // Remove the deleted row from the table
-            let tableId = user_type === 'tutor' ? 'table1' : 'table2';
-            let table = document.getElementById(tableId);
-            let deletedRow = document.querySelector(`#${tableId} tbody tr th:contains(${user_id})`).parentNode;
-            table.tBodies[0].removeChild(deletedRow);
-
-            // Display a success message
-            document.getElementById('message').textContent = 'User deleted!';
-        } else {
-            console.log("Deletion failed!"); // Log for debugging
-            // Display an error message if deletion fails
-            document.getElementById('message').textContent = 'User deletion failed!';
+        let confirmation = confirm("Are you sure you want to delete this user?");
+        if (!confirmation) {
+            return;
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
+
+        fetch(`/delete_user/${user_type}/${user_id}`, {
+            method: 'DELETE'
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result); // Log the response for debugging
+
+                if (result.success) {
+                    console.log("Deletion successful!"); // Log for debugging
+
+                    // Remove the deleted row from the table
+                    let tableId = user_type === 'tutor' ? 'table1' : 'table2';
+                    // let table = document.getElementById(tableId);
+                    // document.querySelector("#row"+user_id).remove();
+                    // $("#"+tableId).find("tbody").removeChild(deletedRow);
+
+
+                    // let deletedRow = document.querySelector(`#${tableId} tbody tr ${user_id}`);
+                    // table.tBodies[0].removeChild(deletedRow);
+                    // let row = document.getElementById(user_id); // 获取行元素
+                    // row.parentNode.removeChild(row); // 删除行
+
+                    // var rows = document.querySelectorAll("#"+tableId+" tbody tr"); // 获取所有行元素
+                    // rows.forEach(function (row) {
+                    //     if(row.attr("id")==user_id)
+                    //          row.parentNode.removeChild(row); // 删除所有行
+                    // });
+                    window.location.reload();
+
+                    // Display a success message
+                    document.getElementById('message').textContent = 'User deleted!';
+                } else {
+                    console.log("Deletion failed!"); // Log for debugging
+                    // Display an error message if deletion fails
+                    document.getElementById('message').textContent = 'User deletion failed!';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 </script>
 {% endblock %}

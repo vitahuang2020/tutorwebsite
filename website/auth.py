@@ -281,10 +281,8 @@ def pair():
 
         if tutor_id is not None and pair_id is not None:
             # Create a new Pair instance and add it to the database
-            pair = Pairs.query.get(pair_id)
-            pair.tutor_id = tutor_id
-            db.session.commit()
 
+            pair = Pairs.query.get(pair_id)
             # Query emails from the User table
             # Prepare a list containing both emails
 
@@ -318,11 +316,15 @@ def pair():
             # if tutee.subject5 is not None and len(tutee.subject5)>0:
             #     tutee_subject += tutee.subject5 + ","
 
+            pair.tutor_id = tutor_id
+            pair.subject = tutee_subject
+            db.session.commit()
+
             u = Utils()
             u.send_mail(tutor.email,
                         'You Have Been Paired with a Tutee!',
                         'Dear ' + tutor.first_name + ','
-                        '\n\nWe are delighted to inform you that you have been paired. We would like to extend to you a warm welcome to the program and appreciate your commitment. Your tutee is: ' + tutee.first_name + ' ' + tutee.last_name + ' for ' + tutor.tutor_subject + '. '
+                        '\n\nWe are delighted to inform you that you have been paired. We would like to extend to you a warm welcome to the program and appreciate your commitment. Your tutee is: ' + tutee.first_name + ' ' + tutee.last_name + ' for ' + tutor.subject1 + '. '
                         '\n\nPlease reach out to ' + tutee.first_name + ' to schedule your first meeting and begin the tutoring sessions. Before tutoring, please thoroughly read the Tutor Manual to guide your tutoring, which can be found in website under the tab "Peer Tutor Manual" beside "Hour-Logging". We trust that your expertise will be incredibly beneficial to their learning experience. We encourage you both to schedule your first meeting at your earliest convenience. We recommend first emailing them and establishing a point of connection, whether that be through text, email, or other social media platforms. That way, it will be easier to get updates on your sessions and schedule regular ones. Please let us know when you have completed your first meeting.'
                         '\n\nAs a reminder, please upload your hours to the "Time Entry" page on the website promptly if you wish to get service hours.'
                         '\n\nIf you have any questions or need assistance, please contact the 2024-2025 club heads: Vita Huang (vhuang@branksome.on.ca) and Megan Kwan (mkwan@branksome.on.ca). Thank you for your dedication to our program!'
